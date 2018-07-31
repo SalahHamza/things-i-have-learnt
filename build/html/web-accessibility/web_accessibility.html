@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <link rel="stylesheet" href="/build/assets/css/main.css">
+   <title></title>
+</head>
+<body>
+   <header class="header">
+      <a href="">
+         <img class="gh_logo" src="./build/assets/images/GitHub-Mark-Light-120px-plus.png" alt="Go to Github">
+      </a>
+   </header>
+   <main class="main">
+      <article>
+         <h1 id="web-accessibility">Web Accessibility</h1>
+<h2 id="overview">Overview</h2>
+<h3 id="what-is-accessibility">What is Accessibility</h3>
+<blockquote>
+<p>Broadly speaking, when we say a site is accessible, we mean that the site&#39;s content is available, and its functionality can be operated, by literally <em>anyone</em>.</p>
+</blockquote>
+<p>and it also</p>
+<blockquote>
+<p>refers to the experience of users who might be outside the narrow range of the &quot;typical&quot; user, who might access or interact with things differently than you expect. Specifically, it concerns users who are experiencing some type of impairment or disability — and bear in mind that that experience might be non-physical or temporary.</p>
+</blockquote>
+<h3 id="web-content-accessibility-guidelines-wcag-">Web Content Accessibility Guidelines (WCAG)</h3>
+<blockquote>
+<p>Web Content Accessibility Guidelines (WCAG) 2.0 covers a wide range of recommendations for making Web content more accessible.</p>
+</blockquote>
+<p><strong>WCAG</strong> revolves around 4 principles labelled <strong><a href="https://www.w3.org/TR/UNDERSTANDING-WCAG20/intro.html#introduction-fourprincs-head">POUR</a></strong>:</p>
+<ol>
+<li><strong>Perceivable</strong>: Users must be able to perceive the information being presented (it can&#39;t be invisible to all of their senses)</li>
+<li><strong>Operable</strong>: Users must be able to operate the interface (the interface cannot require interaction that a user cannot perform)</li>
+<li><strong>Understandable</strong>: Users must be able to understand the information as well as the operation of the user interface (the content or operation cannot be beyond their understanding)</li>
+<li><strong>Robust</strong>: Content must be robust enough that it can be interpreted reliably by a wide variety of user agents (browsers), including assistive technologies.</li>
+</ol>
+<p><strong>WCAG</strong> can be a bit overwhelming that&#39;s where the <a href="https://webaim.org/standards/wcag/checklist"><strong>Web AIM checklist</strong></a> comes in hand. The <strong>Web AIM</strong> checklist is (in a nutshell) an easy-to-read, well-structured &quot;summary&quot; of the <strong>WCAG</strong>.</p>
+<h2 id="focus">Focus</h2>
+<h3 id="what-is-focus-">What is Focus?</h3>
+<blockquote>
+<p>Focus refers to which control on the screen (an input item such as a field, checkbox, button, or link) currently receives input from the keyboard, and from the clipboard when you paste content.</p>
+</blockquote>
+<h3 id="why-is-this-important-">why is this important?</h3>
+<blockquote>
+<p>Some users operate their computer almost entirely with the keyboard or other input device. For those users, focus is critical; it&#39;s their primary means of reaching everything on the screen.</p>
+</blockquote>
+<p>Which is why the <strong>Web AIM</strong> check list section <strong><a href="https://webaim.org/standards/wcag/checklist#sc2.1.1">2.1.1</a></strong> states that <strong>All page functionality is available using the keyboard, unless the functionality cannot be accomplished in any known way using a keyboard (e.g., free hand drawing)</strong>.</p>
+<h3 id="how-do-you-know-if-an-item-is-focused-">how do you know if an item is focused?</h3>
+<blockquote>
+<p>The currently focused item is often indicated by a focus ring, the style of which depends on both the browser and on any styling the page author has applied.</p>
+</blockquote>
+<h3 id="focusable-elements">focusable elements</h3>
+<p>Some native HTML elements are focusable by design and don&#39;t require the page author to explicitly insert them into the tab order, elements like text fields, select lists, links, buttons, ...etc. But other native elements are not focusable by design.</p>
+<blockquote>
+<p>There&#39;s generally no need to focus something if the user can&#39;t interact with it.</p>
+</blockquote>
+<h3 id="dom-order-matters-">DOM order matters!</h3>
+<p>Native HTML elements are automatically inserted into the tab order based on their position in the DOM. Sometimes the author of the page may change the visual order of the elements using CSS, but the DOM order remains the same and that may cause a confusion to users who rely heavily on the keyboard.</p>
+<p>That&#39;s why the <strong>Web AIM</strong> check list section <strong><a href="https://webaim.org/standards/wcag/checklist#sc1.3.2">1.3.1</a></strong> states that <strong>The reading and navigation order (determined by code order) is logical and intuitive</strong>.</p>
+<h3 id="manipulate-the-tab-order-tabindex-">manipulate the tab order (tabindex)</h3>
+<p>There are some instances where you would want to manipulate the tab order and that can be done with the <code>tabindex</code> attribute.</p>
+<blockquote>
+<p><code>tabindex</code> can be applied to any element — although it is not necessarily useful on every element — and takes a range of integer values. Using tabindex, you can specify an explicit order for focusable page elements, insert an otherwise unfocusable element into the tab order, and remove elements from the tab order.</p>
+</blockquote>
+<ul>
+<li><code>tabindex=&quot;-1&quot;</code>:<ul>
+<li>The element is not in the natural tab order.</li>
+<li>The element can be programmatically focused with the <strong><code>focus()</code></strong> method.</li>
+</ul>
+</li>
+<li><code>tabindex=&quot;0&quot;</code>:<ul>
+<li>The element is in the natural tab order.</li>
+<li>The element can be programmatically focused with the <strong><code>focus()</code></strong> method.</li>
+</ul>
+</li>
+<li><code>tabindex=&quot;n&quot;</code> (n&gt;=1):<ul>
+<li>The element is in the natural tab order.</li>
+<li>The element jumps to the front of the natural tab order.</li>
+</ul>
+</li>
+</ul>
+<p><strong>Note</strong>: Using a tab order greater than 0 is discouraged and considered <strong>anti-pattern</strong>.</p>
+<blockquote>
+<p>Ideally, if you need to put something earlier in the tab order, the best bet is to move it up in the DOM.</p>
+</blockquote>
+<h3 id="focus-management">focus management</h3>
+<p>Managing focus is the concept of manipulating the tab order to be logical and intuitive. These are some of the scenarios where focus management can be crucial:</p>
+<ul>
+<li><strong>Managing focus at the page level</strong>:</li>
+</ul>
+<p>You might be using URL fragment identifiers to travel through the page content or building a single page web app where the visible content change without page refresh. In that case the best way to identify the selected content area is to give it a <code>tabindex=&quot;-1&quot;</code> so that it doesn&#39;t appear in the natural tab order, and call its <code>focus()</code> method.</p>
+<ul>
+<li><strong>Managing focus in components</strong>:</li>
+</ul>
+<p>When building custom components you&#39;d want to provide logical keyboard manipulation similar to the native component your custom component is based on.</p>
+<p>The <a href="https://www.w3.org/TR/wai-aria-practices/"><strong>ARIA Authoring Practices</strong></a> guid, lists types of components and what kinds of keyboard actions they support.</p>
+<ul>
+<li><strong>Modals and keyboard traps</strong>:</li>
+</ul>
+<p>Keyboard trap happens when an element captures the tab and prevents the user from leaving it until it&#39;s complete. This can bothersome to the user, that&#39;s why the Web AIM section <strong><a href="http://webaim.org/standards/wcag/checklist#sc2.1.2">2.1.2</a></strong> states that <strong>keyboard focus should never be locked or trapped at one particular page element</strong>.</p>
+<p>Although the aforementioned behavior can be very frustrating, there are cases where it helps the page author provide better accessibility. The modal for example when the modal is displayed you&#39;d want the tab to be trapped in it until the user completes whatever functionality the modal provides or closes it.</p>
+<p>The steps to build a temporary keyboard trap in the modal:</p>
+<ol>
+<li><p>Select the modal and modal-overlay using <code>document.querySelector</code>.</p>
+</li>
+<li><p>Listen for keyboard events like <code>tab</code> &amp; <code>tab</code>+<code>SHIFT</code> for moving forward and backwards through modal elements, <code>ESC</code> to close the modal so that the user doesn&#39;t have to search for a close button. You should also listen to click events on overlay &amp; modal close button.  </p>
+</li>
+<li><p>Store a reference of the element that was focused before the modal was opened.</p>
+</li>
+<li><p>Select all focusable elements within the modal using <code>document.querySelectorAll</code>.</p>
+<p>Instead of selecting elements separately you can pass this line of code that selects all potentially focusable elements:</p>
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> focusableElementsString = <span class="hljs-string">'a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), iframe, object, embed, [tabindex="0"], [contenteditable]'</span>;
+<span class="hljs-keyword">const</span> focusableElements = modal.querySelectorAll(focusableElementsString);
+</code></pre>
+<p>The reason for doing this is to keep an eye on the first and last elements in the modal so that we know when to loop back. </p>
+<p><strong>i.e</strong> if the currently focusable element is the last and the user presses <code>tab</code> the focus should go to the first element in the modal. And if the currently focusable element is the first and the user presses <code>tab</code>+<code>SHIFT</code> the focus should go to the last element.</p>
+</li>
+<li><p>Display the modal window and focus the first focusable element.</p>
+</li>
+<li><p>Basically, the user does what he wants to do.</p>
+</li>
+<li><p>When the user closes the modal, return the focus to the element we kept reference to in step <strong>3</strong>.</p>
+</li>
+<li><p>You can now be happy knowing you&#39;ve provided your users with an accessible modal window :).</p>
+</li>
+</ol>
+<h2 id="useful-links">Useful links</h2>
+<ul>
+<li>Google Web Training - <strong><a href="https://developers.google.com/web/fundamentals/accessibility/">Accessibility</a></strong></li>
+<li><strong><a href="https://mena.udacity.com/course/web-accessibility--ud891">Udacity course on Accessibility</a></strong></li>
+<li><strong><a href="https://developers.google.com/web/updates/2016/03/focus-start-point?hl=en">Removing Headaches from Focus Management</a></strong></li>
+<li><strong><a href="https://www.w3.org/TR/WCAG20/">Web Content Accessibility Guidelines (WCAG) 2.0</a></strong></li>
+<li><strong><a href="https://webaim.org/standards/wcag/checklist">Web AIM checklist</a></strong>.</li>
+</ul>
+<h2 id="disclaimer">Disclaimer</h2>
+<p>These are intended only as course notes following the Mobile Web Specialist Nano-Degree. I hope these provide help to any or all people who want to learn about accessibility.</p>
+
+      </article>
+   </main>
+</body>
+</html>

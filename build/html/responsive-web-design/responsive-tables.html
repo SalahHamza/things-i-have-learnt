@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <link rel="stylesheet" href="/build/assets/css/main.css">
+   <title></title>
+</head>
+<body>
+   <header class="header">
+      <a href="">
+         <img class="gh_logo" src="./build/assets/images/GitHub-Mark-Light-120px-plus.png" alt="Go to Github">
+      </a>
+   </header>
+   <main class="main">
+      <article>
+         <h1 id="responsive-tables">Responsive Tables</h1>
+<h2 id="hidden-columns">Hidden Columns</h2>
+<p>The concept here is to hide columns based on their importance as the viewport gets smaller. This can be done by applying a <code>display: none</code> on the columns you want to hide at a certain breakpoint.</p>
+<p>The bad thing about hidden columns technique is that the hidden columns are not seen by search engines or screen readers.</p>
+<h2 id="no-more-tables">No More Tables</h2>
+<p>With the no more tables technique, below a certain viewport width, the table is collapsed and resembles a long list, as opposed to a table data.</p>
+<p>The nice thing about this technique is all of the data is visible no matter what the size of the viewport is.</p>
+<p><strong>Implementation</strong>:</p>
+<pre><code class="lang-css"><span class="hljs-tag">table</span>, <span class="hljs-tag">thead</span>, <span class="hljs-tag">tbody</span>, <span class="hljs-tag">th</span>, <span class="hljs-tag">td</span>, <span class="hljs-tag">tr</span> <span class="hljs-rules">{
+  <span class="hljs-rule"><span class="hljs-attribute">display</span>:<span class="hljs-value"> block</span></span>;
+<span class="hljs-rule">}</span></span>
+</code></pre>
+<p>We set a <code>display: block</code> on <strong>table</strong>, <strong>thead</strong>, <strong>tbody</strong>, <strong>th</strong>, <strong>td</strong> and <strong>tr</strong> to render them one on top of the other.</p>
+<pre><code class="lang-css"><span class="hljs-tag">thead</span> <span class="hljs-tag">tr</span> <span class="hljs-rules">{
+  <span class="hljs-rule"><span class="hljs-attribute">position</span>:<span class="hljs-value"> absolute</span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">top</span>:<span class="hljs-value"> -<span class="hljs-number">9999px</span></span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">left</span>:<span class="hljs-value"> -<span class="hljs-number">9999px</span></span></span>;
+<span class="hljs-rule">}</span></span>
+</code></pre>
+<p>Instead of setting <code>display: none</code> to the header, we position it off the screen so that it&#39;s still accessible to screen readers and search engines.</p>
+<pre><code class="lang-css"><span class="hljs-tag">td</span> <span class="hljs-rules">{
+  <span class="hljs-rule"><span class="hljs-attribute">position</span>:<span class="hljs-value"> relative</span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">padding-left</span>:<span class="hljs-value"> <span class="hljs-number">50%</span></span></span>;
+<span class="hljs-rule">}</span></span>
+</code></pre>
+<p>The table cells are now displayed as full width block elements, some left padding maybe needed and also set the position on these elements to relative.</p>
+<pre><code class="lang-css"><span class="hljs-tag">td</span><span class="hljs-pseudo">::before</span> <span class="hljs-rules">{
+  <span class="hljs-rule"><span class="hljs-attribute">position</span>:<span class="hljs-value"> absolute</span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">left</span>:<span class="hljs-value"> <span class="hljs-number">6px</span></span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">content</span>:<span class="hljs-value"> <span class="hljs-function">attr</span>(data-th)</span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">font-weight</span>:<span class="hljs-value"> bold</span></span>;
+<span class="hljs-rule">}</span></span>
+</code></pre>
+<p>To add the row labels, You may use the before pseudo selector and add <code>td:before</code>, and inside, set the position to <code>left: 6</code> pixels so that you get it positioned in the right place.</p>
+<p>This emplies that you should set a <code>data-th</code> attribute on all the <code>tr</code> elements in the <code>tbody</code>.</p>
+<p>A working <strong><a href="https://codepen.io/JohnMav/pen/BoGJNy">example</a></strong>.</p>
+<h2 id="contained-scrolling">Contained Scrolling</h2>
+<p>All you&#39;ve got to do here is wrap the table with a <code>div</code>, set its <code>width: 100%</code> and <code>overflow-x: auto</code>.</p>
+<pre><code class="lang-css"><span class="hljs-tag">div</span><span class="hljs-class">.target-table</span> <span class="hljs-rules">{
+  <span class="hljs-rule"><span class="hljs-attribute">width</span>:<span class="hljs-value"> <span class="hljs-number">100%</span></span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">overflow-x</span>:<span class="hljs-value"> auto</span></span>;
+<span class="hljs-rule">}</span></span>
+</code></pre>
+<p>A working <strong><a href="https://codepen.io/JohnMav/pen/Mazrwm">example</a></strong>.</p>
+<h2 id="useful-links">Useful links</h2>
+<ul>
+<li><strong><a href="https://css-tricks.com/responsive-data-table-roundup/">Responsive data table roundup</a></strong></li>
+<li><strong><a href="https://www.lifewire.com/display-none-vs-visibility-hidden-3466884">Difference Between &#39;display: none&#39; and &#39;visibility: hidden&#39; in CSS</a></strong></li>
+</ul>
+
+      </article>
+   </main>
+</body>
+</html>

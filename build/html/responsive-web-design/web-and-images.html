@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <link rel="stylesheet" href="/build/assets/css/main.css">
+   <title></title>
+</head>
+<body>
+   <header class="header">
+      <a href="">
+         <img class="gh_logo" src="./build/assets/images/GitHub-Mark-Light-120px-plus.png" alt="Go to Github">
+      </a>
+   </header>
+   <main class="main">
+      <article>
+         <h1 id="the-web-and-images">The web and Images</h1>
+<h2 id="responsive-images">Responsive Images</h2>
+<h3 id="use-relative-size-images">Use relative size images</h3>
+<p>The key to handling images is to use <strong>relative widths</strong> to prevent them from accidentally overflowing the container and eventually the viewport, so it is better to pre-set the width of all image tags to <strong>100%</strong>, in fact it is recommended to do that on <strong>img</strong>, <strong>video</strong>, <strong>embed</strong> and <strong>object</strong> elements:</p>
+<pre><code class="lang-css"><span class="hljs-tag">img</span>, <span class="hljs-tag">video</span>,
+<span class="hljs-tag">embed</span>, <span class="hljs-tag">object</span> <span class="hljs-rules">{
+  <span class="hljs-rule"><span class="hljs-attribute">max-width</span>:<span class="hljs-value"><span class="hljs-number">100%</span></span></span>;
+<span class="hljs-rule">}</span></span>
+</code></pre>
+<p>and in case you want to have multiple images in one row , just use <strong>relative widths</strong>.</p>
+<p>E.G. Let&#39;s say you have two images and want each one to takes up half the viewport with a 10px margin between them, <strong>calc</strong> gives us the ability to mix absolute and relative values:</p>
+<pre><code class="lang-css"><span class="hljs-tag">img</span> <span class="hljs-rules">{
+  <span class="hljs-rule"><span class="hljs-attribute">max-width</span>:<span class="hljs-value"> <span class="hljs-function">calc</span>((<span class="hljs-number">100%</span> - <span class="hljs-number">10px</span>)/<span class="hljs-number">2</span>)</span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">margin-right</span>:<span class="hljs-value"> <span class="hljs-number">10px</span></span></span>;
+<span class="hljs-rule">}</span></span>
+<span class="hljs-tag">img</span><span class="hljs-pseudo">:last-of-type</span> <span class="hljs-rules">{
+  <span class="hljs-rule"><span class="hljs-attribute">margin-right</span>:<span class="hljs-value"> <span class="hljs-number">10px</span></span></span>;
+<span class="hljs-rule">}</span></span>
+</code></pre>
+<h3 id="using-srcset-and-sizes-attributes">Using srcset and sizes attributes</h3>
+<p>1- The <code>srcset</code> and <code>size</code> attribute gives you the ability to provide multiple images that will be served by the browser depending on viewport width/hight or device resolution within the img element.</p>
+<p>To use the <strong>srctset</strong> provide a comma separated string with:</p>
+<ul>
+<li>The path to the image file</li>
+<li>A space</li>
+<li>The pixel density with <strong>nx</strong> or width with <strong>w</strong> of the image</li>
+</ul>
+<p><code>srcset</code> with pixel density:</p>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">img</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"[filename].[ext]"</span> 
+     <span class="hljs-attribute">srcset</span>=<span class="hljs-value">"[filename]-2x.[ext] 2x, 
+             [filename]-3x.[ext] 3x, 
+             [filename]-4x.[ext] 4x"</span>&gt;</span>
+</code></pre>
+<p>The <strong>nx</strong> denotes the pixel density (DPR), where <strong>n</strong> is an integer.</p>
+<p><strong>Note</strong>: the image in the <code>src</code> tag is assumed to be <strong>1x</strong> and also works as a fallback incase the browser doesn&#39;t support <code>srcset</code>.</p>
+<p><code>srcset</code> with width:</p>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">img</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"[filename].[ext]"</span> 
+     <span class="hljs-attribute">srcset</span>=<span class="hljs-value">"[filename]-[width-1].[ext] [width-1]w, 
+             [filename]-[width-2].[ext] [width-2]w, 
+             [filename]-[width-3].[ext] [width-3]w"</span>&gt;</span>
+</code></pre>
+<p><strong>Note</strong>: it&#39;s a good practice to include the width and pixel density of the image in image filename.</p>
+<p>2- The <code>sizes</code> attribute only works in conjuction with the width value of the <code>srcset</code> and it allows us to set some <strong>media conditions</strong> in which the right image size will be used.</p>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">img</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"one.png"</span>
+     <span class="hljs-attribute">srcset</span>=<span class="hljs-value">"[filename]-[width-1].[ext] [width-1]w, 
+             [filename]-[width-2].[ext] [width-2]w, 
+             [filename]-[width-3].[ext] [width-3]w"</span>
+
+     <span class="hljs-attribute">sizes</span>=<span class="hljs-value">"[media condition] [width-1],
+            [media condition] [width-2],
+            &lt;optional default image width&gt;"</span>&gt;</span>
+</code></pre>
+<p><strong>Note</strong>: you can specify absolute (px, em, ..), relative (vw) width values or both with <code>calc()</code>, but not percentages.</p>
+<p>Putting it all together:</p>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">img</span> <span class="hljs-attribute">srcset</span>=<span class="hljs-value">"myImage-320w.jpg 320w,
+             myImage-480w.jpg 480w,
+             myImage-800w.jpg 800w"</span>
+     <span class="hljs-attribute">sizes</span>=<span class="hljs-value">"(max-width: 320px) 280px,
+            (max-width: 480px) 440px,
+            800px"</span>
+     <span class="hljs-attribute">src</span>=<span class="hljs-value">"myImage-800w.jpg"</span> <span class="hljs-attribute">alt</span>=<span class="hljs-value">"My image description"</span>&gt;</span>
+</code></pre>
+<h3 id="art-direction-the-picture-element">Art direction - The picture element</h3>
+<blockquote>
+<p>The HTML <strong>picture</strong> element serves as a container for zero or more <strong>source</strong> elements and one img element to provide versions of an image for different display device scenarios.</p>
+</blockquote>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">picture</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">source</span> <span class="hljs-attribute">media</span>=<span class="hljs-value">"(min-width: 800px)"</span> 
+      <span class="hljs-attribute">srcset</span>=<span class="hljs-value">"myImage.jpg, myImage-2x.jpg 2x"</span>&gt;</span>
+
+  <span class="hljs-tag">&lt;<span class="hljs-title">source</span> <span class="hljs-attribute">media</span>=<span class="hljs-value">"(min-width: 450px)"</span> 
+      <span class="hljs-attribute">srcset</span>=<span class="hljs-value">"myImage-small.jpg, myImage-small-2x.jpg 2x"</span>&gt;</span>
+
+  <span class="hljs-tag">&lt;<span class="hljs-title">img</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"myImage-fallback.jpg"</span> 
+       <span class="hljs-attribute">srcset</span>=<span class="hljs-value">"myImage-fallback-2x.jpg 2x"</span> 
+       <span class="hljs-attribute">alt</span>=<span class="hljs-value">"My image description"</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">picture</span>&gt;</span>
+</code></pre>
+<p>Looking at the media condition in the <code>media</code> attribute and the pixel density in the <code>srcset</code>, the <strong>picture</strong> element will choose the right image to display, and in case the picture element is not supported or none of the media conditions returned true.</p>
+<p><strong>Note</strong>: The <code>alt</code> attribute and css manipulation should be done through the <strong>img</strong> element and not the <strong>picture</strong> or <strong>source</strong> elements.</p>
+<p>The <strong>picture</strong> element can also be used to serve different image types depending on the browser support. So for example if you want to serve <strong><a href="https://developers.google.com/speed/webp/?csw=1">WebP</a></strong> format, but you want to set a fallback for browsers that don&#39;t support it:</p>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">picture</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">source</span> <span class="hljs-attribute">srcset</span>=<span class="hljs-value">"myImage.webp"</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"image/webp"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">img</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"myImage.jpg"</span> <span class="hljs-attribute">alt</span>=<span class="hljs-value">"My image description"</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">picture</span>&gt;</span>
+</code></pre>
+<p>Of course this can be mixed with media conditions, image widths or pixel density.</p>
+<p><strong>Note</strong>: If you want to know which image has been chosen by the browser with javascript use <code>image.currentSrc</code>. Of course if you want to a fallback for older browsers just use <code>image.currentSrc || image.src</code>, this case you&#39;ll handle all cases.</p>
+<h2 id="accessibility">Accessibility</h2>
+<p>Make sure to always provide the img element with meaningful descriptions via the <code>alt</code> attribute; these help make your site more accessible by giving context to screen readers and other assistive technologies.</p>
+<ul>
+<li><p><code>alt</code> attributes should be descriptive for important images.</p>
+</li>
+<li><p><code>alt</code> attributes should be empty for images that are just decorations.</p>
+</li>
+<li><p><code>alt</code> attributes should be set on every image.</p>
+</li>
+</ul>
+<h2 id="optimizing-images">Optimizing Images</h2>
+<h3 id="is-it-necessary-">Is it necessary?</h3>
+<blockquote>
+<p>An optimized resource is a resource not sent.</p>
+</blockquote>
+<p>this rule applies to images too.</p>
+<blockquote>
+<p>That said, a well-placed image can also communicate more information than a thousand words.</p>
+</blockquote>
+<h3 id="is-there-a-better-alternative-">Is there a (better) alternative?</h3>
+<p>You should consider if there is an alternative technology that could deliver the desired results:</p>
+<ul>
+<li><strong>CSS effects</strong> (animations, gradients, shadows, ...etc.) can be used to produce resolution-independent assets that always look sharp at every resolution and zoom level, often at a fraction of the bytes required by an image file.</li>
+<li><strong>web fonts</strong> can be used instead of encoding text in images, which enables the use of beautiful typefaces while preserving the ability to select, search, and resize text - a significant improvement in usability.</li>
+</ul>
+<p><strong>Note</strong>: </p>
+<blockquote>
+<p>Although CSS effects are in some cases a great alternative to images, be aware that there is a processing and rendering cost to using them (CSS effects) especially on mobile, use them sparingly. </p>
+</blockquote>
+<h3 id="raster-vs-vector-images">Raster vs Vector Images</h3>
+<p>If that image resource is necessary to your design, then, the next thing to do is choose the appropriate format and it comes down to two choices <strong>Raster Graphics</strong> or <strong>Vector Graphics</strong>.</p>
+<ul>
+<li><p><strong>Vector</strong>:</p>
+<ul>
+<li><strong>How it works</strong>: uses lines, points, and polygons to represent an image.</li>
+<li><strong>Is it zoom/resolution independent?</strong>: Yes! Vector Graphics deliver sharp results at every resolution and zoom setting, which makes     them an ideal format for high-resolution screens and assets that need to be displayed at varying sizes.</li>
+<li><strong>Ideal for</strong>: vector formats are ideally suited for images that consist of simple geometric shapes (for example, logos, text,           icons, and so on).</li>
+</ul>
+</li>
+<li><p><strong>Raster</strong>:</p>
+<ul>
+<li><strong>How it works</strong>: Raster Graphics represent an image by encoding the individual values of each pixel within a rectangular grid.</li>
+<li><strong>Is it zoom/resolution independent?</strong>: No. When you scale up a raster image you&#39;ll see jagged and blurry graphics. <em>As a result, you may need to save multiple versions of a raster image at various resolutions to deliver the optimal experience to your users.</em></li>
+<li><strong>Ideal for</strong>: Photographic images or images with complicated scenes.</li>
+</ul>
+</li>
+</ul>
+<p>Also <strong>Vector</strong> images have small file sizes compared to raster images.</p>
+<h3 id="size-and-resolution-">Size and Resolution?</h3>
+<p>High resolution screens require high resolution images, but that&#39;s not the case for vector images since they are zoom/resolution independent. On the other hand raster images encode image data on a per-pixel basis, that&#39;s why the larger the number of pixels, the larger the filesize of a raster image.</p>
+<p>That said choose vector images over raster images whenever possible as they are resolution independent and always deliver sharp results, and if a raster image is required, deliver and optimize multiple variants of each image with the help of srcset and picture.</p>
+<h3 id="selecting-the-right-format">Selecting the right format</h3>
+<ul>
+<li><strong>Do you need animation?</strong> If so, GIF is the only universal choice.<ul>
+<li>GIF is the right answer only when animation is required.</li>
+</ul>
+</li>
+<li><strong>Do you need to preserve fine detail with highest resolution?</strong> Use PNG.<ul>
+<li>PNG produce the highest quality image, but at a cost of significantly higher filesize than other formats. Use judiciously.</li>
+<li>If the image asset contains imagery composed of geometric shapes, consider converting it to a vector (SVG) format!</li>
+<li>If the image asset contains text, stop and reconsider. Text in images is not selectable, searchable, or &quot;zoomable&quot;. If you need to convey a custom look (for branding or other reasons), use a web font instead.</li>
+</ul>
+</li>
+<li><strong>Are you optimizing a photo, screenshot, or a similar image asset?</strong> Use JPEG.<ul>
+<li>Try several JPEG quality levels to find the best quality vs. filesize tradeoff for your asset.</li>
+</ul>
+</li>
+</ul>
+<h3 id="delivering-scaled-image-assets">Delivering scaled image assets</h3>
+<p>One of the simplest and most effective image optimization techniques is to ensure that we are not shipping any more pixels than needed to display the asset at its intended size in the browser. So, you should ensure that the number of unnecessary pixels is minimal, and that your large assets in particular are delivered as close as possible to their display size.</p>
+<p>And here is why</p>
+<table>
+<thead>
+<tr>
+<th>Screen resolution</th>
+<th>Natural size</th>
+<th>Display size (CSS px)</th>
+<th>Unnecessary pixels</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1x</td>
+<td>110 x 110</td>
+<td>100 x 100</td>
+<td>110 x 110 - 100 x 100 = 2100</td>
+</tr>
+<tr>
+<td>1x</td>
+<td>410 x 410</td>
+<td>400 x 400</td>
+<td>410 x 410 - 400 x 400 = 8100</td>
+</tr>
+<tr>
+<td>1x</td>
+<td>810 x 810</td>
+<td>800 x 800</td>
+<td>810 x 810 - 800 x 800 = 16100</td>
+</tr>
+<tr>
+<td>2x</td>
+<td>220 x 220</td>
+<td>100 x 100</td>
+<td>220 x 220 - (2 x 100) x (2 x 100) = 8400</td>
+</tr>
+<tr>
+<td>2x</td>
+<td>820 x 820</td>
+<td>400 x 400</td>
+<td>820 x 820 - (2 x 400) x (2 x 400) = 32400</td>
+</tr>
+<tr>
+<td>2x</td>
+<td>1620 x 1620</td>
+<td>800 x 800</td>
+<td>1620 x 1620 - (2 x 800) x (2 x 800) = 64400</td>
+</tr>
+</tbody>
+</table>
+<p>Although the <strong>natural size</strong> is only 10px higher than the <strong>display size</strong> the amount of unecessary pixels rises rapidly as the display dimensions of the image increase.</p>
+<h3 id="inline-vs-external-images">Inline vs External images</h3>
+<p>You can reduce the number of file requests by inlining images as <strong>svg</strong> or <strong>data uri</strong> (of course not all images can be svg, unfortunately) and knowing the right time to take advantage of this technique over external images (and vice-versa) can be beneficial to your website&#39;s performance.</p>
+<p><strong>Data URI</strong> is commonly used to embed images and web fonts onto html to reduce network requests and it works by embeding the base64-encoded data directly into the HTML or CSS, using the following format:</p>
+<pre><code>data:[<span class="hljs-link_label">MIME-type</span>][<span class="hljs-link_reference">;charset=encoding</span>][<span class="hljs-link_label">;base64</span>],[data]
+</code></pre><p>and it works like this in HTML:</p>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">img</span> <span class="hljs-attribute">alt</span>=<span class="hljs-value">""</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"data:[MIME-type][;charset=encoding][;base64],[data]"</span> /&gt;</span>
+</code></pre>
+<p>&amp; in css like this</p>
+<pre><code class="lang-css">.some-elem {
+  background-image: url(data:[MIME-type][;charset=encoding][;base64],[data]);
+}
+</code></pre>
+<p><strong>SVG</strong> can also be embeded inline, but only in HTML. To embed svg in a stylesheet you need to convert it to data uri.</p>
+<p>Now to go back to the question, <strong>Should you use inline or external?</strong></p>
+<ul>
+<li>Are re-using the image? It&#39;d be better if it&#39;s external. That way you&#39;ll be able to cache it and not reload it everytime a user vists a new page.</li>
+<li>Are you intending to use responsive images? It makes more sense to use external, cause inlining images can limit your responsive options.</li>
+</ul>
+<p><strong>Note</strong>: Always make sure to test both inline and external images to see which one is best suited for your case.</p>
+<h2 id="disclaimer">Disclaimer</h2>
+<p>This is only used as personal notes following the Udacity Mobile Web Specialist and other articles that will be listed below. If you find a mistake please be kind to point it out :).</p>
+<h2 id="useful-links">Useful links</h2>
+<ul>
+<li>Udacity&#39;s <strong><a href="https://www.udacity.com/course/responsive-images--ud882">Responsive Images</a></strong></li>
+<li>Google&#39;s <strong><a href="https://developers.google.com/web/fundamentals/design-and-ux/responsive/images">Responsive Images</a></strong></li>
+<li><strong><a href="https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/image-optimization">Image Optimization</a></strong></li>
+<li><strong><a href="https://www.smashingmagazine.com/2013/04/build-fast-loading-mobile-website/">How To Make Your Websites Faster On Mobile Devices</a></strong></li>
+<li><strong><a href="https://bitsofco.de/the-srcset-and-sizes-attributes/">Responsive Images - The srcset and sizes Attributes</a></strong></li>
+<li><strong><a href="https://ericportis.com/posts/2014/srcset-sizes/">srcset and size</a></strong></li>
+<li>MDN&#39;s <strong><a href="https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images">Responsive Images</a></strong></li>
+<li><strong><a href="https://dev.opera.com/articles/responsive-images/">Responsive Images: Use Cases and Documented Code Snippets to Get You Started</a></strong></li>
+<li><strong><a href="https://support.squarespace.com/hc/en-us/articles/206542517-Formatting-your-images-for-display-on-the-web#toc-glossary">Formatting your images for display on the web</a></strong></li>
+<li><strong><a href="https://www.html5rocks.com/en/mobile/high-dpi/">High DPI Images for Variable Pixel Densities</a></strong></li>
+</ul>
+<h3 id="other-related-subjects">Other related subjects</h3>
+<ul>
+<li><strong><a href="https://blog.twitter.com/engineering/en_us/topics/infrastructure/2018/Smart-Auto-Cropping-of-Images.html">Smart Auto Cropping of Images</a></strong></li>
+</ul>
+
+      </article>
+   </main>
+</body>
+</html>

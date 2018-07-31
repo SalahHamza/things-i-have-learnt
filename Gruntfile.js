@@ -1,3 +1,13 @@
+const Prism = require('prismjs');
+
+
+const highlightHTML = (src) => {
+	let html = src;
+	// Returns a highlighted HTML string
+	html = Prism.highlight(html, Prism.languages.css, 'css');
+	return html;
+}
+
 
 module.exports = function(grunt) {
    
@@ -14,8 +24,11 @@ module.exports = function(grunt) {
 				options: {
 					template: 'src/templates/note.jst',
 					markdownOptions: {
+						langPrefix: 'lang-',
 						gfm: true,
-						highlight: 'manual'
+						highlight: function(code) {
+							return require("highlight.js").highlightAuto(code).value;
+						},
 					}
 				}
 			}

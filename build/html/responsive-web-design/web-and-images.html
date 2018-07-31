@@ -6,11 +6,110 @@
    <meta http-equiv="X-UA-Compatible" content="ie=edge">
    <link rel="stylesheet" href="/build/assets/css/main.css">
    <title></title>
+   <style>
+		/* Tomorrow Night Bright Theme */
+		/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+		/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+
+		/* Tomorrow Comment */
+		.hljs-comment {
+			color: #969896;
+		}
+
+		/* Tomorrow Red */
+		.hljs-variable,
+		.hljs-attribute,
+		.hljs-tag,
+		.hljs-regexp,
+		.ruby .hljs-constant,
+		.xml .hljs-tag .hljs-title,
+		.xml .hljs-pi,
+		.xml .hljs-doctype,
+		.html .hljs-doctype,
+		.css .hljs-id,
+		.css .hljs-class,
+		.css .hljs-pseudo {
+			color: #d54e53;
+		}
+
+		/* Tomorrow Orange */
+		.hljs-number,
+		.hljs-preprocessor,
+		.hljs-pragma,
+		.hljs-built_in,
+		.hljs-literal,
+		.hljs-params,
+		.hljs-constant {
+			color: #e78c45;
+		}
+
+		/* Tomorrow Yellow */
+		.ruby .hljs-class .hljs-title,
+		.css .hljs-rules .hljs-attribute {
+			color: #e7c547;
+		}
+
+		/* Tomorrow Green */
+		.hljs-string,
+		.hljs-value,
+		.hljs-inheritance,
+		.hljs-header,
+		.ruby .hljs-symbol,
+		.xml .hljs-cdata {
+			color: #b9ca4a;
+		}
+
+		/* Tomorrow Aqua */
+		.hljs-title,
+		.css .hljs-hexcolor {
+			color: #70c0b1;
+		}
+
+		/* Tomorrow Blue */
+		.hljs-function,
+		.python .hljs-decorator,
+		.python .hljs-title,
+		.ruby .hljs-function .hljs-title,
+		.ruby .hljs-title .hljs-keyword,
+		.perl .hljs-sub,
+		.javascript .hljs-title,
+		.coffeescript .hljs-title {
+			color: #7aa6da;
+		}
+
+		/* Tomorrow Purple */
+		.hljs-keyword,
+		.javascript .hljs-function {
+			color: #c397d8;
+		}
+
+		.hljs, pre code {
+			display: block;
+			overflow-x: auto;
+			background: black;
+			color: #eaeaea;
+			font-family: Menlo, Monaco, Consolas, monospace;
+			line-height: 1.5;
+			border: 1px solid #ccc;
+			padding: 10px;
+			-webkit-text-size-adjust: none;
+		}
+
+		.coffeescript .javascript,
+		.javascript .xml,
+		.tex .hljs-formula,
+		.xml .javascript,
+		.xml .vbscript,
+		.xml .css,
+		.xml .hljs-cdata {
+			opacity: 0.5;
+		}
+   </style>
 </head>
 <body>
    <header class="header">
       <a href="">
-         <img class="gh_logo" src="./build/assets/images/GitHub-Mark-Light-120px-plus.png" alt="Go to Github">
+         <img class="gh_logo" src="/build/assets/images/GitHub-Mark-Light-120px-plus.png" alt="Go to Github">
       </a>
    </header>
    <main class="main">
@@ -43,55 +142,55 @@
 <li>The pixel density with <strong>nx</strong> or width with <strong>w</strong> of the image</li>
 </ul>
 <p><code>srcset</code> with pixel density:</p>
-<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">img</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"[filename].[ext]"</span> 
-     <span class="hljs-attribute">srcset</span>=<span class="hljs-value">"[filename]-2x.[ext] 2x, 
+<pre><code class="lang-html">&lt;img <span class="hljs-variable">src=</span><span class="hljs-string">"[filename].[ext]"</span> 
+     <span class="hljs-variable">srcset=</span><span class="hljs-string">"[filename]-2x.[ext] 2x, 
              [filename]-3x.[ext] 3x, 
-             [filename]-4x.[ext] 4x"</span>&gt;</span>
+             [filename]-4x.[ext] 4x"</span>&gt;
 </code></pre>
 <p>The <strong>nx</strong> denotes the pixel density (DPR), where <strong>n</strong> is an integer.</p>
 <p><strong>Note</strong>: the image in the <code>src</code> tag is assumed to be <strong>1x</strong> and also works as a fallback incase the browser doesn&#39;t support <code>srcset</code>.</p>
 <p><code>srcset</code> with width:</p>
-<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">img</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"[filename].[ext]"</span> 
-     <span class="hljs-attribute">srcset</span>=<span class="hljs-value">"[filename]-[width-1].[ext] [width-1]w, 
+<pre><code class="lang-html">&lt;img <span class="hljs-variable">src=</span><span class="hljs-string">"[filename].[ext]"</span> 
+     <span class="hljs-variable">srcset=</span><span class="hljs-string">"[filename]-[width-1].[ext] [width-1]w, 
              [filename]-[width-2].[ext] [width-2]w, 
-             [filename]-[width-3].[ext] [width-3]w"</span>&gt;</span>
+             [filename]-[width-3].[ext] [width-3]w"</span>&gt;
 </code></pre>
 <p><strong>Note</strong>: it&#39;s a good practice to include the width and pixel density of the image in image filename.</p>
 <p>2- The <code>sizes</code> attribute only works in conjuction with the width value of the <code>srcset</code> and it allows us to set some <strong>media conditions</strong> in which the right image size will be used.</p>
-<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">img</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"one.png"</span>
-     <span class="hljs-attribute">srcset</span>=<span class="hljs-value">"[filename]-[width-1].[ext] [width-1]w, 
+<pre><code class="lang-html">&lt;img <span class="hljs-variable">src=</span><span class="hljs-string">"one.png"</span>
+     <span class="hljs-variable">srcset=</span><span class="hljs-string">"[filename]-[width-1].[ext] [width-1]w, 
              [filename]-[width-2].[ext] [width-2]w, 
              [filename]-[width-3].[ext] [width-3]w"</span>
 
-     <span class="hljs-attribute">sizes</span>=<span class="hljs-value">"[media condition] [width-1],
+     <span class="hljs-variable">sizes=</span><span class="hljs-string">"[media condition] [width-1],
             [media condition] [width-2],
-            &lt;optional default image width&gt;"</span>&gt;</span>
+            &lt;optional default image width&gt;"</span>&gt;
 </code></pre>
 <p><strong>Note</strong>: you can specify absolute (px, em, ..), relative (vw) width values or both with <code>calc()</code>, but not percentages.</p>
 <p>Putting it all together:</p>
-<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">img</span> <span class="hljs-attribute">srcset</span>=<span class="hljs-value">"myImage-320w.jpg 320w,
+<pre><code class="lang-html">&lt;img <span class="hljs-variable">srcset=</span><span class="hljs-string">"myImage-320w.jpg 320w,
              myImage-480w.jpg 480w,
              myImage-800w.jpg 800w"</span>
-     <span class="hljs-attribute">sizes</span>=<span class="hljs-value">"(max-width: 320px) 280px,
+     <span class="hljs-variable">sizes=</span><span class="hljs-string">"(max-width: 320px) 280px,
             (max-width: 480px) 440px,
             800px"</span>
-     <span class="hljs-attribute">src</span>=<span class="hljs-value">"myImage-800w.jpg"</span> <span class="hljs-attribute">alt</span>=<span class="hljs-value">"My image description"</span>&gt;</span>
+     <span class="hljs-variable">src=</span><span class="hljs-string">"myImage-800w.jpg"</span> <span class="hljs-variable">alt=</span><span class="hljs-string">"My image description"</span>&gt;
 </code></pre>
 <h3 id="art-direction-the-picture-element">Art direction - The picture element</h3>
 <blockquote>
 <p>The HTML <strong>picture</strong> element serves as a container for zero or more <strong>source</strong> elements and one img element to provide versions of an image for different display device scenarios.</p>
 </blockquote>
-<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">picture</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-title">source</span> <span class="hljs-attribute">media</span>=<span class="hljs-value">"(min-width: 800px)"</span> 
-      <span class="hljs-attribute">srcset</span>=<span class="hljs-value">"myImage.jpg, myImage-2x.jpg 2x"</span>&gt;</span>
+<pre><code class="lang-html">&lt;picture&gt;
+  &lt;source <span class="hljs-variable">media=</span><span class="hljs-string">"(min-width: 800px)"</span> 
+      <span class="hljs-variable">srcset=</span><span class="hljs-string">"myImage.jpg, myImage-2x.jpg 2x"</span>&gt;
 
-  <span class="hljs-tag">&lt;<span class="hljs-title">source</span> <span class="hljs-attribute">media</span>=<span class="hljs-value">"(min-width: 450px)"</span> 
-      <span class="hljs-attribute">srcset</span>=<span class="hljs-value">"myImage-small.jpg, myImage-small-2x.jpg 2x"</span>&gt;</span>
+  &lt;source <span class="hljs-variable">media=</span><span class="hljs-string">"(min-width: 450px)"</span> 
+      <span class="hljs-variable">srcset=</span><span class="hljs-string">"myImage-small.jpg, myImage-small-2x.jpg 2x"</span>&gt;
 
-  <span class="hljs-tag">&lt;<span class="hljs-title">img</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"myImage-fallback.jpg"</span> 
-       <span class="hljs-attribute">srcset</span>=<span class="hljs-value">"myImage-fallback-2x.jpg 2x"</span> 
-       <span class="hljs-attribute">alt</span>=<span class="hljs-value">"My image description"</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-title">picture</span>&gt;</span>
+  &lt;img <span class="hljs-variable">src=</span><span class="hljs-string">"myImage-fallback.jpg"</span> 
+       <span class="hljs-variable">srcset=</span><span class="hljs-string">"myImage-fallback-2x.jpg 2x"</span> 
+       <span class="hljs-variable">alt=</span><span class="hljs-string">"My image description"</span>&gt;
+&lt;/picture&gt;
 </code></pre>
 <p>Looking at the media condition in the <code>media</code> attribute and the pixel density in the <code>srcset</code>, the <strong>picture</strong> element will choose the right image to display, and in case the picture element is not supported or none of the media conditions returned true.</p>
 <p><strong>Note</strong>: The <code>alt</code> attribute and css manipulation should be done through the <strong>img</strong> element and not the <strong>picture</strong> or <strong>source</strong> elements.</p>
@@ -228,11 +327,11 @@
 <p><strong>Data URI</strong> is commonly used to embed images and web fonts onto html to reduce network requests and it works by embeding the base64-encoded data directly into the HTML or CSS, using the following format:</p>
 <pre><code>data:[<span class="hljs-link_label">MIME-type</span>][<span class="hljs-link_reference">;charset=encoding</span>][<span class="hljs-link_label">;base64</span>],[data]
 </code></pre><p>and it works like this in HTML:</p>
-<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">img</span> <span class="hljs-attribute">alt</span>=<span class="hljs-value">""</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"data:[MIME-type][;charset=encoding][;base64],[data]"</span> /&gt;</span>
+<pre><code class="lang-html">&lt;img <span class="hljs-variable">alt=</span><span class="hljs-string">""</span> <span class="hljs-variable">src=</span><span class="hljs-string">"data:[MIME-type][;charset=encoding][;base64],[data]"</span> /&gt;
 </code></pre>
 <p>&amp; in css like this</p>
 <pre><code class="lang-css">.some-elem {
-  background-image: url(data:[MIME-type][;charset=encoding][;base64],[data]);
+  background-image: url(data:[<span class="hljs-link_label">MIME-type</span>][<span class="hljs-link_reference">;charset=encoding</span>][<span class="hljs-link_label">;base64</span>],[data]);
 }
 </code></pre>
 <p><strong>SVG</strong> can also be embeded inline, but only in HTML. To embed svg in a stylesheet you need to convert it to data uri.</p>

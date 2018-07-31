@@ -6,23 +6,122 @@
    <meta http-equiv="X-UA-Compatible" content="ie=edge">
    <link rel="stylesheet" href="/build/assets/css/main.css">
    <title></title>
+   <style>
+		/* Tomorrow Night Bright Theme */
+		/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+		/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+
+		/* Tomorrow Comment */
+		.hljs-comment {
+			color: #969896;
+		}
+
+		/* Tomorrow Red */
+		.hljs-variable,
+		.hljs-attribute,
+		.hljs-tag,
+		.hljs-regexp,
+		.ruby .hljs-constant,
+		.xml .hljs-tag .hljs-title,
+		.xml .hljs-pi,
+		.xml .hljs-doctype,
+		.html .hljs-doctype,
+		.css .hljs-id,
+		.css .hljs-class,
+		.css .hljs-pseudo {
+			color: #d54e53;
+		}
+
+		/* Tomorrow Orange */
+		.hljs-number,
+		.hljs-preprocessor,
+		.hljs-pragma,
+		.hljs-built_in,
+		.hljs-literal,
+		.hljs-params,
+		.hljs-constant {
+			color: #e78c45;
+		}
+
+		/* Tomorrow Yellow */
+		.ruby .hljs-class .hljs-title,
+		.css .hljs-rules .hljs-attribute {
+			color: #e7c547;
+		}
+
+		/* Tomorrow Green */
+		.hljs-string,
+		.hljs-value,
+		.hljs-inheritance,
+		.hljs-header,
+		.ruby .hljs-symbol,
+		.xml .hljs-cdata {
+			color: #b9ca4a;
+		}
+
+		/* Tomorrow Aqua */
+		.hljs-title,
+		.css .hljs-hexcolor {
+			color: #70c0b1;
+		}
+
+		/* Tomorrow Blue */
+		.hljs-function,
+		.python .hljs-decorator,
+		.python .hljs-title,
+		.ruby .hljs-function .hljs-title,
+		.ruby .hljs-title .hljs-keyword,
+		.perl .hljs-sub,
+		.javascript .hljs-title,
+		.coffeescript .hljs-title {
+			color: #7aa6da;
+		}
+
+		/* Tomorrow Purple */
+		.hljs-keyword,
+		.javascript .hljs-function {
+			color: #c397d8;
+		}
+
+		.hljs, pre code {
+			display: block;
+			overflow-x: auto;
+			background: black;
+			color: #eaeaea;
+			font-family: Menlo, Monaco, Consolas, monospace;
+			line-height: 1.5;
+			border: 1px solid #ccc;
+			padding: 10px;
+			-webkit-text-size-adjust: none;
+		}
+
+		.coffeescript .javascript,
+		.javascript .xml,
+		.tex .hljs-formula,
+		.xml .javascript,
+		.xml .vbscript,
+		.xml .css,
+		.xml .hljs-cdata {
+			opacity: 0.5;
+		}
+   </style>
 </head>
 <body>
    <header class="header">
       <a href="">
-         <img class="gh_logo" src="./build/assets/images/GitHub-Mark-Light-120px-plus.png" alt="Go to Github">
+         <img class="gh_logo" src="/build/assets/images/GitHub-Mark-Light-120px-plus.png" alt="Go to Github">
       </a>
    </header>
    <main class="main">
       <article>
          <h1 id="flexbox">Flexbox</h1>
 <p>Let&#39;s say we have a set of items with a container around them, like this:</p>
-<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"container"</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"item green"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"item blue"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"item red"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"item yellow"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+<pre><code class="lang-html">&lt;<span class="hljs-keyword">div</span> <span class="hljs-type">class</span>=<span class="hljs-string">"container"</span>&gt;
+  &lt;<span class="hljs-keyword">div</span> <span class="hljs-type">class</span>=<span class="hljs-string">"item green"</span>&gt;&lt;/<span class="hljs-keyword">div</span>&gt;
+  &lt;<span class="hljs-keyword">div</span> <span class="hljs-type">class</span>=<span class="hljs-string">"item blue"</span>&gt;&lt;/<span class="hljs-keyword">div</span>&gt;
+  &lt;<span class="hljs-keyword">div</span> <span class="hljs-type">class</span>=<span class="hljs-string">"item red"</span>&gt;&lt;/<span class="hljs-keyword">div</span>&gt;
+  &lt;<span class="hljs-keyword">div</span> <span class="hljs-type">class</span>=<span class="hljs-string">"item yellow"</span>&gt;&lt;/<span class="hljs-keyword">div</span>&gt;
+&lt;/<span class="hljs-keyword">div</span>&gt;
 </code></pre>
 <p>And we want to lay them out in a certain order, size and even space them out properly. Flexbox gives us the ability to that and more.
 To work with flexbox we should first set the flexbox container’s <strong>display</strong> property to <code>flex</code>.</p>
@@ -30,7 +129,6 @@ To work with flexbox we should first set the flexbox container’s <strong>displ
    <span class="hljs-rule"><span class="hljs-attribute">display</span>:<span class="hljs-value"> flex</span></span>;
 <span class="hljs-rule">}</span></span>
 </code></pre>
-<hr>
 <h2 id="ordering-orientation">Ordering &amp; Orientation</h2>
 <h3 id="flex-direction">Flex Direction</h3>
 <p>The <strong>flex-direction</strong> property sets the main-axis and cross-axis, if the main-axis is horizontal then the cross-axis is vertical, and vise-versa, it takes 4 different values:</p>
@@ -38,13 +136,13 @@ To work with flexbox we should first set the flexbox container’s <strong>displ
 <li><strong>row</strong> (default): The main-axis is the horizontal axis, left to right.</li>
 <li><strong>row-reverse</strong>: The main-axis is the horizontal axis, right to left.</li>
 <li><strong>column</strong>: The main-axis is the vertical axis, top to bottom.</li>
-<li><strong>column-reverse</strong>: The main-axis is the vertical axis, bottom to top.<pre><code class="lang-css"><span class="hljs-class">.container</span> <span class="hljs-rules">{
-<span class="hljs-rule"><span class="hljs-attribute">display</span>:<span class="hljs-value"> flex</span></span>;
-<span class="hljs-rule"><span class="hljs-attribute">flex-direction</span>:<span class="hljs-value"> column</span></span>;
+<li><strong>column-reverse</strong>: The main-axis is the vertical axis, bottom to top.</li>
+</ul>
+<pre><code class="lang-css"><span class="hljs-class">.container</span> <span class="hljs-rules">{
+  <span class="hljs-rule"><span class="hljs-attribute">display</span>:<span class="hljs-value"> flex</span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">flex-direction</span>:<span class="hljs-value"> column</span></span>;
 <span class="hljs-rule">}</span></span>
 </code></pre>
-</li>
-</ul>
 <h3 id="flex-wrap-">Flex Wrap:</h3>
 <p>By default the flex container will try to contain the items within it even if their width exceeds its width, but if there are too many items, they will eventually overflow, and that’s because, by default the <strong>flex-wrap</strong> property is set to <code>nowrap</code>, which makes the flex items lay out in a single line. When that happen we can fix it by resetting the <strong>flex-wrap</strong> property to either <code>wrap</code> or <code>wrap-reverse</code>.</p>
 <ul>
@@ -65,7 +163,6 @@ To work with flexbox we should first set the flexbox container’s <strong>displ
   <span class="hljs-rule"><span class="hljs-attribute">flex-flow</span>:<span class="hljs-value"> row wrap</span></span>;
 <span class="hljs-rule">}</span></span>
 </code></pre>
-<hr>
 <h2 id="alignment">Alignment</h2>
 <h3 id="justify-content-">Justify Content:</h3>
 <p>The property <strong>justify-content</strong> is a flex items property, it allows us to define how the flex items are aligned along the main-axis, and it does that by distributing extra free space left over when either all the flex items on a line are inflexible, or are flexible but have reached their maximum size. It also exerts some control over the alignment of items when they overflow the line.</p>
@@ -97,13 +194,12 @@ To work with flexbox we should first set the flexbox container’s <strong>displ
   <span class="hljs-rule"><span class="hljs-attribute">align-items</span>:<span class="hljs-value"> flex-end</span></span>;
 <span class="hljs-rule">}</span></span>
 </code></pre>
-<hr>
 <h2 id="flexibility">Flexibility</h2>
 <h3 id="flex-grow-">Flex grow:</h3>
 <p>The <strong>flex-grow</strong> (longhand) property sets the flex factor which determines how much the flex item will grow relative to the rest of the flex items in the flex container when positive free space is distributed.
 Only accepts positive numbers.
 Default 0.</p>
-<h4 id="useful-links">Useful links</h4>
+<h2 id="useful-links">Useful links</h2>
 <ul>
 <li><a href="https://www.w3.org/TR/css-flexbox-1/"><strong>Flexbox Spec</strong></a></li>
 <li>MDN&#39;s <a href="https://developer.mozilla.org/enUS/docs/Web/CSS/CSS_Flexible_Box_Layout/Basic_Concepts_of_Flexbox"><strong>Basic Concepts of Flexbox</strong></a></li>

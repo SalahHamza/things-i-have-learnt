@@ -6,11 +6,110 @@
    <meta http-equiv="X-UA-Compatible" content="ie=edge">
    <link rel="stylesheet" href="/build/assets/css/main.css">
    <title></title>
+   <style>
+		/* Tomorrow Night Bright Theme */
+		/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+		/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+
+		/* Tomorrow Comment */
+		.hljs-comment {
+			color: #969896;
+		}
+
+		/* Tomorrow Red */
+		.hljs-variable,
+		.hljs-attribute,
+		.hljs-tag,
+		.hljs-regexp,
+		.ruby .hljs-constant,
+		.xml .hljs-tag .hljs-title,
+		.xml .hljs-pi,
+		.xml .hljs-doctype,
+		.html .hljs-doctype,
+		.css .hljs-id,
+		.css .hljs-class,
+		.css .hljs-pseudo {
+			color: #d54e53;
+		}
+
+		/* Tomorrow Orange */
+		.hljs-number,
+		.hljs-preprocessor,
+		.hljs-pragma,
+		.hljs-built_in,
+		.hljs-literal,
+		.hljs-params,
+		.hljs-constant {
+			color: #e78c45;
+		}
+
+		/* Tomorrow Yellow */
+		.ruby .hljs-class .hljs-title,
+		.css .hljs-rules .hljs-attribute {
+			color: #e7c547;
+		}
+
+		/* Tomorrow Green */
+		.hljs-string,
+		.hljs-value,
+		.hljs-inheritance,
+		.hljs-header,
+		.ruby .hljs-symbol,
+		.xml .hljs-cdata {
+			color: #b9ca4a;
+		}
+
+		/* Tomorrow Aqua */
+		.hljs-title,
+		.css .hljs-hexcolor {
+			color: #70c0b1;
+		}
+
+		/* Tomorrow Blue */
+		.hljs-function,
+		.python .hljs-decorator,
+		.python .hljs-title,
+		.ruby .hljs-function .hljs-title,
+		.ruby .hljs-title .hljs-keyword,
+		.perl .hljs-sub,
+		.javascript .hljs-title,
+		.coffeescript .hljs-title {
+			color: #7aa6da;
+		}
+
+		/* Tomorrow Purple */
+		.hljs-keyword,
+		.javascript .hljs-function {
+			color: #c397d8;
+		}
+
+		.hljs, pre code {
+			display: block;
+			overflow-x: auto;
+			background: black;
+			color: #eaeaea;
+			font-family: Menlo, Monaco, Consolas, monospace;
+			line-height: 1.5;
+			border: 1px solid #ccc;
+			padding: 10px;
+			-webkit-text-size-adjust: none;
+		}
+
+		.coffeescript .javascript,
+		.javascript .xml,
+		.tex .hljs-formula,
+		.xml .javascript,
+		.xml .vbscript,
+		.xml .css,
+		.xml .hljs-cdata {
+			opacity: 0.5;
+		}
+   </style>
 </head>
 <body>
    <header class="header">
       <a href="">
-         <img class="gh_logo" src="./build/assets/images/GitHub-Mark-Light-120px-plus.png" alt="Go to Github">
+         <img class="gh_logo" src="/build/assets/images/GitHub-Mark-Light-120px-plus.png" alt="Go to Github">
       </a>
    </header>
    <main class="main">
@@ -111,8 +210,8 @@
 </li>
 <li><p>Select all focusable elements within the modal using <code>document.querySelectorAll</code>.</p>
 <p>Instead of selecting elements separately you can pass this line of code that selects all potentially focusable elements:</p>
-<pre><code class="lang-js"><span class="hljs-keyword">const</span> focusableElementsString = <span class="hljs-string">'a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), iframe, object, embed, [tabindex="0"], [contenteditable]'</span>;
-<span class="hljs-keyword">const</span> focusableElements = modal.querySelectorAll(focusableElementsString);
+<pre><code class="lang-js">const focusableElementsString = <span class="hljs-attribute">'a</span>[href], area[href], input:<span class="hljs-keyword">not</span>([disabled]), <span class="hljs-keyword">select</span>:<span class="hljs-keyword">not</span>([disabled]), textarea:<span class="hljs-keyword">not</span>([disabled]), button:<span class="hljs-keyword">not</span>([disabled]), iframe, object, embed, [tabindex=<span class="hljs-string">"0"</span>], [contenteditable]';
+const focusableElements = modal.querySelectorAll(focusableElementsString);
 </code></pre>
 <p>The reason for doing this is to keep an eye on the first and last elements in the modal so that we know when to loop back. </p>
 <p><strong>i.e</strong> if the currently focusable element is the last and the user presses <code>tab</code> the focus should go to the first element in the modal. And if the currently focusable element is the first and the user presses <code>tab</code>+<code>SHIFT</code> the focus should go to the last element.</p>

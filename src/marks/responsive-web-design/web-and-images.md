@@ -4,7 +4,7 @@
 
 ### Use relative size images
 
-The key to handling images is to use **relative widths** to prevent them from accidentally overflowing the container and eventually the viewport, so it is better to pre-set the width of all image tags to **100%**, in fact it is recommended to do that on **img**, **video**, **embed** and **object** elements:
+The key to handling images is to use **relative widths** to prevent them from accidentally overflowing the container and eventually the viewport, so it is better to pre-set the width of all image tags to **100%**. In fact it is recommended to do that on **img**, **video**, **embed** and **object** elements:
 ```css
 img, video,
 embed, object {
@@ -13,7 +13,7 @@ embed, object {
 ```
 and in case you want to have multiple images in one row , just use **relative widths**.
 
-E.G. Let's say you have two images and want each one to takes up half the viewport with a 10px margin between them, **calc** gives us the ability to mix absolute and relative values:
+E.G. Let's say you have two images and want each one to takes up half the viewport with a 10px margin between them `calc()` gives us the ability to mix absolute and relative values:
 ```css
 img {
   max-width: calc((100% - 10px)/2);
@@ -28,7 +28,7 @@ img:last-of-type {
 
 1- The `srcset` and `size` attribute gives you the ability to provide multiple images that will be served by the browser depending on viewport width/hight or device resolution within the img element.
 
-To use the **srctset** provide a comma separated string with:
+To use the `srcset` provide a comma separated string with:
 * The path to the image file
 * A space
 * The pixel density with **nx** or width with **w** of the image
@@ -146,15 +146,15 @@ You should consider if there is an alternative technology that could deliver the
 
 If that image resource is necessary to your design, then, the next thing to do is choose the appropriate format and it comes down to two choices **Raster Graphics** or **Vector Graphics**.
 
-* **Vector**:
-  - **How it works**: uses lines, points, and polygons to represent an image.
-  - **Is it zoom/resolution independent?**: Yes! Vector Graphics deliver sharp results at every resolution and zoom setting, which makes     them an ideal format for high-resolution screens and assets that need to be displayed at varying sizes.
-  - **Ideal for**: vector formats are ideally suited for images that consist of simple geometric shapes (for example, logos, text,           icons, and so on).
+**Vector**:
+- **How it works**: uses lines, points, and polygons to represent an image.
+- **Is it zoom/resolution independent?**: Yes! Vector Graphics deliver sharp results at every resolution and zoom setting, which makes     them an ideal format for high-resolution screens and assets that need to be displayed at varying sizes.
+- **Ideal for**: vector formats are ideally suited for images that consist of simple geometric shapes (for example, logos, text, icons, and so on).
 
-* **Raster**:
-  - **How it works**: Raster Graphics represent an image by encoding the individual values of each pixel within a rectangular grid.
-  - **Is it zoom/resolution independent?**: No. When you scale up a raster image you'll see jagged and blurry graphics. *As a result, you may need to save multiple versions of a raster image at various resolutions to deliver the optimal experience to your users.*
-  - **Ideal for**: Photographic images or images with complicated scenes.
+**Raster**:
+- **How it works**: Raster Graphics represent an image by encoding the individual values of each pixel within a rectangular grid.
+- **Is it zoom/resolution independent?**: No. When you scale up a raster image you'll see jagged and blurry graphics. *As a result, you may need to save multiple versions of a raster image at various resolutions to deliver the optimal experience to your users.*
+- **Ideal for**: Photographic images or images with complicated scenes.
 
 Also **Vector** images have small file sizes compared to raster images.
 
@@ -200,16 +200,21 @@ You can reduce the number of file requests by inlining images as **svg** or **da
 ```
 data:[MIME-type][;charset=encoding][;base64],[data]
 ```
+
 and it works like this in HTML:
+
 ```html
 <img alt="" src="data:[MIME-type][;charset=encoding][;base64],[data]" />
 ```
+
 & in css like this
+
 ```css
 .some-elem {
   background-image: url(data:[MIME-type][;charset=encoding][;base64],[data]);
 }
 ```
+
 **SVG** can also be embeded inline, but only in HTML. To embed svg in a stylesheet you need to convert it to data uri.
 
 

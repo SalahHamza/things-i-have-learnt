@@ -10,7 +10,7 @@ Let's say we have a set of items with a container around them, like this:
 </div>
 ``` 
 And we want to lay them out in a certain order, size and even space them out properly. Flexbox gives us the ability to that and more.
-To work with flexbox we should first set the flexbox container’s **display** property to `flex`.
+To work with flexbox we should first set the flexbox container’s display property to `flex`.
 ```css
 .container {
    display: flex;
@@ -94,7 +94,7 @@ The property **align-items** is just like **justify-content** except it allows u
 * **flex-start**: aligns flex items to the start of the flex container (top if the main-axis is the horizontal, left if the main-axis is the vertical axis).
 * **flex-end**: aligns flex items to the end of the flex container (bottom if the main-axis is the horizontal, right if the main-axis is the vertical axis).
 * **center**: aligns the items in the center of the flex container.
-* **baseline**: If the items run along the block direction (i.e. container's **flex-direction** is `column` or `column-reverse`) the value acts exactly like **flex-start**, Otherwise teh items are aligned such as their [baselines align](https://www.w3.org/TR/css-align-3/#baseline-values)
+* **baseline**: If the items run along the block directio – i.e. container's **flex-direction** is `column` or `column-reverse` – the value acts exactly like **flex-start**, Otherwise teh items are aligned such as their [baselines align](https://www.w3.org/TR/css-align-3/#baseline-values)
 
 *Concerned with the flex items and not the flex container, but it is applied on the flex container.*
 

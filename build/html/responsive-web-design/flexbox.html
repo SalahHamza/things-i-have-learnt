@@ -5,7 +5,7 @@
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <meta http-equiv="X-UA-Compatible" content="ie=edge">
    <link rel="stylesheet" href="/build/assets/css/main.css">
-   <title></title>
+   <title>Things I Have Learnt</title>
    <style>
 		/* Tomorrow Night Bright Theme */
 		/* Original theme - https://github.com/chriskempson/tomorrow-theme */
@@ -90,9 +90,29 @@
 			color: #eaeaea;
 			font-family: Menlo, Monaco, Consolas, monospace;
 			line-height: 1.5;
+			font-size: 14px;
 			border: 1px solid #ccc;
 			padding: 10px;
+			border-radius: 3px;
 			-webkit-text-size-adjust: none;
+			white-space: inherit;
+		}
+
+		code {
+			padding: 2px 4px;
+			font-size: 14px;
+			color: #d14;
+			background-color: #f7f7f9;
+			border: 1px solid #e1e1e8;
+			white-space: nowrap;
+		}
+
+		blockquote {
+			background-color: #f6f8fa;
+			margin: 0;
+			padding: .5em;
+			padding-left: 2em;
+			font-family: cursive;
 		}
 
 		.coffeescript .javascript,
@@ -104,12 +124,39 @@
 		.xml .hljs-cdata {
 			opacity: 0.5;
 		}
+
+/* Center tables for demo */
+table {
+  margin: 0 auto;
+}
+
+		/* Default Table Style */
+		table {
+			color: #333;
+			background: white;
+			border: 1px solid grey;
+			font-size: 12pt;
+			border-collapse: collapse;
+		}
+		table thead th,
+		table tfoot th {
+			color: #777;
+			background: rgba(0,0,0,.1);
+		}
+		table caption {
+			padding:.5em;
+		}
+		table th,
+		table td {
+			padding: .5em;
+			border: 1px solid lightgrey;
+		}
    </style>
 </head>
 <body>
    <header class="header">
       <a href="">
-         <img class="gh_logo" src="/build/assets/images/GitHub-Mark-Light-120px-plus.png" alt="Go to Github">
+         <img class="gh_logo" src="/build/assets/images/GitHub-Mark-Light-120px-plus.png" alt="Source code on Github">
       </a>
    </header>
    <main class="main">
@@ -124,7 +171,7 @@
 &lt;/<span class="hljs-keyword">div</span>&gt;
 </code></pre>
 <p>And we want to lay them out in a certain order, size and even space them out properly. Flexbox gives us the ability to that and more.
-To work with flexbox we should first set the flexbox container’s <strong>display</strong> property to <code>flex</code>.</p>
+To work with flexbox we should first set the flexbox container’s display property to <code>flex</code>.</p>
 <pre><code class="lang-css"><span class="hljs-class">.container</span> <span class="hljs-rules">{
    <span class="hljs-rule"><span class="hljs-attribute">display</span>:<span class="hljs-value"> flex</span></span>;
 <span class="hljs-rule">}</span></span>
@@ -186,7 +233,7 @@ To work with flexbox we should first set the flexbox container’s <strong>displ
 <li><strong>flex-start</strong>: aligns flex items to the start of the flex container (top if the main-axis is the horizontal, left if the main-axis is the vertical axis).</li>
 <li><strong>flex-end</strong>: aligns flex items to the end of the flex container (bottom if the main-axis is the horizontal, right if the main-axis is the vertical axis).</li>
 <li><strong>center</strong>: aligns the items in the center of the flex container.</li>
-<li><strong>baseline</strong>: If the items run along the block direction (i.e. container&#39;s <strong>flex-direction</strong> is <code>column</code> or <code>column-reverse</code>) the value acts exactly like <strong>flex-start</strong>, Otherwise teh items are aligned such as their <a href="https://www.w3.org/TR/css-align-3/#baseline-values">baselines align</a></li>
+<li><strong>baseline</strong>: If the items run along the block directio – i.e. container&#39;s <strong>flex-direction</strong> is <code>column</code> or <code>column-reverse</code> – the value acts exactly like <strong>flex-start</strong>, Otherwise teh items are aligned such as their <a href="https://www.w3.org/TR/css-align-3/#baseline-values">baselines align</a></li>
 </ul>
 <p><em>Concerned with the flex items and not the flex container, but it is applied on the flex container.</em></p>
 <pre><code class="lang-css"><span class="hljs-class">.container</span> <span class="hljs-rules">{

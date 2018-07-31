@@ -1,7 +1,7 @@
 {
   "name": "things-i-have-learnt",
   "version": "1.0.0",
-  "description": "Notes and summaries of things I have learnt (so far)",
+  "description": "Notes and summaries of Web features/fundamentals I have learnt (so far)",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -17,8 +17,7 @@
     "grunt-contrib-jshint": "~0.10.0",
     "grunt-contrib-uglify": "^0.5.1",
     "grunt-markdown": "^0.7.0",
-    "grunt-mkdir": "^0.1.3",
-    "prismjs": "^1.15.0"
+    "grunt-mkdir": "^0.1.3"
   },
   "author": "Salah Hamza",
   "license": "ISC",

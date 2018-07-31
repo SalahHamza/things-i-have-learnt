@@ -1,15 +1,14 @@
-const Prism = require('prismjs');
 
-
-const highlightHTML = (src) => {
-	let html = src;
-	// Returns a highlighted HTML string
-	html = Prism.highlight(html, Prism.languages.css, 'css');
-	return html;
+const capitalize = (str) => {
+	return str.charAt(0).toUpperCase() + str.slice(1);
+}
+const pageTitle = (pkgName) => {
+	let title = pkgName.split('-').map(w => capitalize(w)).join(' ');
+	return title;
 }
 
-
 module.exports = function(grunt) {
+	const pkg = grunt.file.readJSON('package.json');
    
 	grunt.initConfig({
 		markdown: {
@@ -23,8 +22,11 @@ module.exports = function(grunt) {
 				}],
 				options: {
 					template: 'src/templates/note.jst',
+					templateContext: {
+						title: pageTitle(pkg.name),
+					},
 					markdownOptions: {
-						langPrefix: 'lang-',
+						// langPrefix: 'lang-',
 						gfm: true,
 						highlight: function(code) {
 							return require("highlight.js").highlightAuto(code).value;

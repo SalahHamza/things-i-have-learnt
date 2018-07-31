@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" type="text/css" href="inline.css">
+		<title>Off Canvas</title>
+	</head>
+	<body>
+		<nav></nav>
+		<main>
+			<div class="ham">X</div>
+		</main>
+		<script type="text/javascript">
+			const ham = document.querySelector('.ham');
+			ham.addEventListener('click', function(e){
+				console.log('hah')
+				const nav = document.querySelector('nav');
+				nav.classList.toggle('open');
+				//e.stopPropagation();
+			});
+		</script>
+	</body>
+</html>

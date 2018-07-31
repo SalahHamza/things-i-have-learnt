@@ -1,0 +1,70 @@
+body  {
+	padding: 0;
+	margin: 0;
+}
+
+.container {
+	width: 100%;
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.box {
+	width: 100%;
+	height: 300px;
+}
+
+.lightgreen {
+	background-color: lightgreen;
+}
+
+.navy {
+	background-color: navy;
+}
+
+.darkred {
+	background-color: darkred;
+}
+
+/*
+ * First Breakpoint
+ */
+
+@media screen and (min-width: 600px){
+	.container {
+		height: 100vh;
+	}
+	
+	.lightgreen {
+		height: 66.66%;
+	}
+	
+	.container.inner {
+		height: 33.33%;
+	}
+	
+	.navy, .darkred {
+		width: 50%;
+		height: 100%;
+	}
+}
+
+/*
+ * Second Breakpoint
+ */
+@media screen and (min-width: 800px) {
+	.lightgreen  {
+		height: 100%;
+		width: 70%;
+	}
+	.container.inner {
+		height: 100%;
+		width: 30%;
+		flex-direction: column;
+		flex-wrap: nowrap;
+	}
+	
+	.navy, .darkred {
+		width: 100%;
+	}
+}

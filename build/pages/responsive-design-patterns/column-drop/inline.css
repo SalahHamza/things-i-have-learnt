@@ -1,0 +1,64 @@
+body  {
+	padding: 0;
+	margin: 0;
+}
+
+
+.container {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.box {
+	width: 100%;
+	height: 300px;
+}
+
+.lightgreen {
+	background-color: lightgreen;
+}
+
+.navy {
+	background-color: navy;
+}
+
+.darkred {
+	background-color: darkred;
+}
+
+/*
+ * First Breakpoint
+ */
+@media screen and (min-width: 600px) {
+	.lightgreen {
+		width: 70%; }
+
+	.navy {
+		width: 30%; }
+}
+
+/*
+ * Second Breakpoint
+ */
+@media screen and (min-width: 800px) {
+	.lightgreen {
+		width: 25%; }
+
+	.navy {
+		width: 50%; }
+
+	.darkred {
+		width: 25%; }
+}
+
+
+/*
+ * Second Breakpoint
+ */
+@media screen and (min-width: 1100px) {
+	.container {
+		width: 1100px;
+		margin-left: auto;
+		margin-right: auto;
+	}
+}

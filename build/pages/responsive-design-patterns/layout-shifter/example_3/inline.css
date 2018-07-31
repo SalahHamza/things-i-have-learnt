@@ -1,0 +1,79 @@
+body  {
+	padding: 0;
+	margin: 0;
+}
+
+
+.container {
+	width: 100%;
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.box {
+	width: 100%;
+	height: 200px;
+}
+
+.lightgreen {
+	background-color: lightgreen;
+}
+
+.navy {
+	background-color: navy;
+}
+
+.darkred {
+	background-color: darkred;
+}
+
+.lightblue {
+	background-color: lightblue;
+}
+
+.yellowgreen {
+	background-color: yellowgreen;
+}
+
+.skyblue {
+	background-color: skyblue;
+}
+
+/*
+ * First Breakpoint
+ */
+@media screen and (min-width: 500px) {
+	.grid-item {
+		width: 50%;
+	}
+}
+
+
+@media screen and (min-width: 600px) {
+	.grid-item {
+		width: 25%;
+	}
+}
+
+@media screen and (min-width: 800px) {
+	.lightgreen {
+		width: 33.33%;
+	}
+	.content {
+		width: 66.66%;
+		order: -1;
+	}
+	
+	/* Eye candy*/
+	.box:not(.grid-item) {
+		height: 300px;
+	}
+}
+
+@media screen and (min-width: 1024px) {
+	.main {
+		width: 1024px;
+		margin-right: auto;
+		margin-left: auto;
+	}
+}

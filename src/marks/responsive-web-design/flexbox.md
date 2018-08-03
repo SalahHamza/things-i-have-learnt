@@ -117,7 +117,7 @@ Default 0.
 ## Useful links
 
 * [**Flexbox Spec**](https://www.w3.org/TR/css-flexbox-1/)
-* MDN's [**Basic Concepts of Flexbox**](https://developer.mozilla.org/enUS/docs/Web/CSS/CSS_Flexible_Box_Layout/Basic_Concepts_of_Flexbox)
-* CSS Ticks' [**A Guid To Flexbox**](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
+* [**MDN - Basic Concepts of Flexbox**](https://developer.mozilla.org/enUS/docs/Web/CSS/CSS_Flexible_Box_Layout/Basic_Concepts_of_Flexbox)
+* [**CSS Tricks - A Guid To Flexbox**](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
 * [**Flex Cheatsheet**](https://yoksel.github.io/flex-cheatsheet) by [@yoskel](https://github.com/yoksel)
 * [**Flexbox generator**](http://bennettfeely.com/flexplorer/)

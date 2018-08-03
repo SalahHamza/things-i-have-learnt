@@ -33,7 +33,7 @@ and it also
 
 > Some users operate their computer almost entirely with the keyboard or other input device. For those users, focus is critical; it's their primary means of reaching everything on the screen.
 
-Which is why the **Web AIM** check list section **[2.1.1](https://webaim.org/standards/wcag/checklist#sc2.1.1)** states that **All page functionality is available using the keyboard, unless the functionality cannot be accomplished in any known way using a keyboard (e.g., free hand drawing)**.
+Which is why the [Web AIM check list section **2.1.1**](https://webaim.org/standards/wcag/checklist#sc2.1.1) states that **All page functionality is available using the keyboard, unless the functionality cannot be accomplished in any known way using a keyboard (e.g., free hand drawing)**.
 
 ### how do you know if an item is focused?
 
@@ -49,7 +49,7 @@ Some native HTML elements are focusable by design and don't require the page aut
 
 Native HTML elements are automatically inserted into the tab order based on their position in the DOM. Sometimes the author of the page may change the visual order of the elements using CSS, but the DOM order remains the same and that may cause a confusion to users who rely heavily on the keyboard.
 
-That's why the **Web AIM** check list section **[1.3.1](https://webaim.org/standards/wcag/checklist#sc1.3.2)** states that **The reading and navigation order (determined by code order) is logical and intuitive**.
+That's why the [Web AIM check list section **1.3.1**](https://webaim.org/standards/wcag/checklist#sc1.3.2) states that **The reading and navigation order (determined by code order) is logical and intuitive**.
 
 ### manipulate the tab order (tabindex)
 
@@ -87,7 +87,7 @@ The [**ARIA Authoring Practices**](https://www.w3.org/TR/wai-aria-practices/) gu
 
 * **Modals and keyboard traps**:
 
-Keyboard trap happens when an element captures the tab and prevents the user from leaving it until it's complete. This can bothersome to the user, that's why the Web AIM section **[2.1.2](http://webaim.org/standards/wcag/checklist#sc2.1.2)** states that **keyboard focus should never be locked or trapped at one particular page element**.
+Keyboard trap happens when an element captures the tab and prevents the user from leaving it until it's complete. This can bothersome to the user, that's why the [Web AIM checklist section **2.1.2**](http://webaim.org/standards/wcag/checklist#sc2.1.2) states that **keyboard focus should never be locked or trapped at one particular page element**.
 
 Although the aforementioned behavior can be very frustrating, there are cases where it helps the page author provide better accessibility. The modal for example when the modal is displayed you'd want the tab to be trapped in it until the user completes whatever functionality the modal provides or closes it.
 
@@ -117,14 +117,97 @@ The steps to build a temporary keyboard trap in the modal:
   7. When the user closes the modal, return the focus to the element we kept reference to in step **3**.
   
   8. You can now be happy knowing you've provided your users with an accessible modal window :).
+  
+## Semantics Basics
+
+### Assistive Technology
+
+Assistive technology is a generic term that describes tools used by people with disabilities to accomplish tasks.
+
+There are many assistive technologies people might use to access your web sites:
+
+* Screen readers
+* Screen magnification software
+* Speech input software
+* Text readers
+* Alternative input devices
+  - Head pointers
+  - Motion tracking or eye tracking
+  - Single switch entry devices
+
+Read more about the [types of assistive technologies](https://webaccess.berkeley.edu/resources/assistive-technology).
+
+The point is, as a developer you must consider that users may access your website using any of the aforementioned assistive technologies that rely on *programmatically expressed semantics* to create an accessible user experience.
+
+### Affordance
+
+> An affordance is any object that offers, or affords, its user the opportunity to perform an action. The better the affordance is designed, the more obvious or intuitive its use.
+
+For example a well designed button *affords* being clicked, or a checkbox affords being checked (yes) or unchecked (no).
+
+### Screen readers
+
+A screen reader is a software used by blind or visually impaired people to read the content of the computer screen.
+
+You should expect a well-designed reader to tell you all, or at least most, of the following information about the elements it encounters.
+
+* The element's **role** or type, if it is specified (it should be).
+* The element's **name**, if it has one (it should).
+* The element's **value**, if it has one (it may or may not).
+* The element's **state**, e.g., whether it is enabled or disabled (if applicable).
+
+### The accessibility tree
+
+The accessibility tree is a modified DOM tree that the browser presents to assistive technologies. It only contains the necessary information about each element's affordances for the user to know how to interact with that element.
+
+### Semantics in native HTML
+
+> A browser can transform the DOM tree into an accessibility tree because much of the DOM has *implicit* semantic meaning.
+
+That is why it is usually better to use native HTML elements that are recognized by browsers and work predictably on a variety of platforms, so that we can take advantage of that built in accessibility.
+
+For example a `span` can be used to construct an element that looks like a button and then add it to the tab order by setting its `tabindex` attribute, instead of that, we can just use the `button` element.
+
+Also, input or control elements, and visual content like images, we need to make sure that we specify a name. And we can do that by giving them:
+
+* Visible labels, which are used by all users to associate meaning with an element, and/or
+* Text alternatives, which are only used when there is no need for a visual label.
+
+Which is why the [Web AIM check list section **1.1.1**](https://webaim.org/standards/wcag/checklist#g1.1) states that developers should **Provide text alternatives for any non-text content**.
+
+### Text Alternatives for images
+
+> Images are an important component of most web pages, and are of course a particular sticking point for low-vision users. We must consider the role an image plays in a page to work out what type of text alternative it should have.
+
+If an image doesn't have an `alt` attribute, a screen reader will announce this image using its literal name `/name-of-image-file.ext`.
+
+The `alt`attribute comes in action when the image:
+* fails to load,
+* is accessed by a web crawler, or
+* is encountered by a screen reader
+
+In a nutshell:
+
+* `alt` attributes should be set on every image.
+
+* `alt` attributes should be descriptive for important images.
+
+* `alt` attributes should be empty for images that are just decorations `alt=""`.
+
+
+### Navigating content
+
+Screen reader users often rely on a list of headings to locate information.
 
 ## Useful links
 
-* Google Web Training - **[Accessibility](https://developers.google.com/web/fundamentals/accessibility/)**
-* **[Udacity course on Accessibility](https://mena.udacity.com/course/web-accessibility--ud891)**
-* **[Removing Headaches from Focus Management](https://developers.google.com/web/updates/2016/03/focus-start-point?hl=en)**
-* **[Web Content Accessibility Guidelines (WCAG) 2.0](https://www.w3.org/TR/WCAG20/)**
-* **[Web AIM checklist](https://webaim.org/standards/wcag/checklist)**.
+* [**Google Web Training - Accessibility**](https://developers.google.com/web/fundamentals/accessibility/)
+* [**Udacity course on Accessibility**](https://mena.udacity.com/course/web-accessibility--ud891)
+* [**Removing Headaches from Focus Management**](https://developers.google.com/web/updates/2016/03/focus-start-point?hl=en)
+* [**Web Content Accessibility Guidelines (WCAG) 2.0**](https://www.w3.org/TR/WCAG20/)
+* [**Web AIM checklist**](https://webaim.org/standards/wcag/checklist)
+* [**Berkeley Web Access**](https://webaccess.berkeley.edu/)
+* [**What Are Affordances in Web Design?**](http://blog.teamtreehouse.com/affordances-web-design)
 
 ## Disclaimer
 

@@ -26,7 +26,7 @@ module.exports = function(grunt) {
 						title: pageTitle(pkg.name),
 					},
 					markdownOptions: {
-						// langPrefix: 'lang-',
+						langPrefix: 'lang-',
 						gfm: true,
 						highlight: function(code) {
 							return require("highlight.js").highlightAuto(code).value;

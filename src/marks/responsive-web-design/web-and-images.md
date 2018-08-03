@@ -4,7 +4,7 @@
 
 ### Use relative size images
 
-The key to handling images is to use **relative widths** to prevent them from accidentally overflowing the container and eventually the viewport, so it is better to pre-set the width of all image tags to **100%**. In fact it is recommended to do that on **img**, **video**, **embed** and **object** elements:
+The key to handling images is to use **relative widths** to prevent them from accidentally overflowing the container and eventually the viewport, so it is better to pre-set the width of all image tags to 100%. In fact it is recommended to do that on `img`, `video`, `embed` and `object` elements:
 ```css
 img, video,
 embed, object {
@@ -31,7 +31,7 @@ img:last-of-type {
 To use the `srcset` provide a comma separated string with:
 * The path to the image file
 * A space
-* The pixel density with **nx** or width with **w** of the image
+* The pixel density with `nx` or width with `w` of the image
 
 `srcset` with pixel density:
 ```html
@@ -40,7 +40,7 @@ To use the `srcset` provide a comma separated string with:
              [filename]-3x.[ext] 3x, 
              [filename]-4x.[ext] 4x">
 ```
-The **nx** denotes the pixel density (DPR), where **n** is an integer.
+The `nx` denotes the pixel density (DPR), where **n** is an integer.
 
 **Note**: the image in the `src` tag is assumed to be **1x** and also works as a fallback incase the browser doesn't support `srcset`.
 
@@ -81,7 +81,7 @@ Putting it all together:
 
 ### Art direction - The picture element
 
-> The HTML **picture** element serves as a container for zero or more **source** elements and one img element to provide versions of an image for different display device scenarios.
+> The HTML `picture` element serves as a container for zero or more `source` elements and one img element to provide versions of an image for different display device scenarios.
 
 ```html
 <picture>
@@ -96,11 +96,11 @@ Putting it all together:
        alt="My image description">
 </picture>
 ```
-Looking at the media condition in the `media` attribute and the pixel density in the `srcset`, the **picture** element will choose the right image to display, and in case the picture element is not supported or none of the media conditions returned true.
+Looking at the media condition in the `media` attribute and the pixel density in the `srcset`, the `picture` element will choose the right image to display, and in case the picture element is not supported or none of the media conditions returned true.
 
-**Note**: The `alt` attribute and css manipulation should be done through the **img** element and not the **picture** or **source** elements.
+**Note**: The `alt` attribute and css manipulation should be done through the `img` element and not the `picture` or `source` elements.
 
-The **picture** element can also be used to serve different image types depending on the browser support. So for example if you want to serve **[WebP](https://developers.google.com/speed/webp/?csw=1)** format, but you want to set a fallback for browsers that don't support it:
+The `picture` element can also be used to serve different image types depending on the browser support. So for example if you want to serve [**WebP** format](https://developers.google.com/speed/webp/?csw=1) format, but you want to set a fallback for browsers that don't support it:
   
 ```html
 <picture>
@@ -118,9 +118,10 @@ Make sure to always provide the img element with meaningful descriptions via the
 
 * `alt` attributes should be descriptive for important images.
 
-* `alt` attributes should be empty for images that are just decorations.
+* `alt` attributes should be empty for images that are just decorations `alt=""`.
 
 * `alt` attributes should be set on every image.
+
 
 ## Optimizing Images
 
@@ -156,7 +157,7 @@ If that image resource is necessary to your design, then, the next thing to do i
 - **Is it zoom/resolution independent?**: No. When you scale up a raster image you'll see jagged and blurry graphics. *As a result, you may need to save multiple versions of a raster image at various resolutions to deliver the optimal experience to your users.*
 - **Ideal for**: Photographic images or images with complicated scenes.
 
-Also **Vector** images have small file sizes compared to raster images.
+Also **Vector** images have small file sizes compared to **Raster** images.
 
 ### Size and Resolution?
 
@@ -180,6 +181,7 @@ That said choose vector images over raster images whenever possible as they are 
 One of the simplest and most effective image optimization techniques is to ensure that we are not shipping any more pixels than needed to display the asset at its intended size in the browser. So, you should ensure that the number of unnecessary pixels is minimal, and that your large assets in particular are delivered as close as possible to their display size.
 
 And here is why
+<div class="mrkd-table">
 
 | Screen resolution	| Natural size | Display size (CSS px) | Unnecessary pixels |
 |-------------------|--------------|-----------------------|--------------------|
@@ -190,6 +192,7 @@ And here is why
 | 2x	| 820 x 820	  | 400 x 400	| 820 x 820 - (2 x 400) x (2 x 400) = 32400 |
 | 2x	| 1620 x 1620	| 800 x 800 | 1620 x 1620 - (2 x 800) x (2 x 800) = 64400 |
 
+</div>
 Although the **natural size** is only 10px higher than the **display size** the amount of unecessary pixels rises rapidly as the display dimensions of the image increase.
 
 ### Inline vs External images
@@ -230,13 +233,13 @@ This is only used as personal notes following the Udacity Mobile Web Specialist 
 
 ## Useful links
 
-* Udacity's **[Responsive Images](https://www.udacity.com/course/responsive-images--ud882)**
-* Google's **[Responsive Images](https://developers.google.com/web/fundamentals/design-and-ux/responsive/images)**
+* **[Udacity course on Responsive Images](https://www.udacity.com/course/responsive-images--ud882)**
+* **[Google Web Training - Responsive Images](https://developers.google.com/web/fundamentals/design-and-ux/responsive/images)**
 * **[Image Optimization](https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/image-optimization)**
 * **[How To Make Your Websites Faster On Mobile Devices](https://www.smashingmagazine.com/2013/04/build-fast-loading-mobile-website/)**
 * **[Responsive Images - The srcset and sizes Attributes](https://bitsofco.de/the-srcset-and-sizes-attributes/)**
 * **[srcset and size](https://ericportis.com/posts/2014/srcset-sizes/)**
-* MDN's **[Responsive Images](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images)**
+* **[MDN - Responsive Images](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images)**
 * **[Responsive Images: Use Cases and Documented Code Snippets to Get You Started](https://dev.opera.com/articles/responsive-images/)**
 * **[Formatting your images for display on the web](https://support.squarespace.com/hc/en-us/articles/206542517-Formatting-your-images-for-display-on-the-web#toc-glossary)**
 * **[High DPI Images for Variable Pixel Densities](https://www.html5rocks.com/en/mobile/high-dpi/)**

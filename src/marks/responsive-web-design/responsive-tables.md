@@ -44,7 +44,7 @@ To add the row labels, You may use the before pseudo selector and add `td:before
 
 This emplies that you should set a `data-th` attribute on all the `tr` elements in the `tbody`.
 
-A working **[example](https://codepen.io/JohnMav/pen/BoGJNy)**.
+**[No More Tables - example](https://codepen.io/JohnMav/pen/BoGJNy)**.
 
 ## Contained Scrolling
 
@@ -56,7 +56,7 @@ div.target-table {
 }
 ```
 
-A working **[example](https://codepen.io/JohnMav/pen/Mazrwm)**.
+**[Contained Scrolling - example](https://codepen.io/JohnMav/pen/Mazrwm)**.
 
 ## Useful links
 

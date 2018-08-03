@@ -100,7 +100,7 @@
 
 		code {
 			padding: 2px 4px;
-			font-size: 14px;
+			font-size: 0.875em;
 			color: #d14;
 			background-color: #f7f7f9;
 			border: 1px solid #e1e1e8;
@@ -108,7 +108,10 @@
 		}
 
 		blockquote {
+			color: #666;
 			background-color: #f6f8fa;
+			border-radius: 0 3px 3px 0;
+			border-left: 5px solid #e1e1e1;
 			margin: 0;
 			padding: .5em;
 			padding-left: 2em;
@@ -125,18 +128,25 @@
 			opacity: 0.5;
 		}
 
-/* Center tables for demo */
-table {
-  margin: 0 auto;
-}
+		.mrkd-table {
+			width: 100%;
+			overflow-x: auto;
+		}
+
+		/* Center tables for demo */
+		table {
+			margin: 0 auto;
+		}
 
 		/* Default Table Style */
 		table {
+			width: 100%;
 			color: #333;
 			background: white;
 			border: 1px solid grey;
-			font-size: 12pt;
+			font-size: 10pt;
 			border-collapse: collapse;
+			text-align: center;
 		}
 		table thead th,
 		table tfoot th {
@@ -148,6 +158,7 @@ table {
 		}
 		table th,
 		table td {
+			white-space: nowrap;
 			padding: .5em;
 			border: 1px solid lightgrey;
 		}
@@ -192,7 +203,7 @@ table {
 <blockquote>
 <p>Some users operate their computer almost entirely with the keyboard or other input device. For those users, focus is critical; it&#39;s their primary means of reaching everything on the screen.</p>
 </blockquote>
-<p>Which is why the <strong>Web AIM</strong> check list section <strong><a href="https://webaim.org/standards/wcag/checklist#sc2.1.1">2.1.1</a></strong> states that <strong>All page functionality is available using the keyboard, unless the functionality cannot be accomplished in any known way using a keyboard (e.g., free hand drawing)</strong>.</p>
+<p>Which is why the <a href="https://webaim.org/standards/wcag/checklist#sc2.1.1">Web AIM check list section <strong>2.1.1</strong></a> states that <strong>All page functionality is available using the keyboard, unless the functionality cannot be accomplished in any known way using a keyboard (e.g., free hand drawing)</strong>.</p>
 <h3 id="how-do-you-know-if-an-item-is-focused-">how do you know if an item is focused?</h3>
 <blockquote>
 <p>The currently focused item is often indicated by a focus ring, the style of which depends on both the browser and on any styling the page author has applied.</p>
@@ -204,7 +215,7 @@ table {
 </blockquote>
 <h3 id="dom-order-matters-">DOM order matters!</h3>
 <p>Native HTML elements are automatically inserted into the tab order based on their position in the DOM. Sometimes the author of the page may change the visual order of the elements using CSS, but the DOM order remains the same and that may cause a confusion to users who rely heavily on the keyboard.</p>
-<p>That&#39;s why the <strong>Web AIM</strong> check list section <strong><a href="https://webaim.org/standards/wcag/checklist#sc1.3.2">1.3.1</a></strong> states that <strong>The reading and navigation order (determined by code order) is logical and intuitive</strong>.</p>
+<p>That&#39;s why the <a href="https://webaim.org/standards/wcag/checklist#sc1.3.2">Web AIM check list section <strong>1.3.1</strong></a> states that <strong>The reading and navigation order (determined by code order) is logical and intuitive</strong>.</p>
 <h3 id="manipulate-the-tab-order-tabindex-">manipulate the tab order (tabindex)</h3>
 <p>There are some instances where you would want to manipulate the tab order and that can be done with the <code>tabindex</code> attribute.</p>
 <blockquote>
@@ -245,7 +256,7 @@ table {
 <ul>
 <li><strong>Modals and keyboard traps</strong>:</li>
 </ul>
-<p>Keyboard trap happens when an element captures the tab and prevents the user from leaving it until it&#39;s complete. This can bothersome to the user, that&#39;s why the Web AIM section <strong><a href="http://webaim.org/standards/wcag/checklist#sc2.1.2">2.1.2</a></strong> states that <strong>keyboard focus should never be locked or trapped at one particular page element</strong>.</p>
+<p>Keyboard trap happens when an element captures the tab and prevents the user from leaving it until it&#39;s complete. This can bothersome to the user, that&#39;s why the <a href="http://webaim.org/standards/wcag/checklist#sc2.1.2">Web AIM checklist section <strong>2.1.2</strong></a> states that <strong>keyboard focus should never be locked or trapped at one particular page element</strong>.</p>
 <p>Although the aforementioned behavior can be very frustrating, there are cases where it helps the page author provide better accessibility. The modal for example when the modal is displayed you&#39;d want the tab to be trapped in it until the user completes whatever functionality the modal provides or closes it.</p>
 <p>The steps to build a temporary keyboard trap in the modal:</p>
 <ol>
@@ -272,13 +283,83 @@ const focusableElements = modal.querySelectorAll(focusableElementsString);
 <li><p>You can now be happy knowing you&#39;ve provided your users with an accessible modal window :).</p>
 </li>
 </ol>
+<h2 id="semantics-basics">Semantics Basics</h2>
+<h3 id="assistive-technology">Assistive Technology</h3>
+<p>Assistive technology is a generic term that describes tools used by people with disabilities to accomplish tasks.</p>
+<p>There are many assistive technologies people might use to access your web sites:</p>
+<ul>
+<li>Screen readers</li>
+<li>Screen magnification software</li>
+<li>Speech input software</li>
+<li>Text readers</li>
+<li>Alternative input devices<ul>
+<li>Head pointers</li>
+<li>Motion tracking or eye tracking</li>
+<li>Single switch entry devices</li>
+</ul>
+</li>
+</ul>
+<p>Read more about the <a href="https://webaccess.berkeley.edu/resources/assistive-technology">types of assistive technologies</a>.</p>
+<p>The point is, as a developer you must consider that users may access your website using any of the aforementioned assistive technologies that rely on <em>programmatically expressed semantics</em> to create an accessible user experience.</p>
+<h3 id="affordance">Affordance</h3>
+<blockquote>
+<p>An affordance is any object that offers, or affords, its user the opportunity to perform an action. The better the affordance is designed, the more obvious or intuitive its use.</p>
+</blockquote>
+<p>For example a well designed button <em>affords</em> being clicked, or a checkbox affords being checked (yes) or unchecked (no).</p>
+<h3 id="screen-readers">Screen readers</h3>
+<p>A screen reader is a software used by blind or visually impaired people to read the content of the computer screen.</p>
+<p>You should expect a well-designed reader to tell you all, or at least most, of the following information about the elements it encounters.</p>
+<ul>
+<li>The element&#39;s <strong>role</strong> or type, if it is specified (it should be).</li>
+<li>The element&#39;s <strong>name</strong>, if it has one (it should).</li>
+<li>The element&#39;s <strong>value</strong>, if it has one (it may or may not).</li>
+<li>The element&#39;s <strong>state</strong>, e.g., whether it is enabled or disabled (if applicable).</li>
+</ul>
+<h3 id="the-accessibility-tree">The accessibility tree</h3>
+<p>The accessibility tree is a modified DOM tree that the browser presents to assistive technologies. It only contains the necessary information about each element&#39;s affordances for the user to know how to interact with that element.</p>
+<h3 id="semantics-in-native-html">Semantics in native HTML</h3>
+<blockquote>
+<p>A browser can transform the DOM tree into an accessibility tree because much of the DOM has <em>implicit</em> semantic meaning.</p>
+</blockquote>
+<p>That is why it is usually better to use native HTML elements that are recognized by browsers and work predictably on a variety of platforms, so that we can take advantage of that built in accessibility.</p>
+<p>For example a <code>span</code> can be used to construct an element that looks like a button and then add it to the tab order by setting its <code>tabindex</code> attribute, instead of that, we can just use the <code>button</code> element.</p>
+<p>Also, input or control elements, and visual content like images, we need to make sure that we specify a name. And we can do that by giving them:</p>
+<ul>
+<li>Visible labels, which are used by all users to associate meaning with an element, and/or</li>
+<li>Text alternatives, which are only used when there is no need for a visual label.</li>
+</ul>
+<p>Which is why the <a href="https://webaim.org/standards/wcag/checklist#g1.1">Web AIM check list section <strong>1.1.1</strong></a> states that developers should <strong>Provide text alternatives for any non-text content</strong>.</p>
+<h3 id="text-alternatives-for-images">Text Alternatives for images</h3>
+<blockquote>
+<p>Images are an important component of most web pages, and are of course a particular sticking point for low-vision users. We must consider the role an image plays in a page to work out what type of text alternative it should have.</p>
+</blockquote>
+<p>If an image doesn&#39;t have an <code>alt</code> attribute, a screen reader will announce this image using its literal name <code>/name-of-image-file.ext</code>.</p>
+<p>The <code>alt</code>attribute comes in action when the image:</p>
+<ul>
+<li>fails to load,</li>
+<li>is accessed by a web crawler, or</li>
+<li>is encountered by a screen reader</li>
+</ul>
+<p>In a nutshell:</p>
+<ul>
+<li><p><code>alt</code> attributes should be set on every image.</p>
+</li>
+<li><p><code>alt</code> attributes should be descriptive for important images.</p>
+</li>
+<li><p><code>alt</code> attributes should be empty for images that are just decorations <code>alt=&quot;&quot;</code>.</p>
+</li>
+</ul>
+<h3 id="navigating-content">Navigating content</h3>
+<p>Screen reader users often rely on a list of headings to locate information.</p>
 <h2 id="useful-links">Useful links</h2>
 <ul>
-<li>Google Web Training - <strong><a href="https://developers.google.com/web/fundamentals/accessibility/">Accessibility</a></strong></li>
-<li><strong><a href="https://mena.udacity.com/course/web-accessibility--ud891">Udacity course on Accessibility</a></strong></li>
-<li><strong><a href="https://developers.google.com/web/updates/2016/03/focus-start-point?hl=en">Removing Headaches from Focus Management</a></strong></li>
-<li><strong><a href="https://www.w3.org/TR/WCAG20/">Web Content Accessibility Guidelines (WCAG) 2.0</a></strong></li>
-<li><strong><a href="https://webaim.org/standards/wcag/checklist">Web AIM checklist</a></strong>.</li>
+<li><a href="https://developers.google.com/web/fundamentals/accessibility/"><strong>Google Web Training - Accessibility</strong></a></li>
+<li><a href="https://mena.udacity.com/course/web-accessibility--ud891"><strong>Udacity course on Accessibility</strong></a></li>
+<li><a href="https://developers.google.com/web/updates/2016/03/focus-start-point?hl=en"><strong>Removing Headaches from Focus Management</strong></a></li>
+<li><a href="https://www.w3.org/TR/WCAG20/"><strong>Web Content Accessibility Guidelines (WCAG) 2.0</strong></a></li>
+<li><a href="https://webaim.org/standards/wcag/checklist"><strong>Web AIM checklist</strong></a></li>
+<li><a href="https://webaccess.berkeley.edu/"><strong>Berkeley Web Access</strong></a></li>
+<li><a href="http://blog.teamtreehouse.com/affordances-web-design"><strong>What Are Affordances in Web Design?</strong></a></li>
 </ul>
 <h2 id="disclaimer">Disclaimer</h2>
 <p>These are intended only as course notes following the Mobile Web Specialist Nano-Degree. I hope these provide help to any or all people who want to learn about accessibility.</p>

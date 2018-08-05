@@ -197,9 +197,31 @@ In a nutshell:
 
 ### Navigating content
 
-Screen reader users often rely on a list of headings to locate information.
+On content-heavy pages, such as wikipedia, it's not practical to read through everything from the top down, that's why screen reader users often rely on a list of headings to locate information.
 
-## Useful links
+#### Using Headings effectively
+
+* Every page should have an h1 heading.
+* You should not skip heading levels, such as jumping from `<h2></h2>` to an `<h4></h4>` going down the page.
+* Headings should be used to divide content into meaningful sections, not to format text.
+* Nest headings by their rank (or level). Headings with an equal or higher rank start a new section, headings with a lower rank start new subsections that are part of the higher ranked section.
+* Not all headings should be visible. Sometimes the role/title of a section is perfectly clear to people who can see the page, but not for the visually impaired, in that case it is good to move the said header off-screen.
+
+**Note**: When hiding content that you want only screen reader users to see, don't use `display: none` or `visibility: hidden`. There are other ways to create [invisible Content Just for Screen Reader Users](https://webaim.org/techniques/css/invisiblecontent/).
+
+#### Other navigation options
+
+Screen reader users may use other elements to navigate around the page, including links, form controls, and landmarks.
+
+That's why, when making your links make sure to:
+
+* use descriptive text, such as instead of "Read more" you can use "Read more about XXXXX",
+* avoid using Javascript to open link, this will not give screen readers enough information.
+* avoid using anchor tags as buttons, use `button` element and then style it with CSS if that's what you are going for.
+
+Also, HTML5 introduced some new elements that help define the semantic structure of the page, including `header`, `footer`, `nav`, `article`, `section`, `main`, and `aside`. The use of these elements support keyboard navigation to the structure of a web page for screen reader users. [Read more about page landmarks](https://www.w3.org/TR/2017/NOTE-wai-aria-practices-1.1-20171214/examples/landmarks/index.html).
+
+## Resources
 
 * [**Google Web Training - Accessibility**](https://developers.google.com/web/fundamentals/accessibility/)
 * [**Udacity course on Accessibility**](https://mena.udacity.com/course/web-accessibility--ud891)
@@ -208,6 +230,12 @@ Screen reader users often rely on a list of headings to locate information.
 * [**Web AIM checklist**](https://webaim.org/standards/wcag/checklist)
 * [**Berkeley Web Access**](https://webaccess.berkeley.edu/)
 * [**What Are Affordances in Web Design?**](http://blog.teamtreehouse.com/affordances-web-design)
+* [**Web AIM - Semantic Structure**](https://webaim.org/techniques/semanticstructure/)
+* [**Web Accessibility Evaluation Tool (WAVE)**](http://wave.webaim.org/)
+* [**Invisible Content Just for Screen Reader Users**](https://webaim.org/techniques/css/invisiblecontent/)
+* [**Using headings to improve accessibility**](https://www.drupal.org/docs/7/creating-accessible-themes/using-headings-to-improve-accessibility)
+* [**Web Accessibility Tutorials - Page Structure - Headings**](https://www.w3.org/WAI/tutorials/page-structure/headings/)
+* [**ARIA - Page Landmarks**](https://www.w3.org/TR/2017/NOTE-wai-aria-practices-1.1-20171214/examples/landmarks/index.html)
 
 ## Disclaimer
 

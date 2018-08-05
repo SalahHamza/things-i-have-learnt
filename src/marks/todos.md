@@ -2,11 +2,6 @@
 
 | Todo | Status |
 |:------|:--------|
-| Responsive Design patterns | Done |
-| Responsive Tables | Done |
-| Responsive Images | In process |
-| Web Accessibility | In process |
-| Service Workers | Done |
-| IndexedDB | Done |
-| ES2015+ | Done |
-| React.js | In process |
+| Auto add page title | Not Done |
+| Add content navigation | Not Done |
+| Add style to html | Not Done |

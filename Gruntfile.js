@@ -1,16 +1,9 @@
 
-const capitalize = (str) => {
-	return str.charAt(0).toUpperCase() + str.slice(1);
-}
-const pageTitle = (pkgName) => {
-	let title = pkgName.split('-').map(w => capitalize(w)).join(' ');
-	return title;
-}
-
 module.exports = function(grunt) {
 	const pkg = grunt.file.readJSON('package.json');
    
 	grunt.initConfig({
+		pkg,
 		markdown: {
 			all: {
 				files: [{
@@ -23,12 +16,12 @@ module.exports = function(grunt) {
 				options: {
 					template: 'src/templates/note.jst',
 					templateContext: {
-						title: pageTitle(pkg.name),
+						title: require('./src/helpers').pageTitle(pkg.name),
 					},
 					markdownOptions: {
 						langPrefix: 'lang-',
 						gfm: true,
-						highlight: function(code) {
+						highlight(code){
 							return require("highlight.js").highlightAuto(code).value;
 						},
 					}

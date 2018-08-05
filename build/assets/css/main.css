@@ -28,7 +28,7 @@ html {
  
 body {
 	font-family: 'Roboto', 'Verdana', sans-serif;
-	font-size: 14px;
+	font-size: 16px;
 	color: #111;
 	line-height: 1.375em;
 }
@@ -55,15 +55,40 @@ a:hover {
 	text-decoration: underline;
 }
 
+/* lists and list items */
 ul li, ol li {
 	line-height: 1.25em;
-	margin-bottom: .5em;
 }
 
-ul li:last-child, 
-ol li:last-child {
-	margin-bottom: 0;
+ul li, ol li,
+li ul {
+	margin-top: .5em;
 }
+
+ul li:first-child, 
+ol li:first-child {
+	margin-top: 0;
+}
+
+ul {
+	padding-left: 1em;
+}
+
+ul li {
+	list-style: none;
+}
+
+ul li::before {
+	content: '▸';
+	display: inline;
+	color: var(--primary-col);
+	font-weight: 700;
+	margin-right: 6px;
+}
+
+ul li p {
+	display: inline;
+} 
 
 /**************************
          HEADER
@@ -101,9 +126,6 @@ ol li:last-child {
 }
 
 @media screen and (min-width: 44em) {
-	body  {
-		background-color: #e6e6e6;
-	}
 	.main {
 		background-color: white;
 		width: 43.75em;
@@ -113,7 +135,164 @@ ol li:last-child {
 }
 
 /**************************
-				Social links
+		  Highlighting
 **************************/
+/* Tomorrow Night Bright Theme */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
 
+/* Tomorrow Comment */
+.hljs-comment {
+	color: #969896;
+}
 
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-attribute,
+.hljs-tag,
+.hljs-regexp,
+.ruby .hljs-constant,
+.xml .hljs-tag .hljs-title,
+.xml .hljs-pi,
+.xml .hljs-doctype,
+.html .hljs-doctype,
+.css .hljs-id,
+.css .hljs-class,
+.css .hljs-pseudo {
+	color: #d54e53;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-preprocessor,
+.hljs-pragma,
+.hljs-built_in,
+.hljs-literal,
+.hljs-params,
+.hljs-constant {
+	color: #e78c45;
+}
+
+/* Tomorrow Yellow */
+.ruby .hljs-class .hljs-title,
+.css .hljs-rules .hljs-attribute {
+	color: #e7c547;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-value,
+.hljs-inheritance,
+.hljs-header,
+.ruby .hljs-symbol,
+.xml .hljs-cdata {
+	color: #b9ca4a;
+}
+
+/* Tomorrow Aqua */
+.hljs-title,
+.css .hljs-hexcolor {
+	color: #70c0b1;
+}
+
+/* Tomorrow Blue */
+.hljs-function,
+.python .hljs-decorator,
+.python .hljs-title,
+.ruby .hljs-function .hljs-title,
+.ruby .hljs-title .hljs-keyword,
+.perl .hljs-sub,
+.javascript .hljs-title,
+.coffeescript .hljs-title {
+	color: #7aa6da;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.javascript .hljs-function {
+	color: #c397d8;
+}
+
+.hljs, pre code {
+	display: block;
+	overflow-x: auto;
+	background: black;
+	color: #eaeaea;
+	font-family: Menlo, Monaco, Consolas, monospace;
+	line-height: 1.5;
+	font-size: 14px;
+	border: 1px solid #ccc;
+	padding: 10px;
+	border-radius: 3px;
+	-webkit-text-size-adjust: none;
+	white-space: inherit;
+}
+
+code {
+	padding: 2px 4px;
+	font-size: 0.875em;
+	color: #d14;
+	background-color: #f7f7f9;
+	border: 1px solid #e1e1e8;
+	white-space: nowrap;
+}
+
+blockquote {
+	color: #666;
+	background-color: #f6f8fa;
+	border-radius: 0 3px 3px 0;
+	border-left: 5px solid #e1e1e1;
+	margin: 0;
+	padding: .5em;
+	padding-left: 2em;
+	font-family: cursive;
+}
+
+.coffeescript .javascript,
+.javascript .xml,
+.tex .hljs-formula,
+.xml .javascript,
+.xml .vbscript,
+.xml .css,
+.xml .hljs-cdata {
+	opacity: 0.5;
+}
+
+/***************************
+			Table
+****************************/
+/* table container */
+.mrkd-table {
+	width: 100%;
+	overflow-x: auto;
+}
+
+/* Center tables for demo */
+table {
+	margin: 0 auto;
+}
+
+/* Default Table Style */
+table {
+	width: 100%;
+	color: #333;
+	background: white;
+	border: 1px solid grey;
+	font-size: 10pt;
+	border-collapse: collapse;
+	text-align: center;
+}
+table thead th,
+table tfoot th {
+	color: #777;
+	background: rgba(0,0,0,.1);
+}
+table caption {
+	padding:.5em;
+}
+table th,
+table td {
+	white-space: nowrap;
+	padding: .5em;
+	border: 1px solid lightgrey;
+}

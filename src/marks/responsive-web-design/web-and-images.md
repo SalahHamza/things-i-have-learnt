@@ -86,10 +86,12 @@ Putting it all together:
 ```html
 <picture>
   <source media="(min-width: 800px)" 
-	  srcset="myImage.jpg, myImage-2x.jpg 2x">
+          srcset="myImage.jpg, 
+                  myImage-2x.jpg 2x">
 	
   <source media="(min-width: 450px)" 
-	  srcset="myImage-small.jpg, myImage-small-2x.jpg 2x">
+          srcset="myImage-small.jpg, 
+                  myImage-small-2x.jpg 2x">
 	
   <img src="myImage-fallback.jpg" 
        srcset="myImage-fallback-2x.jpg 2x" 
@@ -214,7 +216,9 @@ and it works like this in HTML:
 
 ```css
 .some-elem {
-  background-image: url(data:[MIME-type][;charset=encoding][;base64],[data]);
+  background-image: url(
+    data:[MIME-type][;charset=encoding][;base64],[data]
+  );
 }
 ```
 

@@ -102,7 +102,7 @@ The steps to build a temporary keyboard trap in the modal:
   4. Select all focusable elements within the modal using `document.querySelectorAll`.
   
   Instead of selecting elements separately you can pass this line of code that selects all potentially focusable elements:
-  ```js
+  ```javascript
   const focusableElementsString = 'a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), iframe, object, embed, [tabindex="0"], [contenteditable]';
   const focusableElements = modal.querySelectorAll(focusableElementsString);
   ```
@@ -201,11 +201,11 @@ On content-heavy pages, such as wikipedia, it's not practical to read through ev
 
 #### Using Headings effectively
 
-* Every page should have an h1 heading.
-* You should not skip heading levels, such as jumping from `<h2></h2>` to an `<h4></h4>` going down the page.
+* **Every page should have an h1 heading**.
+* **You should not skip heading levels**, such as jumping from `<h2></h2>` to an `<h4></h4>` going down the page.
 * Headings should be used to divide content into meaningful sections, not to format text.
-* Nest headings by their rank (or level). Headings with an equal or higher rank start a new section, headings with a lower rank start new subsections that are part of the higher ranked section.
-* Not all headings should be visible. Sometimes the role/title of a section is perfectly clear to people who can see the page, but not for the visually impaired, in that case it is good to move the said header off-screen.
+* **Nest headings by their rank (or level)**. Headings with an equal or higher rank start a new section, headings with a lower rank start new subsections that are part of the higher ranked section.
+* **Not all headings should be visible**. Sometimes the role/title of a section is perfectly clear to people who can see the page, but not for the visually impaired, in that case it is good to move the said header off-screen.
 
 **Note**: When hiding content that you want only screen reader users to see, don't use `display: none` or `visibility: hidden`. There are other ways to create [invisible Content Just for Screen Reader Users](https://webaim.org/techniques/css/invisiblecontent/).
 
@@ -218,8 +218,101 @@ That's why, when making your links make sure to:
 * use descriptive text, such as instead of "Read more" you can use "Read more about XXXXX",
 * avoid using Javascript to open link, this will not give screen readers enough information.
 * avoid using anchor tags as buttons, use `button` element and then style it with CSS if that's what you are going for.
+* provide an alt text when using image links.
 
 Also, HTML5 introduced some new elements that help define the semantic structure of the page, including `header`, `footer`, `nav`, `article`, `section`, `main`, and `aside`. The use of these elements support keyboard navigation to the structure of a web page for screen reader users. [Read more about page landmarks](https://www.w3.org/TR/2017/NOTE-wai-aria-practices-1.1-20171214/examples/landmarks/index.html).
+
+## ARIA
+
+### What is ARIA
+
+The [**Web Accessibility Initiative's Accessible Rich Internet Applications**](https://www.w3.org/TR/wai-aria/) lebelled **WAI-ARIA** or just **ARIA**, is a specification written by the W3C, defining a set of additional HTML attributes that can be applied to elements to provide additional semantics and improve accessibility wherever it is lacking.
+
+### How ARIA works
+
+* ARIA works by changing and augmenting the standard DOM accessibility tree.
+* ARIA can modify existing element semantics or add semantics to elements where no native semantics exist.
+* **ARIA doesn't augment any of the element's inherent behavior**; it won't make the element focusable or give it keyboard event listeners. That is still part of our development task.
+
+### What can ARIA do?
+
+There are three main features ARIA spec defines, **role**, **properties** and **state**. Using these attributes, we can give an element the missing information so that assistive technologies can properly interpret it.
+
+ARIA attributes don't affect anything about the web page, except for the information exposed by the browser's accessibility APIs (where screen readers get their information from).
+
+**Note**: If you want to know the possible values for the role attribute and associated state and properties check the [**ARIA spec**](https://www.w3.org/TR/wai-aria/) or the more approachable [**ARIA Authoring Practices**](https://www.w3.org/TR/wai-aria-practices-1.1)
+
+#### Work flow
+
+Let's say we are creating a checkbox with a `li` element, the ARIA Authoring Practices states that we must give it the necessary information through the **role** and **state** attributes.
+```html
+<li tabindex="0" role="checkbox" aria-checked="false"></li>
+```
+* We specify the role of the element: `role="checkbox"`.
+* We specify the state of the element: `aria-checked="false"` when unckecked, `aria-checked="true"` when checked.
+* We are also specifying `tabindex="0"`, which adds the element to the accessibility tree (and tab order).
+
+**Notes**:
+* A role is a promise that the author of that `<li>` has also incorporated JavaScript that provides the keyboard interactions expected for a checkbox. Unlike HTML input elements, ARIA roles do not cause browsers to provide keyboard behaviors or styling.
+* The ARIA Authoring Practices mentions other attributes like `aria-lebelby`, that will be discussed below.
+
+### labels
+
+#### aria-label 
+
+`aria-label` allows us to specify a string to be used as the accessible label. This overrides any other native labeling mechanism, such as a `label` element.
+
+```html
+<button aria-label="close">
+  <img alt="" src="close.png">
+</button>
+```
+#### aria-lebelledby
+
+`aria-labelledby` allows us to specify the ID of another element in the DOM as an element's label.
+  - Unlike `label` element, `aria-labelledby`attribute maybe used on any element.
+  - the `label` element refers to the thing it labels, but `aria-labelledby` is set on the element that is labelled and refers to the element that labels it.
+  - `aria-labelledby` doesn't give the same clicking behavior the HTML `label` element gives.
+  - Only one `label` element may be associated with a labelable element; `aria-labelledby` can take a list of IDREFs to compose a label of multiple elements. The label will be concatinated in order the IDREFs are given.
+  - `aria-labelledby` takes precedence over `aria-label` and native HTML `label` element.
+
+```html
+<div id="rg-label">Some label</div>
+<span role="radiogroup" aria-labelledby="rg-label">
+  ...
+</span>
+```
+
+**Note**: Native HTML elements have implicit semantics, so make sure not to redefine default semantics. e.g. giving a `button` element a `role="button"`.
+
+### Relationships
+
+A relationship attribute creates a semantic relationship between elements on the page regardless of their DOM relationship.
+
+#### aria-owns
+
+`aria-owns` attribute creates a parent/child relationship between a group of elements in the accessibility tree. It is specified on the parent element and takes a list of IDREFs of elements that should be considered as children of that parent element.
+
+#### aria-activedescendant
+
+`aria-activedescendant` identifies the focused element in a group of related elements (e.g. items of a custom listbox) if DOM focus is on their parent. It is specified on the parent element and takes the IDREF of the child element to focus when the parent element is focused.
+
+#### aria-describedby
+
+`aria-describedby` attribute is similar to the `aria-labelledby` attribute, the difference is that a label should be concise, where a description is intended to provide more verbose information and may also reference elements that are not visible. You can think of a description is a great way to communicate supplementary, but not essential, information
+
+Just like `aria-labelledby`, it is specified on the element that is described and takes a list of IDREFs of elements that comprise the description.
+
+#### aria-posinset & aria-setsize
+
+The `aria-posinset` ("position in set") and `aria-setsize` ("size of set") attributes work together.
+
+* `aria-setsize` defines the number of items in the current set of listitems or treeitems.
+* `aria-posinset` defines an element's number or position in the current set of listitems or treeitems.
+
+**Notes**: 
+* `aria-posinset` and `aria-setsize` are not required if all elements in the set are present in the DOM.
+* Both attributes are set on the items of the set and not the container.
 
 ## Resources
 
@@ -235,7 +328,11 @@ Also, HTML5 introduced some new elements that help define the semantic structure
 * [**Invisible Content Just for Screen Reader Users**](https://webaim.org/techniques/css/invisiblecontent/)
 * [**Using headings to improve accessibility**](https://www.drupal.org/docs/7/creating-accessible-themes/using-headings-to-improve-accessibility)
 * [**Web Accessibility Tutorials - Page Structure - Headings**](https://www.w3.org/WAI/tutorials/page-structure/headings/)
+* [**WAI-ARIA spec**](https://www.w3.org/TR/wai-aria/)
+* [**ARIA In HTML spec**](https://www.w3.org/TR/html-aria/)
+* [**ARIA Authoring Practices**](https://www.w3.org/TR/wai-aria-practices-1.1)
 * [**ARIA - Page Landmarks**](https://www.w3.org/TR/2017/NOTE-wai-aria-practices-1.1-20171214/examples/landmarks/index.html)
+* [**Hide content properly**](https://www.drupal.org/node/472572)
 
 ## Disclaimer
 

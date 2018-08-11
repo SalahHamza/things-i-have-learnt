@@ -111,7 +111,7 @@
 </li>
 <li><p>Select all focusable elements within the modal using <code>document.querySelectorAll</code>.</p>
 <p>Instead of selecting elements separately you can pass this line of code that selects all potentially focusable elements:</p>
-<pre><code class="lang-js">const focusableElementsString = <span class="hljs-attribute">'a</span>[href], area[href], input:<span class="hljs-keyword">not</span>([disabled]), <span class="hljs-keyword">select</span>:<span class="hljs-keyword">not</span>([disabled]), textarea:<span class="hljs-keyword">not</span>([disabled]), button:<span class="hljs-keyword">not</span>([disabled]), iframe, object, embed, [tabindex=<span class="hljs-string">"0"</span>], [contenteditable]';
+<pre><code class="lang-javascript">const focusableElementsString = <span class="hljs-attribute">'a</span>[href], area[href], input:<span class="hljs-keyword">not</span>([disabled]), <span class="hljs-keyword">select</span>:<span class="hljs-keyword">not</span>([disabled]), textarea:<span class="hljs-keyword">not</span>([disabled]), button:<span class="hljs-keyword">not</span>([disabled]), iframe, object, embed, [tabindex=<span class="hljs-string">"0"</span>], [contenteditable]';
 const focusableElements = modal.querySelectorAll(focusableElementsString);
 </code></pre>
 <p>The reason for doing this is to keep an eye on the first and last elements in the modal so that we know when to loop back. </p>
@@ -196,11 +196,11 @@ const focusableElements = modal.querySelectorAll(focusableElementsString);
 <p>On content-heavy pages, such as wikipedia, it&#39;s not practical to read through everything from the top down, that&#39;s why screen reader users often rely on a list of headings to locate information.</p>
 <h4 id="using-headings-effectively">Using Headings effectively</h4>
 <ul>
-<li>Every page should have an h1 heading.</li>
-<li>You should not skip heading levels, such as jumping from <code>&lt;h2&gt;&lt;/h2&gt;</code> to an <code>&lt;h4&gt;&lt;/h4&gt;</code> going down the page.</li>
+<li><strong>Every page should have an h1 heading</strong>.</li>
+<li><strong>You should not skip heading levels</strong>, such as jumping from <code>&lt;h2&gt;&lt;/h2&gt;</code> to an <code>&lt;h4&gt;&lt;/h4&gt;</code> going down the page.</li>
 <li>Headings should be used to divide content into meaningful sections, not to format text.</li>
-<li>Nest headings by their rank (or level). Headings with an equal or higher rank start a new section, headings with a lower rank start new subsections that are part of the higher ranked section.</li>
-<li>Not all headings should be visible. Sometimes the role/title of a section is perfectly clear to people who can see the page, but not for the visually impaired, in that case it is good to move the said header off-screen.</li>
+<li><strong>Nest headings by their rank (or level)</strong>. Headings with an equal or higher rank start a new section, headings with a lower rank start new subsections that are part of the higher ranked section.</li>
+<li><strong>Not all headings should be visible</strong>. Sometimes the role/title of a section is perfectly clear to people who can see the page, but not for the visually impaired, in that case it is good to move the said header off-screen.</li>
 </ul>
 <p><strong>Note</strong>: When hiding content that you want only screen reader users to see, don&#39;t use <code>display: none</code> or <code>visibility: hidden</code>. There are other ways to create <a href="https://webaim.org/techniques/css/invisiblecontent/">invisible Content Just for Screen Reader Users</a>.</p>
 <h4 id="other-navigation-options">Other navigation options</h4>
@@ -210,8 +210,78 @@ const focusableElements = modal.querySelectorAll(focusableElementsString);
 <li>use descriptive text, such as instead of &quot;Read more&quot; you can use &quot;Read more about XXXXX&quot;,</li>
 <li>avoid using Javascript to open link, this will not give screen readers enough information.</li>
 <li>avoid using anchor tags as buttons, use <code>button</code> element and then style it with CSS if that&#39;s what you are going for.</li>
+<li>provide an alt text when using image links.</li>
 </ul>
 <p>Also, HTML5 introduced some new elements that help define the semantic structure of the page, including <code>header</code>, <code>footer</code>, <code>nav</code>, <code>article</code>, <code>section</code>, <code>main</code>, and <code>aside</code>. The use of these elements support keyboard navigation to the structure of a web page for screen reader users. <a href="https://www.w3.org/TR/2017/NOTE-wai-aria-practices-1.1-20171214/examples/landmarks/index.html">Read more about page landmarks</a>.</p>
+<h2 id="aria">ARIA</h2>
+<h3 id="what-is-aria">What is ARIA</h3>
+<p>The <a href="https://www.w3.org/TR/wai-aria/"><strong>Web Accessibility Initiative&#39;s Accessible Rich Internet Applications</strong></a> lebelled <strong>WAI-ARIA</strong> or just <strong>ARIA</strong>, is a specification written by the W3C, defining a set of additional HTML attributes that can be applied to elements to provide additional semantics and improve accessibility wherever it is lacking.</p>
+<h3 id="how-aria-works">How ARIA works</h3>
+<ul>
+<li>ARIA works by changing and augmenting the standard DOM accessibility tree.</li>
+<li>ARIA can modify existing element semantics or add semantics to elements where no native semantics exist.</li>
+<li><strong>ARIA doesn&#39;t augment any of the element&#39;s inherent behavior</strong>; it won&#39;t make the element focusable or give it keyboard event listeners. That is still part of our development task.</li>
+</ul>
+<h3 id="what-can-aria-do-">What can ARIA do?</h3>
+<p>There are three main features ARIA spec defines, <strong>role</strong>, <strong>properties</strong> and <strong>state</strong>. Using these attributes, we can give an element the missing information so that assistive technologies can properly interpret it.</p>
+<p>ARIA attributes don&#39;t affect anything about the web page, except for the information exposed by the browser&#39;s accessibility APIs (where screen readers get their information from).</p>
+<p><strong>Note</strong>: If you want to know the possible values for the role attribute and associated state and properties check the <a href="https://www.w3.org/TR/wai-aria/"><strong>ARIA spec</strong></a> or the more approachable <a href="https://www.w3.org/TR/wai-aria-practices-1.1"><strong>ARIA Authoring Practices</strong></a></p>
+<h4 id="work-flow">Work flow</h4>
+<p>Let&#39;s say we are creating a checkbox with a <code>li</code> element, the ARIA Authoring Practices states that we must give it the necessary information through the <strong>role</strong> and <strong>state</strong> attributes.</p>
+<pre><code class="lang-html">&lt;li <span class="hljs-variable">tabindex=</span><span class="hljs-string">"0"</span> <span class="hljs-variable">role=</span><span class="hljs-string">"checkbox"</span> <span class="hljs-variable">aria-checked=</span><span class="hljs-string">"false"</span>&gt;&lt;/li&gt;
+</code></pre>
+<ul>
+<li>We specify the role of the element: <code>role=&quot;checkbox&quot;</code>.</li>
+<li>We specify the state of the element: <code>aria-checked=&quot;false&quot;</code> when unckecked, <code>aria-checked=&quot;true&quot;</code> when checked.</li>
+<li>We are also specifying <code>tabindex=&quot;0&quot;</code>, which adds the element to the accessibility tree (and tab order).</li>
+</ul>
+<p><strong>Notes</strong>:</p>
+<ul>
+<li>A role is a promise that the author of that <code>&lt;li&gt;</code> has also incorporated JavaScript that provides the keyboard interactions expected for a checkbox. Unlike HTML input elements, ARIA roles do not cause browsers to provide keyboard behaviors or styling.</li>
+<li>The ARIA Authoring Practices mentions other attributes like <code>aria-lebelby</code>, that will be discussed below.</li>
+</ul>
+<h3 id="labels">labels</h3>
+<h4 id="aria-label">aria-label</h4>
+<p><code>aria-label</code> allows us to specify a string to be used as the accessible label. This overrides any other native labeling mechanism, such as a <code>label</code> element.</p>
+<pre><code class="lang-html">&lt;<span class="hljs-tag">button</span> aria-label=<span class="hljs-string">"close"</span>&gt;
+  &lt;<span class="hljs-tag">img</span> alt=<span class="hljs-string">""</span> src=<span class="hljs-string">"close.png"</span>&gt;
+&lt;/button&gt;
+</code></pre>
+<h4 id="aria-lebelledby">aria-lebelledby</h4>
+<p><code>aria-labelledby</code> allows us to specify the ID of another element in the DOM as an element&#39;s label.</p>
+<ul>
+<li>Unlike <code>label</code> element, <code>aria-labelledby</code>attribute maybe used on any element.</li>
+<li>the <code>label</code> element refers to the thing it labels, but <code>aria-labelledby</code> is set on the element that is labelled and refers to the element that labels it.</li>
+<li><code>aria-labelledby</code> doesn&#39;t give the same clicking behavior the HTML <code>label</code> element gives.</li>
+<li>Only one <code>label</code> element may be associated with a labelable element; <code>aria-labelledby</code> can take a list of IDREFs to compose a label of multiple elements. The label will be concatinated in order the IDREFs are given.</li>
+<li><code>aria-labelledby</code> takes precedence over <code>aria-label</code> and native HTML <code>label</code> element.</li>
+</ul>
+<pre><code class="lang-html">&lt;div id=<span class="hljs-string">"rg-label"</span>&gt;Some label&lt;/div&gt;
+&lt;span role=<span class="hljs-string">"radiogroup"</span> aria-labelledby=<span class="hljs-string">"rg-label"</span>&gt;
+  <span class="hljs-keyword">...</span>
+&lt;/span&gt;
+</code></pre>
+<p><strong>Note</strong>: Native HTML elements have implicit semantics, so make sure not to redefine default semantics. e.g. giving a <code>button</code> element a <code>role=&quot;button&quot;</code>.</p>
+<h3 id="relationships">Relationships</h3>
+<p>A relationship attribute creates a semantic relationship between elements on the page regardless of their DOM relationship.</p>
+<h4 id="aria-owns">aria-owns</h4>
+<p><code>aria-owns</code> attribute creates a parent/child relationship between a group of elements in the accessibility tree. It is specified on the parent element and takes a list of IDREFs of elements that should be considered as children of that parent element.</p>
+<h4 id="aria-activedescendant">aria-activedescendant</h4>
+<p><code>aria-activedescendant</code> identifies the focused element in a group of related elements (e.g. items of a custom listbox) if DOM focus is on their parent. It is specified on the parent element and takes the IDREF of the child element to focus when the parent element is focused.</p>
+<h4 id="aria-describedby">aria-describedby</h4>
+<p><code>aria-describedby</code> attribute is similar to the <code>aria-labelledby</code> attribute, the difference is that a label should be concise, where a description is intended to provide more verbose information and may also reference elements that are not visible. You can think of a description is a great way to communicate supplementary, but not essential, information</p>
+<p>Just like <code>aria-labelledby</code>, it is specified on the element that is described and takes a list of IDREFs of elements that comprise the description.</p>
+<h4 id="aria-posinset-aria-setsize">aria-posinset &amp; aria-setsize</h4>
+<p>The <code>aria-posinset</code> (&quot;position in set&quot;) and <code>aria-setsize</code> (&quot;size of set&quot;) attributes work together.</p>
+<ul>
+<li><code>aria-setsize</code> defines the number of items in the current set of listitems or treeitems.</li>
+<li><code>aria-posinset</code> defines an element&#39;s number or position in the current set of listitems or treeitems.</li>
+</ul>
+<p><strong>Notes</strong>: </p>
+<ul>
+<li><code>aria-posinset</code> and <code>aria-setsize</code> are not required if all elements in the set are present in the DOM.</li>
+<li>Both attributes are set on the items of the set and not the container.</li>
+</ul>
 <h2 id="resources">Resources</h2>
 <ul>
 <li><a href="https://developers.google.com/web/fundamentals/accessibility/"><strong>Google Web Training - Accessibility</strong></a></li>
@@ -226,7 +296,11 @@ const focusableElements = modal.querySelectorAll(focusableElementsString);
 <li><a href="https://webaim.org/techniques/css/invisiblecontent/"><strong>Invisible Content Just for Screen Reader Users</strong></a></li>
 <li><a href="https://www.drupal.org/docs/7/creating-accessible-themes/using-headings-to-improve-accessibility"><strong>Using headings to improve accessibility</strong></a></li>
 <li><a href="https://www.w3.org/WAI/tutorials/page-structure/headings/"><strong>Web Accessibility Tutorials - Page Structure - Headings</strong></a></li>
+<li><a href="https://www.w3.org/TR/wai-aria/"><strong>WAI-ARIA spec</strong></a></li>
+<li><a href="https://www.w3.org/TR/html-aria/"><strong>ARIA In HTML spec</strong></a></li>
+<li><a href="https://www.w3.org/TR/wai-aria-practices-1.1"><strong>ARIA Authoring Practices</strong></a></li>
 <li><a href="https://www.w3.org/TR/2017/NOTE-wai-aria-practices-1.1-20171214/examples/landmarks/index.html"><strong>ARIA - Page Landmarks</strong></a></li>
+<li><a href="https://www.drupal.org/node/472572"><strong>Hide content properly</strong></a></li>
 </ul>
 <h2 id="disclaimer">Disclaimer</h2>
 <p>These are intended only as course notes following the Mobile Web Specialist Nano-Degree. I hope these provide help to any or all people who want to learn about accessibility.</p>

@@ -15,6 +15,85 @@
    </header>
    <main class="main">
       <article>
+         <nav class="table-of-content">
+            <ul>
+<li><a href="#web-accessibility">Web Accessibility</a><ul>
+<li><a href="#overview">Overview</a><ul>
+<li><a href="#what-is-accessibility">What is Accessibility</a></li>
+<li><a href="#web-content-accessibility-guidelines-wcag">Web Content Accessibility Guidelines (WCAG)</a></li>
+</ul>
+</li>
+<li><a href="#focus">Focus</a><ul>
+<li><a href="#what-is-focus">What is Focus?</a></li>
+<li><a href="#why-is-this-important">why is this important?</a></li>
+<li><a href="#how-do-you-know-if-an-item-is-focused">how do you know if an item is focused?</a></li>
+<li><a href="#focusable-elements">focusable elements</a></li>
+<li><a href="#dom-order-matters">DOM order matters!</a></li>
+<li><a href="#manipulate-the-tab-order-tabindex">manipulate the tab order (tabindex)</a></li>
+<li><a href="#focus-management">focus management</a><ul>
+<li><a href="#managing-focus-at-the-page-level">Managing focus at the page level</a></li>
+<li><a href="#managing-focus-in-components">Managing focus in components</a></li>
+<li><a href="#modals-and-keyboard-traps">Modals and keyboard traps</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#semantics-basics">Semantics Basics</a><ul>
+<li><a href="#assistive-technology">Assistive Technology</a></li>
+<li><a href="#affordance">Affordance</a></li>
+<li><a href="#screen-readers">Screen readers</a></li>
+<li><a href="#the-accessibility-tree">The accessibility tree</a></li>
+<li><a href="#semantics-in-native-html">Semantics in native HTML</a></li>
+<li><a href="#text-alternatives-for-images">Text Alternatives for images</a></li>
+<li><a href="#navigating-content">Navigating content</a><ul>
+<li><a href="#using-headings-effectively">Using Headings effectively</a></li>
+<li><a href="#other-navigation-options">Other navigation options</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#aria">ARIA</a><ul>
+<li><a href="#what-is-aria">What is ARIA</a></li>
+<li><a href="#how-aria-works">How ARIA works</a></li>
+<li><a href="#what-can-aria-do">What can ARIA do?</a><ul>
+<li><a href="#work-flow">Work flow</a></li>
+</ul>
+</li>
+<li><a href="#labels">labels</a><ul>
+<li><a href="#aria-label">aria-label</a></li>
+<li><a href="#aria-lebelledby">aria-lebelledby</a></li>
+</ul>
+</li>
+<li><a href="#relationships">Relationships</a><ul>
+<li><a href="#aria-owns">aria-owns</a></li>
+<li><a href="#aria-activedescendant">aria-activedescendant</a></li>
+<li><a href="#aria-describedby">aria-describedby</a></li>
+<li><a href="#aria-posinset--aria-setsize">aria-posinset &amp; aria-setsize</a></li>
+</ul>
+</li>
+<li><a href="#hiding-and-updating-content">Hiding and Updating Content</a><ul>
+<li><a href="#aria-hidden">aria-hidden</a></li>
+<li><a href="#aria-live">aria-live</a><ul>
+<li><a href="#aria-atomic">aria-atomic</a></li>
+<li><a href="#aria-relevant">aria-relevant</a></li>
+<li><a href="#aria-busy">aria-busy</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#accessible-styles">Accessible Styles</a><ul>
+<li><a href="#styling-focus">Styling focus</a></li>
+</ul>
+</li>
+<li><a href="#resources-and-usefull-links">Resources and Usefull links</a></li>
+<li><a href="#disclaimer">Disclaimer</a></li>
+</ul>
+</li>
+</ul>
+
+         </nav>
          <h1 id="web-accessibility">Web Accessibility</h1>
 <h2 id="overview">Overview</h2>
 <h3 id="what-is-accessibility">What is Accessibility</h3>
@@ -86,26 +165,20 @@
 <p>Ideally, if you need to put something earlier in the tab order, the best bet is to move it up in the DOM.</p>
 </blockquote>
 <h3 id="focus-management">focus management</h3>
-<p>Managing focus is the concept of manipulating the tab order to be logical and intuitive. These are some of the scenarios where focus management can be crucial:</p>
-<ul>
-<li><strong>Managing focus at the page level</strong>:</li>
-</ul>
+<p>Managing focus is the concept of manipulating the tab order to be logical and intuitive. These are some of the scenarios where focus management can be crucial.</p>
+<h4 id="managing-focus-at-the-page-level">Managing focus at the page level</h4>
 <p>You might be using URL fragment identifiers to travel through the page content or building a single page web app where the visible content change without page refresh. In that case the best way to identify the selected content area is to give it a <code>tabindex=&quot;-1&quot;</code> so that it doesn&#39;t appear in the natural tab order, and call its <code>focus()</code> method.</p>
-<ul>
-<li><strong>Managing focus in components</strong>:</li>
-</ul>
+<h4 id="managing-focus-in-components">Managing focus in components</h4>
 <p>When building custom components you&#39;d want to provide logical keyboard manipulation similar to the native component your custom component is based on.</p>
 <p>The <a href="https://www.w3.org/TR/wai-aria-practices/"><strong>ARIA Authoring Practices</strong></a> guid, lists types of components and what kinds of keyboard actions they support.</p>
-<ul>
-<li><strong>Modals and keyboard traps</strong>:</li>
-</ul>
+<h4 id="modals-and-keyboard-traps">Modals and keyboard traps</h4>
 <p>Keyboard trap happens when an element captures the tab and prevents the user from leaving it until it&#39;s complete. This can bothersome to the user, that&#39;s why the <a href="http://webaim.org/standards/wcag/checklist#sc2.1.2">Web AIM checklist section <strong>2.1.2</strong></a> states that <strong>keyboard focus should never be locked or trapped at one particular page element</strong>.</p>
 <p>Although the aforementioned behavior can be very frustrating, there are cases where it helps the page author provide better accessibility. The modal for example when the modal is displayed you&#39;d want the tab to be trapped in it until the user completes whatever functionality the modal provides or closes it.</p>
 <p>The steps to build a temporary keyboard trap in the modal:</p>
 <ol>
 <li><p>Select the modal and modal-overlay using <code>document.querySelector</code>.</p>
 </li>
-<li><p>Listen for keyboard events like <code>tab</code> &amp; <code>tab</code>+<code>SHIFT</code> for moving forward and backwards through modal elements, <code>ESC</code> to close the modal so that the user doesn&#39;t have to search for a close button. You should also listen to click events on overlay &amp; modal close button.  </p>
+<li><p>Listen for keyboard events like <code>tab</code> &amp; <code>tab</code>+<code>SHIFT</code> for moving forward and backwards through modal elements, <code>ESC</code> to close the modal so that the user doesn&#39;t have to search for a close button. You should also listen to click events on overlay &amp; modal close button.</p>
 </li>
 <li><p>Store a reference of the element that was focused before the modal was opened.</p>
 </li>
@@ -114,7 +187,7 @@
 <pre><code class="lang-javascript">const focusableElementsString = <span class="hljs-attribute">'a</span>[href], area[href], input:<span class="hljs-keyword">not</span>([disabled]), <span class="hljs-keyword">select</span>:<span class="hljs-keyword">not</span>([disabled]), textarea:<span class="hljs-keyword">not</span>([disabled]), button:<span class="hljs-keyword">not</span>([disabled]), iframe, object, embed, [tabindex=<span class="hljs-string">"0"</span>], [contenteditable]';
 const focusableElements = modal.querySelectorAll(focusableElementsString);
 </code></pre>
-<p>The reason for doing this is to keep an eye on the first and last elements in the modal so that we know when to loop back. </p>
+<p>The reason for doing this is to keep an eye on the first and last elements in the modal so that we know when to loop back.</p>
 <p><strong>i.e</strong> if the currently focusable element is the last and the user presses <code>tab</code> the focus should go to the first element in the modal. And if the currently focusable element is the first and the user presses <code>tab</code>+<code>SHIFT</code> the focus should go to the last element.</p>
 </li>
 <li><p>Display the modal window and focus the first focusable element.</p>
@@ -255,6 +328,7 @@ const focusableElements = modal.querySelectorAll(focusableElementsString);
 <li><code>aria-labelledby</code> doesn&#39;t give the same clicking behavior the HTML <code>label</code> element gives.</li>
 <li>Only one <code>label</code> element may be associated with a labelable element; <code>aria-labelledby</code> can take a list of IDREFs to compose a label of multiple elements. The label will be concatinated in order the IDREFs are given.</li>
 <li><code>aria-labelledby</code> takes precedence over <code>aria-label</code> and native HTML <code>label</code> element.</li>
+<li><code>aria-labelledby</code> may refer to elements which are hidden.</li>
 </ul>
 <pre><code class="lang-html">&lt;div id=<span class="hljs-string">"rg-label"</span>&gt;Some label&lt;/div&gt;
 &lt;span role=<span class="hljs-string">"radiogroup"</span> aria-labelledby=<span class="hljs-string">"rg-label"</span>&gt;
@@ -277,12 +351,51 @@ const focusableElements = modal.querySelectorAll(focusableElementsString);
 <li><code>aria-setsize</code> defines the number of items in the current set of listitems or treeitems.</li>
 <li><code>aria-posinset</code> defines an element&#39;s number or position in the current set of listitems or treeitems.</li>
 </ul>
-<p><strong>Notes</strong>: </p>
+<p><strong>Notes</strong>:</p>
 <ul>
 <li><code>aria-posinset</code> and <code>aria-setsize</code> are not required if all elements in the set are present in the DOM.</li>
 <li>Both attributes are set on the items of the set and not the container.</li>
 </ul>
-<h2 id="resources">Resources</h2>
+<h3 id="hiding-and-updating-content">Hiding and Updating Content</h3>
+<h4 id="aria-hidden">aria-hidden</h4>
+<p><code>aria-hidden</code> attribute allows us to exclude elements that are not visually hidden from the accessibility tree. Applying the <code>aria-hidden</code> attribute on an element will remove the element and all its descendants from the accessibility tree. The only exceptions are elements referred to by an <code>aria-labelledby</code> or <code>aria-describedby</code> attribute.</p>
+<p>The <code>aria-hidden</code> attribute takes three values true/false/undefined. <code>true</code> and <code>false</code> values are self-explanatory, but when the <code>aria-hidden</code> attribute is given no value or <code>undefined</code>, the element&#39;s hidden state is determined by the user agent based on whether it is rendered.</p>
+<h4 id="aria-live">aria-live</h4>
+<p>The <code>aria-live</code> attribute indicates that an element will be updated, and describes the types of updates the user agents, assistive technologies, and user can expect from the <a href="https://www.w3.org/TR/wai-aria-1.1/#dfn-live-region"><em>live region</em></a>. Marking a region &quot;live&quot; (the element <code>aria-live</code> is applied on and its descendants are all considered the <em>live region</em>) means that updates should be communicated to users immediately.</p>
+<p><code>aria-live</code> attribute takes three values:</p>
+<ul>
+<li><code>aria-live=&quot;assertive&quot;</code>:    Indicates that updates to the region have the highest priority and should be presented the user immediately.</li>
+<li><code>aria-live=&quot;polite&quot;</code>: Indicates that updates to the region should be presented at the next graceful opportunity, such as at the end of speaking the current sentence or when the user pauses typing.</li>
+<li><code>aria-live=&quot;off&quot;</code>(default): Indicates that updates to the region should not be presented to the user unless the used is currently focused on that region.</li>
+</ul>
+<p><strong>Note</strong>: It&#39;s better to set your live region in the initial page load, not doing so might cause problems.</p>
+<p>There are other attribute that work along side <code>aria-live</code>, you fine-tune what is communicated to the user when the live region changes, these attributes are <code>aria-atomic</code>, <code>aria-relevant</code> and <code>aria-busy</code>.</p>
+<h5 id="aria-atomic">aria-atomic</h5>
+<p><code>aria-atomic</code> indicates whether the entire region should be considered as a whole when communicating updates. The values for aria-atomic may be true or false, with false being the default.</p>
+<ul>
+<li><strong>false</strong> (default): Assistive technologies will present only the changed node or nodes.</li>
+<li><strong>true</strong>: Assistive technologies will present the entire changed region as a whole, including the author-defined label if one exists.</li>
+</ul>
+<h5 id="aria-relevant">aria-relevant</h5>
+<p><code>aria-relevant</code> indicates what types of changes should be presented to the user. The attribute is represented as a space delimited list of the following values: <code>additions</code>, <code>removals</code>, <code>text</code>; or a single catch-all value all.</p>
+<ul>
+<li><strong>additions</strong>: Element nodes are added to the accessibility tree within the live region.</li>
+<li><strong>additions text</strong>: Equivalent to the combination of values, &quot;additions text&quot;.</li>
+<li><strong>all</strong>: Equivalent to the combination of all values, &quot;additions removals text&quot;.</li>
+<li><strong>removals</strong>: Text content, a text alternative, or an element node within the live region is removed from the accessibility tree.</li>
+<li><strong>text</strong>: Text content or a text alternative is added to any descendant in the accessibility tree of the live region.</li>
+</ul>
+<h5 id="aria-busy">aria-busy</h5>
+<p><code>aria-busy</code> attribute lets you notify assistive technology that it should temporarily ignore changes to an element, such as when things are loading. Once everything is in place, <code>aria-busy</code> should be set to false to normalize the reader&#39;s operation.</p>
+<h2 id="accessible-styles">Accessible Styles</h2>
+<h3 id="styling-focus">Styling focus</h3>
+<p>Focus sometimes might not go with the overall page design (e.g. blue focus with on blue background) and somewhat irritating, that is why the <a href="https://webaim.org/standards/wcag/checklist#sc2.4.7">WebAIM checklist section <strong>2.4.7</strong></a> states that &quot;It is visually apparent which page element has the current keyboard focus (i.e., as you tab through the page, you can see where you are).&quot;. You can style focus by either altering the <code>outline</code> property of the target element or getting rid of it alltogether on the condition of providing an indicator of when the said element is focused. One ways of doing that:</p>
+<pre><code class="lang-css"><span class="hljs-class">.target-elem</span><span class="hljs-pseudo">:focus</span> <span class="hljs-rules">{
+  <span class="hljs-rule"><span class="hljs-attribute">outline</span>:<span class="hljs-value"> none</span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">border</span>:<span class="hljs-value"> <span class="hljs-number">1px</span> solid <span class="hljs-hexcolor">#f00</span></span></span>;
+<span class="hljs-rule">}</span></span>
+</code></pre>
+<h2 id="resources-and-usefull-links">Resources and Usefull links</h2>
 <ul>
 <li><a href="https://developers.google.com/web/fundamentals/accessibility/"><strong>Google Web Training - Accessibility</strong></a></li>
 <li><a href="https://mena.udacity.com/course/web-accessibility--ud891"><strong>Udacity course on Accessibility</strong></a></li>

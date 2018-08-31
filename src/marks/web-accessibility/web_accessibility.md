@@ -73,19 +73,19 @@ There are some instances where you would want to manipulate the tab order and th
 
 ### focus management
 
-Managing focus is the concept of manipulating the tab order to be logical and intuitive. These are some of the scenarios where focus management can be crucial:
+Managing focus is the concept of manipulating the tab order to be logical and intuitive. These are some of the scenarios where focus management can be crucial.
 
-* **Managing focus at the page level**:
+#### Managing focus at the page level
 
 You might be using URL fragment identifiers to travel through the page content or building a single page web app where the visible content change without page refresh. In that case the best way to identify the selected content area is to give it a `tabindex="-1"` so that it doesn't appear in the natural tab order, and call its `focus()` method.
 
-* **Managing focus in components**:
+#### Managing focus in components
 
 When building custom components you'd want to provide logical keyboard manipulation similar to the native component your custom component is based on.
 
 The [**ARIA Authoring Practices**](https://www.w3.org/TR/wai-aria-practices/) guid, lists types of components and what kinds of keyboard actions they support.
 
-* **Modals and keyboard traps**:
+#### Modals and keyboard traps
 
 Keyboard trap happens when an element captures the tab and prevents the user from leaving it until it's complete. This can bothersome to the user, that's why the [Web AIM checklist section **2.1.2**](http://webaim.org/standards/wcag/checklist#sc2.1.2) states that **keyboard focus should never be locked or trapped at one particular page element**.
 
@@ -95,29 +95,29 @@ The steps to build a temporary keyboard trap in the modal:
 
   1. Select the modal and modal-overlay using `document.querySelector`.
 
-  2. Listen for keyboard events like `tab` & `tab`+`SHIFT` for moving forward and backwards through modal elements, `ESC` to close the modal so that the user doesn't have to search for a close button. You should also listen to click events on overlay & modal close button.  
+  2. Listen for keyboard events like `tab` & `tab`+`SHIFT` for moving forward and backwards through modal elements, `ESC` to close the modal so that the user doesn't have to search for a close button. You should also listen to click events on overlay & modal close button.
 
   3. Store a reference of the element that was focused before the modal was opened.
 
   4. Select all focusable elements within the modal using `document.querySelectorAll`.
-  
+
   Instead of selecting elements separately you can pass this line of code that selects all potentially focusable elements:
   ```javascript
   const focusableElementsString = 'a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), iframe, object, embed, [tabindex="0"], [contenteditable]';
   const focusableElements = modal.querySelectorAll(focusableElementsString);
   ```
-  The reason for doing this is to keep an eye on the first and last elements in the modal so that we know when to loop back. 
+  The reason for doing this is to keep an eye on the first and last elements in the modal so that we know when to loop back.
 
   **i.e** if the currently focusable element is the last and the user presses `tab` the focus should go to the first element in the modal. And if the currently focusable element is the first and the user presses `tab`+`SHIFT` the focus should go to the last element.
 
   5. Display the modal window and focus the first focusable element.
-  
+
   6. Basically, the user does what he wants to do.
-  
+
   7. When the user closes the modal, return the focus to the element we kept reference to in step **3**.
-  
+
   8. You can now be happy knowing you've provided your users with an accessible modal window :).
-  
+
 ## Semantics Basics
 
 ### Assistive Technology
@@ -258,7 +258,7 @@ Let's say we are creating a checkbox with a `li` element, the ARIA Authoring Pra
 
 ### labels
 
-#### aria-label 
+#### aria-label
 
 `aria-label` allows us to specify a string to be used as the accessible label. This overrides any other native labeling mechanism, such as a `label` element.
 
@@ -275,6 +275,7 @@ Let's say we are creating a checkbox with a `li` element, the ARIA Authoring Pra
   - `aria-labelledby` doesn't give the same clicking behavior the HTML `label` element gives.
   - Only one `label` element may be associated with a labelable element; `aria-labelledby` can take a list of IDREFs to compose a label of multiple elements. The label will be concatinated in order the IDREFs are given.
   - `aria-labelledby` takes precedence over `aria-label` and native HTML `label` element.
+  - `aria-labelledby` may refer to elements which are hidden.
 
 ```html
 <div id="rg-label">Some label</div>
@@ -310,11 +311,65 @@ The `aria-posinset` ("position in set") and `aria-setsize` ("size of set") attri
 * `aria-setsize` defines the number of items in the current set of listitems or treeitems.
 * `aria-posinset` defines an element's number or position in the current set of listitems or treeitems.
 
-**Notes**: 
+**Notes**:
 * `aria-posinset` and `aria-setsize` are not required if all elements in the set are present in the DOM.
 * Both attributes are set on the items of the set and not the container.
 
-## Resources
+### Hiding and Updating Content
+
+#### aria-hidden
+
+`aria-hidden` attribute allows us to exclude elements that are not visually hidden from the accessibility tree. Applying the `aria-hidden` attribute on an element will remove the element and all its descendants from the accessibility tree. The only exceptions are elements referred to by an `aria-labelledby` or `aria-describedby` attribute.
+
+The `aria-hidden` attribute takes three values true/false/undefined. `true` and `false` values are self-explanatory, but when the `aria-hidden` attribute is given no value or `undefined`, the element's hidden state is determined by the user agent based on whether it is rendered.
+
+#### aria-live
+
+The `aria-live` attribute indicates that an element will be updated, and describes the types of updates the user agents, assistive technologies, and user can expect from the [*live region*](https://www.w3.org/TR/wai-aria-1.1/#dfn-live-region). Marking a region "live" (the element `aria-live` is applied on and its descendants are all considered the *live region*) means that updates should be communicated to users immediately.
+
+`aria-live` attribute takes three values:
+* `aria-live="assertive"`:	Indicates that updates to the region have the highest priority and should be presented the user immediately.
+* `aria-live="polite"`: Indicates that updates to the region should be presented at the next graceful opportunity, such as at the end of speaking the current sentence or when the user pauses typing.
+* `aria-live="off"`(default): Indicates that updates to the region should not be presented to the user unless the used is currently focused on that region.
+
+**Note**: It's better to set your live region in the initial page load, not doing so might cause problems.
+
+There are other attribute that work along side `aria-live`, you fine-tune what is communicated to the user when the live region changes, these attributes are `aria-atomic`, `aria-relevant` and `aria-busy`.
+
+##### aria-atomic
+
+`aria-atomic` indicates whether the entire region should be considered as a whole when communicating updates. The values for aria-atomic may be true or false, with false being the default.
+
+* **false** (default): Assistive technologies will present only the changed node or nodes.
+* **true**: Assistive technologies will present the entire changed region as a whole, including the author-defined label if one exists.
+
+##### aria-relevant
+
+`aria-relevant` indicates what types of changes should be presented to the user. The attribute is represented as a space delimited list of the following values: `additions`, `removals`, `text`; or a single catch-all value all.
+
+* **additions**: Element nodes are added to the accessibility tree within the live region.
+* **additions text**: Equivalent to the combination of values, "additions text".
+* **all**: Equivalent to the combination of all values, "additions removals text".
+* **removals**: Text content, a text alternative, or an element node within the live region is removed from the accessibility tree.
+* **text**: Text content or a text alternative is added to any descendant in the accessibility tree of the live region.
+
+##### aria-busy
+
+`aria-busy` attribute lets you notify assistive technology that it should temporarily ignore changes to an element, such as when things are loading. Once everything is in place, `aria-busy` should be set to false to normalize the reader's operation.
+
+## Accessible Styles
+
+### Styling focus
+
+Focus sometimes might not go with the overall page design (e.g. blue focus with on blue background) and somewhat irritating, that is why the [WebAIM checklist section **2.4.7**](https://webaim.org/standards/wcag/checklist#sc2.4.7) states that "It is visually apparent which page element has the current keyboard focus (i.e., as you tab through the page, you can see where you are).". You can style focus by either altering the `outline` property of the target element or getting rid of it alltogether on the condition of providing an indicator of when the said element is focused. One ways of doing that:
+```css
+.target-elem:focus {
+  outline: none;
+  border: 1px solid #f00;
+}
+```
+
+## Resources and Usefull links
 
 * [**Google Web Training - Accessibility**](https://developers.google.com/web/fundamentals/accessibility/)
 * [**Udacity course on Accessibility**](https://mena.udacity.com/course/web-accessibility--ud891)

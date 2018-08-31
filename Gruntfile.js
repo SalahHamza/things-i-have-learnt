@@ -1,7 +1,8 @@
 
+
 module.exports = function(grunt) {
 	const pkg = grunt.file.readJSON('package.json');
-   
+
 	grunt.initConfig({
 		pkg,
 		markdown: {
@@ -16,7 +17,16 @@ module.exports = function(grunt) {
 				options: {
 					template: 'src/templates/note.jst',
 					templateContext: {
-						title: require('./src/helpers').pageTitle(pkg.name),
+						title: require('./src/helpers').pageTitle(pkg.name)
+					},
+					preCompile(src, context){
+						/*
+							- using markdown-toc to extract table of content as markdown
+							- compiling table of content to html using marked
+							- adding table of content to template as a templateContext variable
+						*/
+						this.templateContext.toc = require('marked')(require('markdown-toc')(src).content);
+						return src;
 					},
 					markdownOptions: {
 						langPrefix: 'lang-',
@@ -44,7 +54,7 @@ module.exports = function(grunt) {
         },
       },
 		},
-		
+
     /* Copy the assets that don't go through any task */
     copy: {
       dev: {
@@ -58,11 +68,10 @@ module.exports = function(grunt) {
     },
 	});
 
-	 grunt.loadNpmTasks('grunt-markdown');
-	 grunt.loadNpmTasks('grunt-contrib-clean');
-	 grunt.loadNpmTasks('grunt-contrib-copy');
-	 grunt.loadNpmTasks('grunt-mkdir');
-	 grunt.registerTask('default', ['clean', 'mkdir', 'copy', 'markdown']);
+	grunt.loadNpmTasks('grunt-markdown');
+	grunt.loadNpmTasks('grunt-contrib-clean');
+	grunt.loadNpmTasks('grunt-contrib-copy');
+	grunt.loadNpmTasks('grunt-mkdir');
+
+	grunt.registerTask('default', ['clean', 'mkdir', 'copy', 'markdown']);
 };
-
-

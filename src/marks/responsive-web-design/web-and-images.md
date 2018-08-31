@@ -35,9 +35,9 @@ To use the `srcset` provide a comma separated string with:
 
 `srcset` with pixel density:
 ```html
-<img src="[filename].[ext]" 
-     srcset="[filename]-2x.[ext] 2x, 
-             [filename]-3x.[ext] 3x, 
+<img src="[filename].[ext]"
+     srcset="[filename]-2x.[ext] 2x,
+             [filename]-3x.[ext] 3x,
              [filename]-4x.[ext] 4x">
 ```
 The `nx` denotes the pixel density (DPR), where **n** is an integer.
@@ -46,9 +46,9 @@ The `nx` denotes the pixel density (DPR), where **n** is an integer.
 
 `srcset` with width:
 ```html
-<img src="[filename].[ext]" 
-     srcset="[filename]-[width-1].[ext] [width-1]w, 
-             [filename]-[width-2].[ext] [width-2]w, 
+<img src="[filename].[ext]"
+     srcset="[filename]-[width-1].[ext] [width-1]w,
+             [filename]-[width-2].[ext] [width-2]w,
              [filename]-[width-3].[ext] [width-3]w">
 ```
 
@@ -57,8 +57,8 @@ The `nx` denotes the pixel density (DPR), where **n** is an integer.
 2- The `sizes` attribute only works in conjuction with the width value of the `srcset` and it allows us to set some **media conditions** in which the right image size will be used.
 ```html
 <img src="one.png"
-     srcset="[filename]-[width-1].[ext] [width-1]w, 
-             [filename]-[width-2].[ext] [width-2]w, 
+     srcset="[filename]-[width-1].[ext] [width-1]w,
+             [filename]-[width-2].[ext] [width-2]w,
              [filename]-[width-3].[ext] [width-3]w"
 
      sizes="[media condition] [width-1],
@@ -85,16 +85,16 @@ Putting it all together:
 
 ```html
 <picture>
-  <source media="(min-width: 800px)" 
-          srcset="myImage.jpg, 
+  <source media="(min-width: 800px)"
+          srcset="myImage.jpg,
                   myImage-2x.jpg 2x">
-	
-  <source media="(min-width: 450px)" 
-          srcset="myImage-small.jpg, 
+
+  <source media="(min-width: 450px)"
+          srcset="myImage-small.jpg,
                   myImage-small-2x.jpg 2x">
-	
-  <img src="myImage-fallback.jpg" 
-       srcset="myImage-fallback-2x.jpg 2x" 
+
+  <img src="myImage-fallback.jpg"
+       srcset="myImage-fallback-2x.jpg 2x"
        alt="My image description">
 </picture>
 ```
@@ -103,7 +103,7 @@ Looking at the media condition in the `media` attribute and the pixel density in
 **Note**: The `alt` attribute and css manipulation should be done through the `img` element and not the `picture` or `source` elements.
 
 The `picture` element can also be used to serve different image types depending on the browser support. So for example if you want to serve [**WebP** format](https://developers.google.com/speed/webp/?csw=1) format, but you want to set a fallback for browsers that don't support it:
-  
+
 ```html
 <picture>
 	<source srcset="myImage.webp" type="image/webp">
@@ -142,8 +142,8 @@ You should consider if there is an alternative technology that could deliver the
 * **CSS effects** (animations, gradients, shadows, ...etc.) can be used to produce resolution-independent assets that always look sharp at every resolution and zoom level, often at a fraction of the bytes required by an image file.
 * **web fonts** can be used instead of encoding text in images, which enables the use of beautiful typefaces while preserving the ability to select, search, and resize text - a significant improvement in usability.
 
-**Note**: 
-> Although CSS effects are in some cases a great alternative to images, be aware that there is a processing and rendering cost to using them (CSS effects) especially on mobile, use them sparingly. 
+**Note**:
+> Although CSS effects are in some cases a great alternative to images, be aware that there is a processing and rendering cost to using them (CSS effects) especially on mobile, use them sparingly.
 
 ### Raster vs Vector Images
 
@@ -177,7 +177,7 @@ That said choose vector images over raster images whenever possible as they are 
   - If the image asset contains text, stop and reconsider. Text in images is not selectable, searchable, or "zoomable". If you need to convey a custom look (for branding or other reasons), use a web font instead.
 * **Are you optimizing a photo, screenshot, or a similar image asset?** Use JPEG.
   - Try several JPEG quality levels to find the best quality vs. filesize tradeoff for your asset.
-  
+
 ### Delivering scaled image assets
 
 One of the simplest and most effective image optimization techniques is to ensure that we are not shipping any more pixels than needed to display the asset at its intended size in the browser. So, you should ensure that the number of unnecessary pixels is minimal, and that your large assets in particular are delivered as close as possible to their display size.

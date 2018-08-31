@@ -15,6 +15,36 @@
    </header>
    <main class="main">
       <article>
+         <nav class="table-of-content">
+            <ul>
+<li><a href="#the-web-and-images">The web and Images</a><ul>
+<li><a href="#responsive-images">Responsive Images</a><ul>
+<li><a href="#use-relative-size-images">Use relative size images</a></li>
+<li><a href="#using-srcset-and-sizes-attributes">Using srcset and sizes attributes</a></li>
+<li><a href="#art-direction---the-picture-element">Art direction - The picture element</a></li>
+</ul>
+</li>
+<li><a href="#accessibility">Accessibility</a></li>
+<li><a href="#optimizing-images">Optimizing Images</a><ul>
+<li><a href="#is-it-necessary">Is it necessary?</a></li>
+<li><a href="#is-there-a-better-alternative">Is there a (better) alternative?</a></li>
+<li><a href="#raster-vs-vector-images">Raster vs Vector Images</a></li>
+<li><a href="#size-and-resolution">Size and Resolution?</a></li>
+<li><a href="#selecting-the-right-format">Selecting the right format</a></li>
+<li><a href="#delivering-scaled-image-assets">Delivering scaled image assets</a></li>
+<li><a href="#inline-vs-external-images">Inline vs External images</a></li>
+</ul>
+</li>
+<li><a href="#disclaimer">Disclaimer</a></li>
+<li><a href="#useful-links">Useful links</a><ul>
+<li><a href="#other-related-subjects">Other related subjects</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+         </nav>
          <h1 id="the-web-and-images">The web and Images</h1>
 <h2 id="responsive-images">Responsive Images</h2>
 <h3 id="use-relative-size-images">Use relative size images</h3>
@@ -43,24 +73,24 @@
 <li>The pixel density with <code>nx</code> or width with <code>w</code> of the image</li>
 </ul>
 <p><code>srcset</code> with pixel density:</p>
-<pre><code class="lang-html">&lt;img <span class="hljs-variable">src=</span><span class="hljs-string">"[filename].[ext]"</span> 
-     <span class="hljs-variable">srcset=</span><span class="hljs-string">"[filename]-2x.[ext] 2x, 
-             [filename]-3x.[ext] 3x, 
+<pre><code class="lang-html">&lt;img <span class="hljs-variable">src=</span><span class="hljs-string">"[filename].[ext]"</span>
+     <span class="hljs-variable">srcset=</span><span class="hljs-string">"[filename]-2x.[ext] 2x,
+             [filename]-3x.[ext] 3x,
              [filename]-4x.[ext] 4x"</span>&gt;
 </code></pre>
 <p>The <code>nx</code> denotes the pixel density (DPR), where <strong>n</strong> is an integer.</p>
 <p><strong>Note</strong>: the image in the <code>src</code> tag is assumed to be <strong>1x</strong> and also works as a fallback incase the browser doesn&#39;t support <code>srcset</code>.</p>
 <p><code>srcset</code> with width:</p>
-<pre><code class="lang-html">&lt;img <span class="hljs-variable">src=</span><span class="hljs-string">"[filename].[ext]"</span> 
-     <span class="hljs-variable">srcset=</span><span class="hljs-string">"[filename]-[width-1].[ext] [width-1]w, 
-             [filename]-[width-2].[ext] [width-2]w, 
+<pre><code class="lang-html">&lt;img <span class="hljs-variable">src=</span><span class="hljs-string">"[filename].[ext]"</span>
+     <span class="hljs-variable">srcset=</span><span class="hljs-string">"[filename]-[width-1].[ext] [width-1]w,
+             [filename]-[width-2].[ext] [width-2]w,
              [filename]-[width-3].[ext] [width-3]w"</span>&gt;
 </code></pre>
 <p><strong>Note</strong>: it&#39;s a good practice to include the width and pixel density of the image in image filename.</p>
 <p>2- The <code>sizes</code> attribute only works in conjuction with the width value of the <code>srcset</code> and it allows us to set some <strong>media conditions</strong> in which the right image size will be used.</p>
 <pre><code class="lang-html">&lt;img <span class="hljs-variable">src=</span><span class="hljs-string">"one.png"</span>
-     <span class="hljs-variable">srcset=</span><span class="hljs-string">"[filename]-[width-1].[ext] [width-1]w, 
-             [filename]-[width-2].[ext] [width-2]w, 
+     <span class="hljs-variable">srcset=</span><span class="hljs-string">"[filename]-[width-1].[ext] [width-1]w,
+             [filename]-[width-2].[ext] [width-2]w,
              [filename]-[width-3].[ext] [width-3]w"</span>
 
      <span class="hljs-variable">sizes=</span><span class="hljs-string">"[media condition] [width-1],
@@ -82,16 +112,16 @@
 <p>The HTML <code>picture</code> element serves as a container for zero or more <code>source</code> elements and one img element to provide versions of an image for different display device scenarios.</p>
 </blockquote>
 <pre><code class="lang-html">&lt;picture&gt;
-  &lt;source <span class="hljs-variable">media=</span><span class="hljs-string">"(min-width: 800px)"</span> 
-          <span class="hljs-variable">srcset=</span><span class="hljs-string">"myImage.jpg, 
+  &lt;source <span class="hljs-variable">media=</span><span class="hljs-string">"(min-width: 800px)"</span>
+          <span class="hljs-variable">srcset=</span><span class="hljs-string">"myImage.jpg,
                   myImage-2x.jpg 2x"</span>&gt;
 
-  &lt;source <span class="hljs-variable">media=</span><span class="hljs-string">"(min-width: 450px)"</span> 
-          <span class="hljs-variable">srcset=</span><span class="hljs-string">"myImage-small.jpg, 
+  &lt;source <span class="hljs-variable">media=</span><span class="hljs-string">"(min-width: 450px)"</span>
+          <span class="hljs-variable">srcset=</span><span class="hljs-string">"myImage-small.jpg,
                   myImage-small-2x.jpg 2x"</span>&gt;
 
-  &lt;img <span class="hljs-variable">src=</span><span class="hljs-string">"myImage-fallback.jpg"</span> 
-       <span class="hljs-variable">srcset=</span><span class="hljs-string">"myImage-fallback-2x.jpg 2x"</span> 
+  &lt;img <span class="hljs-variable">src=</span><span class="hljs-string">"myImage-fallback.jpg"</span>
+       <span class="hljs-variable">srcset=</span><span class="hljs-string">"myImage-fallback-2x.jpg 2x"</span>
        <span class="hljs-variable">alt=</span><span class="hljs-string">"My image description"</span>&gt;
 &lt;/picture&gt;
 </code></pre>
@@ -130,9 +160,9 @@
 <li><strong>CSS effects</strong> (animations, gradients, shadows, ...etc.) can be used to produce resolution-independent assets that always look sharp at every resolution and zoom level, often at a fraction of the bytes required by an image file.</li>
 <li><strong>web fonts</strong> can be used instead of encoding text in images, which enables the use of beautiful typefaces while preserving the ability to select, search, and resize text - a significant improvement in usability.</li>
 </ul>
-<p><strong>Note</strong>: </p>
+<p><strong>Note</strong>:</p>
 <blockquote>
-<p>Although CSS effects are in some cases a great alternative to images, be aware that there is a processing and rendering cost to using them (CSS effects) especially on mobile, use them sparingly. </p>
+<p>Although CSS effects are in some cases a great alternative to images, be aware that there is a processing and rendering cost to using them (CSS effects) especially on mobile, use them sparingly.</p>
 </blockquote>
 <h3 id="raster-vs-vector-images">Raster vs Vector Images</h3>
 <p>If that image resource is necessary to your design, then, the next thing to do is choose the appropriate format and it comes down to two choices <strong>Raster Graphics</strong> or <strong>Vector Graphics</strong>.</p>

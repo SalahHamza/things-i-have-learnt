@@ -1,22 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-   <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-   <link rel="stylesheet" href="/build/assets/css/main.css">
-   <title>Things I Have Learnt</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link rel="stylesheet" href="/build/assets/css/main.css">
+	<title>Things I Have Learnt - Responsive Tables</title>
 </head>
-<body>
-   <header class="header">
-      <a href="">
-         <img class="gh_logo" src="/build/assets/images/GitHub-Mark-Light-120px-plus.png" alt="View in Github">
-      </a>
-   </header>
-   <main class="main">
-      <article>
-         <nav class="table-of-content">
-            <ul>
+<body class="inside">
+	<header class="header">
+		<a href="https://github.com/SalahHamza/things-i-have-learnt#readme">
+			<img class="gh_logo" src="/build/assets/images/GitHub-Mark-Light-120px-plus.png" alt="View in Github">
+		</a>
+	</header>
+	<main class="main">
+		<nav class="table-of-content">
+			<h2>Contents</h2>
+			<ul>
 <li><a href="#responsive-tables">Responsive Tables</a><ul>
 <li><a href="#hidden-columns">Hidden Columns</a></li>
 <li><a href="#no-more-tables">No More Tables</a></li>
@@ -26,8 +26,15 @@
 </li>
 </ul>
 
-         </nav>
-         <h1 id="responsive-tables">Responsive Tables</h1>
+		</nav>
+		<article>
+			<nav aria-label="Breadcrumb" class="breadcrumb">
+				<ul>
+					<li class="breadcrumb-item"><a href="/">Home</a></li>
+					<li class="breadcrumb-item">Responsive Tables</li>
+				</ul>
+			</nav>
+			<html><head></head><body><h1 id="responsive-tables">Responsive Tables</h1>
 <h2 id="hidden-columns">Hidden Columns</h2>
 <p>The concept here is to hide columns based on their importance as the viewport gets smaller. This can be done by applying a <code>display: none</code> on the columns you want to hide at a certain breakpoint.</p>
 <p>The bad thing about hidden columns technique is that the hidden columns are not seen by search engines or screen readers.</p>
@@ -46,7 +53,7 @@
   <span class="hljs-rule"><span class="hljs-attribute">left</span>:<span class="hljs-value"> -<span class="hljs-number">9999px</span></span></span>;
 <span class="hljs-rule">}</span></span>
 </code></pre>
-<p>Instead of setting <code>display: none</code> to the header, we position it off the screen so that it&#39;s still accessible to screen readers and search engines.</p>
+<p>Instead of setting <code>display: none</code> to the header, we position it off the screen so that it&apos;s still accessible to screen readers and search engines.</p>
 <pre><code class="lang-css"><span class="hljs-tag">td</span> <span class="hljs-rules">{
   <span class="hljs-rule"><span class="hljs-attribute">position</span>:<span class="hljs-value"> relative</span></span>;
   <span class="hljs-rule"><span class="hljs-attribute">padding-left</span>:<span class="hljs-value"> <span class="hljs-number">50%</span></span></span>;
@@ -64,7 +71,7 @@
 <p>This emplies that you should set a <code>data-th</code> attribute on all the <code>tr</code> elements in the <code>tbody</code>.</p>
 <p><strong><a href="https://codepen.io/JohnMav/pen/BoGJNy">No More Tables - example</a></strong>.</p>
 <h2 id="contained-scrolling">Contained Scrolling</h2>
-<p>All you&#39;ve got to do here is wrap the table with a <code>div</code>, set its <code>width: 100%</code> and <code>overflow-x: auto</code>.</p>
+<p>All you&apos;ve got to do here is wrap the table with a <code>div</code>, set its <code>width: 100%</code> and <code>overflow-x: auto</code>.</p>
 <pre><code class="lang-css"><span class="hljs-tag">div</span><span class="hljs-class">.target-table</span> <span class="hljs-rules">{
   <span class="hljs-rule"><span class="hljs-attribute">width</span>:<span class="hljs-value"> <span class="hljs-number">100%</span></span></span>;
   <span class="hljs-rule"><span class="hljs-attribute">overflow-x</span>:<span class="hljs-value"> auto</span></span>;
@@ -74,10 +81,10 @@
 <h2 id="useful-links">Useful links</h2>
 <ul>
 <li><strong><a href="https://css-tricks.com/responsive-data-table-roundup/">Responsive data table roundup</a></strong></li>
-<li><strong><a href="https://www.lifewire.com/display-none-vs-visibility-hidden-3466884">Difference Between &#39;display: none&#39; and &#39;visibility: hidden&#39; in CSS</a></strong></li>
+<li><strong><a href="https://www.lifewire.com/display-none-vs-visibility-hidden-3466884">Difference Between &apos;display: none&apos; and &apos;visibility: hidden&apos; in CSS</a></strong></li>
 </ul>
-
-      </article>
-   </main>
+</body></html>
+		</article>
+	</main>
 </body>
 </html>

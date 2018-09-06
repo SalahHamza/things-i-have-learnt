@@ -12,7 +12,7 @@ On smaller screens, the fluid grid causes the main content to reflow, while colu
 
 On full-width **column drop** starts with a multi-column layout and ends up with a single column layout, dropping columns along the way as screen sizes get narrower (i.e. not enough space for the content). Unlike the **Mostly Fluid** pattern, the overall size of elements in this layout tend to stay consistent.
 
-**[Example](/build/pages/responsive-design-patterns/column-drom/index.html)**
+**[Example](/build/pages/responsive-design-patterns/column-drop/index.html)**
 
 ## Layout Shifter
 

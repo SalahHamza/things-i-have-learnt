@@ -1,10 +1,12 @@
-
+const toc = require('markdown-toc'),
+			marked = require('marked'),
+			helpers = require('./src/helpers');
 
 module.exports = function(grunt) {
 	const pkg = grunt.file.readJSON('package.json');
+	const title = helpers.pageTitle(pkg.name);
 
 	grunt.initConfig({
-		pkg,
 		markdown: {
 			all: {
 				files: [{
@@ -17,7 +19,8 @@ module.exports = function(grunt) {
 				options: {
 					template: 'src/templates/note.jst',
 					templateContext: {
-						title: require('./src/helpers').pageTitle(pkg.name)
+						title,
+						githubUrl: pkg.homepage,
 					},
 					preCompile(src, context){
 						/*
@@ -25,8 +28,18 @@ module.exports = function(grunt) {
 							- compiling table of content to html using marked
 							- adding table of content to template as a templateContext variable
 						*/
-						this.templateContext.toc = require('marked')(require('markdown-toc')(src).content);
+						this.templateContext.toc = marked(toc(src).content);
 						return src;
+					},
+					postCompile(src, context){
+						/* turning html string to cheerio object */
+						const $ = helpers.getCheerioObject(src);
+						/* getting h1 heading */
+						const h1 = helpers.getH1Heading($);
+						/* setting pageTitle */
+						this.templateContext.pageTitle = h1;
+						/* returning fixed HTML */
+						return helpers.fixHeadingsId($);
 					},
 					markdownOptions: {
 						langPrefix: 'lang-',
@@ -36,7 +49,7 @@ module.exports = function(grunt) {
 						},
 					}
 				}
-			}
+			},
 		},
 
     /* Clear out the assets directory if it exists */

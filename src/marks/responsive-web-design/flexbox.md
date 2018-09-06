@@ -10,7 +10,7 @@ Let's say we have a set of items with a container around them, like this:
   <div class="item red"></div>
   <div class="item yellow"></div>
 </div>
-``` 
+```
 And we want to lay them out in a certain order, size and even space them out properly. Flexbox gives us the ability to that and more.
 To work with flexbox we should first set the flexbox container’s display property to `flex`.
 ```css
@@ -38,7 +38,7 @@ The **flex-direction** property sets the main-axis and cross-axis, if the main-a
 }
 ```
 
-### Flex Wrap:
+### Flex Wrap
 
 By default the flex container will try to contain the items within it even if their width exceeds its width, but if there are too many items, they will eventually overflow, and that’s because, by default the **flex-wrap** property is set to `nowrap`, which makes the flex items lay out in a single line. When that happen we can fix it by resetting the **flex-wrap** property to either `wrap` or `wrap-reverse`.
 
@@ -55,7 +55,7 @@ By default the flex container will try to contain the items within it even if th
 }
 ```
 
-### Flex flow:
+### Flex flow
 
 The **flex-flow** property is a container property (i.e. applies on the flex container) and is a shorthand for **flex-direction** and **flex-wrap**, it also takes the same default values `row`& `nowrap`.
 
@@ -69,7 +69,7 @@ The **flex-flow** property is a container property (i.e. applies on the flex con
 ## Alignment
 
 
-### Justify Content:
+### Justify Content
 
 The property **justify-content** is a flex items property, it allows us to define how the flex items are aligned along the main-axis, and it does that by distributing extra free space left over when either all the flex items on a line are inflexible, or are flexible but have reached their maximum size. It also exerts some control over the alignment of items when they overflow the line.
 
@@ -88,7 +88,7 @@ The property **justify-content** is a flex items property, it allows us to defin
 }
 ```
 
-### Align items:
+### Align items
 
 The property **align-items** is just like **justify-content** except it allows us to align *all* flex items along the cross-axis.
 
@@ -110,7 +110,7 @@ The property **align-items** is just like **justify-content** except it allows u
 ## Flexibility
 
 
-### Flex grow:
+### Flex grow
 
 The **flex-grow** (longhand) property sets the flex factor which determines how much the flex item will grow relative to the rest of the flex items in the flex container when positive free space is distributed.
 Only accepts positive numbers.

@@ -1,22 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-   <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-   <link rel="stylesheet" href="/build/assets/css/main.css">
-   <title>Things I Have Learnt</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link rel="stylesheet" href="/build/assets/css/main.css">
+	<title>Things I Have Learnt - Web Accessibility</title>
 </head>
-<body>
-   <header class="header">
-      <a href="">
-         <img class="gh_logo" src="/build/assets/images/GitHub-Mark-Light-120px-plus.png" alt="View in Github">
-      </a>
-   </header>
-   <main class="main">
-      <article>
-         <nav class="table-of-content">
-            <ul>
+<body class="inside">
+	<header class="header">
+		<a href="https://github.com/SalahHamza/things-i-have-learnt#readme">
+			<img class="gh_logo" src="/build/assets/images/GitHub-Mark-Light-120px-plus.png" alt="View in Github">
+		</a>
+	</header>
+	<main class="main">
+		<nav class="table-of-content">
+			<h2>Contents</h2>
+			<ul>
 <li><a href="#web-accessibility">Web Accessibility</a><ul>
 <li><a href="#overview">Overview</a><ul>
 <li><a href="#what-is-accessibility">What is Accessibility</a></li>
@@ -93,55 +93,62 @@
 </li>
 </ul>
 
-         </nav>
-         <h1 id="web-accessibility">Web Accessibility</h1>
+		</nav>
+		<article>
+			<nav aria-label="Breadcrumb" class="breadcrumb">
+				<ul>
+					<li class="breadcrumb-item"><a href="/">Home</a></li>
+					<li class="breadcrumb-item">Web Accessibility</li>
+				</ul>
+			</nav>
+			<html><head></head><body><h1 id="web-accessibility">Web Accessibility</h1>
 <h2 id="overview">Overview</h2>
 <h3 id="what-is-accessibility">What is Accessibility</h3>
 <blockquote>
-<p>Broadly speaking, when we say a site is accessible, we mean that the site&#39;s content is available, and its functionality can be operated, by literally <em>anyone</em>.</p>
+<p>Broadly speaking, when we say a site is accessible, we mean that the site&apos;s content is available, and its functionality can be operated, by literally <em>anyone</em>.</p>
 </blockquote>
 <p>and it also</p>
 <blockquote>
-<p>refers to the experience of users who might be outside the narrow range of the &quot;typical&quot; user, who might access or interact with things differently than you expect. Specifically, it concerns users who are experiencing some type of impairment or disability — and bear in mind that that experience might be non-physical or temporary.</p>
+<p>refers to the experience of users who might be outside the narrow range of the &quot;typical&quot; user, who might access or interact with things differently than you expect. Specifically, it concerns users who are experiencing some type of impairment or disability &#x2014; and bear in mind that that experience might be non-physical or temporary.</p>
 </blockquote>
-<h3 id="web-content-accessibility-guidelines-wcag-">Web Content Accessibility Guidelines (WCAG)</h3>
+<h3 id="web-content-accessibility-guidelines-wcag">Web Content Accessibility Guidelines (WCAG)</h3>
 <blockquote>
 <p>Web Content Accessibility Guidelines (WCAG) 2.0 covers a wide range of recommendations for making Web content more accessible.</p>
 </blockquote>
 <p><strong>WCAG</strong> revolves around 4 principles labelled <strong><a href="https://www.w3.org/TR/UNDERSTANDING-WCAG20/intro.html#introduction-fourprincs-head">POUR</a></strong>:</p>
 <ol>
-<li><strong>Perceivable</strong>: Users must be able to perceive the information being presented (it can&#39;t be invisible to all of their senses)</li>
+<li><strong>Perceivable</strong>: Users must be able to perceive the information being presented (it can&apos;t be invisible to all of their senses)</li>
 <li><strong>Operable</strong>: Users must be able to operate the interface (the interface cannot require interaction that a user cannot perform)</li>
 <li><strong>Understandable</strong>: Users must be able to understand the information as well as the operation of the user interface (the content or operation cannot be beyond their understanding)</li>
 <li><strong>Robust</strong>: Content must be robust enough that it can be interpreted reliably by a wide variety of user agents (browsers), including assistive technologies.</li>
 </ol>
-<p><strong>WCAG</strong> can be a bit overwhelming that&#39;s where the <a href="https://webaim.org/standards/wcag/checklist"><strong>Web AIM checklist</strong></a> comes in hand. The <strong>Web AIM</strong> checklist is (in a nutshell) an easy-to-read, well-structured &quot;summary&quot; of the <strong>WCAG</strong>.</p>
+<p><strong>WCAG</strong> can be a bit overwhelming that&apos;s where the <a href="https://webaim.org/standards/wcag/checklist"><strong>Web AIM checklist</strong></a> comes in hand. The <strong>Web AIM</strong> checklist is (in a nutshell) an easy-to-read, well-structured &quot;summary&quot; of the <strong>WCAG</strong>.</p>
 <h2 id="focus">Focus</h2>
-<h3 id="what-is-focus-">What is Focus?</h3>
+<h3 id="what-is-focus">What is Focus?</h3>
 <blockquote>
 <p>Focus refers to which control on the screen (an input item such as a field, checkbox, button, or link) currently receives input from the keyboard, and from the clipboard when you paste content.</p>
 </blockquote>
-<h3 id="why-is-this-important-">why is this important?</h3>
+<h3 id="why-is-this-important">why is this important?</h3>
 <blockquote>
-<p>Some users operate their computer almost entirely with the keyboard or other input device. For those users, focus is critical; it&#39;s their primary means of reaching everything on the screen.</p>
+<p>Some users operate their computer almost entirely with the keyboard or other input device. For those users, focus is critical; it&apos;s their primary means of reaching everything on the screen.</p>
 </blockquote>
 <p>Which is why the <a href="https://webaim.org/standards/wcag/checklist#sc2.1.1">Web AIM check list section <strong>2.1.1</strong></a> states that <strong>All page functionality is available using the keyboard, unless the functionality cannot be accomplished in any known way using a keyboard (e.g., free hand drawing)</strong>.</p>
-<h3 id="how-do-you-know-if-an-item-is-focused-">how do you know if an item is focused?</h3>
+<h3 id="how-do-you-know-if-an-item-is-focused">how do you know if an item is focused?</h3>
 <blockquote>
 <p>The currently focused item is often indicated by a focus ring, the style of which depends on both the browser and on any styling the page author has applied.</p>
 </blockquote>
 <h3 id="focusable-elements">focusable elements</h3>
-<p>Some native HTML elements are focusable by design and don&#39;t require the page author to explicitly insert them into the tab order, elements like text fields, select lists, links, buttons, ...etc. But other native elements are not focusable by design.</p>
+<p>Some native HTML elements are focusable by design and don&apos;t require the page author to explicitly insert them into the tab order, elements like text fields, select lists, links, buttons, ...etc. But other native elements are not focusable by design.</p>
 <blockquote>
-<p>There&#39;s generally no need to focus something if the user can&#39;t interact with it.</p>
+<p>There&apos;s generally no need to focus something if the user can&apos;t interact with it.</p>
 </blockquote>
-<h3 id="dom-order-matters-">DOM order matters!</h3>
+<h3 id="dom-order-matters">DOM order matters!</h3>
 <p>Native HTML elements are automatically inserted into the tab order based on their position in the DOM. Sometimes the author of the page may change the visual order of the elements using CSS, but the DOM order remains the same and that may cause a confusion to users who rely heavily on the keyboard.</p>
-<p>That&#39;s why the <a href="https://webaim.org/standards/wcag/checklist#sc1.3.2">Web AIM check list section <strong>1.3.1</strong></a> states that <strong>The reading and navigation order (determined by code order) is logical and intuitive</strong>.</p>
-<h3 id="manipulate-the-tab-order-tabindex-">manipulate the tab order (tabindex)</h3>
+<p>That&apos;s why the <a href="https://webaim.org/standards/wcag/checklist#sc1.3.2">Web AIM check list section <strong>1.3.1</strong></a> states that <strong>The reading and navigation order (determined by code order) is logical and intuitive</strong>.</p>
+<h3 id="manipulate-the-tab-order-tabindex">manipulate the tab order (tabindex)</h3>
 <p>There are some instances where you would want to manipulate the tab order and that can be done with the <code>tabindex</code> attribute.</p>
 <blockquote>
-<p><code>tabindex</code> can be applied to any element — although it is not necessarily useful on every element — and takes a range of integer values. Using tabindex, you can specify an explicit order for focusable page elements, insert an otherwise unfocusable element into the tab order, and remove elements from the tab order.</p>
+<p><code>tabindex</code> can be applied to any element &#x2014; although it is not necessarily useful on every element &#x2014; and takes a range of integer values. Using tabindex, you can specify an explicit order for focusable page elements, insert an otherwise unfocusable element into the tab order, and remove elements from the tab order.</p>
 </blockquote>
 <ul>
 <li><code>tabindex=&quot;-1&quot;</code>:<ul>
@@ -167,24 +174,24 @@
 <h3 id="focus-management">focus management</h3>
 <p>Managing focus is the concept of manipulating the tab order to be logical and intuitive. These are some of the scenarios where focus management can be crucial.</p>
 <h4 id="managing-focus-at-the-page-level">Managing focus at the page level</h4>
-<p>You might be using URL fragment identifiers to travel through the page content or building a single page web app where the visible content change without page refresh. In that case the best way to identify the selected content area is to give it a <code>tabindex=&quot;-1&quot;</code> so that it doesn&#39;t appear in the natural tab order, and call its <code>focus()</code> method.</p>
+<p>You might be using URL fragment identifiers to travel through the page content or building a single page web app where the visible content change without page refresh. In that case the best way to identify the selected content area is to give it a <code>tabindex=&quot;-1&quot;</code> so that it doesn&apos;t appear in the natural tab order, and call its <code>focus()</code> method.</p>
 <h4 id="managing-focus-in-components">Managing focus in components</h4>
-<p>When building custom components you&#39;d want to provide logical keyboard manipulation similar to the native component your custom component is based on.</p>
+<p>When building custom components you&apos;d want to provide logical keyboard manipulation similar to the native component your custom component is based on.</p>
 <p>The <a href="https://www.w3.org/TR/wai-aria-practices/"><strong>ARIA Authoring Practices</strong></a> guid, lists types of components and what kinds of keyboard actions they support.</p>
 <h4 id="modals-and-keyboard-traps">Modals and keyboard traps</h4>
-<p>Keyboard trap happens when an element captures the tab and prevents the user from leaving it until it&#39;s complete. This can bothersome to the user, that&#39;s why the <a href="http://webaim.org/standards/wcag/checklist#sc2.1.2">Web AIM checklist section <strong>2.1.2</strong></a> states that <strong>keyboard focus should never be locked or trapped at one particular page element</strong>.</p>
-<p>Although the aforementioned behavior can be very frustrating, there are cases where it helps the page author provide better accessibility. The modal for example when the modal is displayed you&#39;d want the tab to be trapped in it until the user completes whatever functionality the modal provides or closes it.</p>
+<p>Keyboard trap happens when an element captures the tab and prevents the user from leaving it until it&apos;s complete. This can bothersome to the user, that&apos;s why the <a href="http://webaim.org/standards/wcag/checklist#sc2.1.2">Web AIM checklist section <strong>2.1.2</strong></a> states that <strong>keyboard focus should never be locked or trapped at one particular page element</strong>.</p>
+<p>Although the aforementioned behavior can be very frustrating, there are cases where it helps the page author provide better accessibility. The modal for example when the modal is displayed you&apos;d want the tab to be trapped in it until the user completes whatever functionality the modal provides or closes it.</p>
 <p>The steps to build a temporary keyboard trap in the modal:</p>
 <ol>
 <li><p>Select the modal and modal-overlay using <code>document.querySelector</code>.</p>
 </li>
-<li><p>Listen for keyboard events like <code>tab</code> &amp; <code>tab</code>+<code>SHIFT</code> for moving forward and backwards through modal elements, <code>ESC</code> to close the modal so that the user doesn&#39;t have to search for a close button. You should also listen to click events on overlay &amp; modal close button.</p>
+<li><p>Listen for keyboard events like <code>tab</code> &amp; <code>tab</code>+<code>SHIFT</code> for moving forward and backwards through modal elements, <code>ESC</code> to close the modal so that the user doesn&apos;t have to search for a close button. You should also listen to click events on overlay &amp; modal close button.</p>
 </li>
 <li><p>Store a reference of the element that was focused before the modal was opened.</p>
 </li>
 <li><p>Select all focusable elements within the modal using <code>document.querySelectorAll</code>.</p>
 <p>Instead of selecting elements separately you can pass this line of code that selects all potentially focusable elements:</p>
-<pre><code class="lang-javascript">const focusableElementsString = <span class="hljs-attribute">'a</span>[href], area[href], input:<span class="hljs-keyword">not</span>([disabled]), <span class="hljs-keyword">select</span>:<span class="hljs-keyword">not</span>([disabled]), textarea:<span class="hljs-keyword">not</span>([disabled]), button:<span class="hljs-keyword">not</span>([disabled]), iframe, object, embed, [tabindex=<span class="hljs-string">"0"</span>], [contenteditable]';
+<pre><code class="lang-javascript">const focusableElementsString = <span class="hljs-attribute">&apos;a</span>[href], area[href], input:<span class="hljs-keyword">not</span>([disabled]), <span class="hljs-keyword">select</span>:<span class="hljs-keyword">not</span>([disabled]), textarea:<span class="hljs-keyword">not</span>([disabled]), button:<span class="hljs-keyword">not</span>([disabled]), iframe, object, embed, [tabindex=<span class="hljs-string">&quot;0&quot;</span>], [contenteditable]&apos;;
 const focusableElements = modal.querySelectorAll(focusableElementsString);
 </code></pre>
 <p>The reason for doing this is to keep an eye on the first and last elements in the modal so that we know when to loop back.</p>
@@ -196,7 +203,7 @@ const focusableElements = modal.querySelectorAll(focusableElementsString);
 </li>
 <li><p>When the user closes the modal, return the focus to the element we kept reference to in step <strong>3</strong>.</p>
 </li>
-<li><p>You can now be happy knowing you&#39;ve provided your users with an accessible modal window :).</p>
+<li><p>You can now be happy knowing you&apos;ve provided your users with an accessible modal window :).</p>
 </li>
 </ol>
 <h2 id="semantics-basics">Semantics Basics</h2>
@@ -226,13 +233,13 @@ const focusableElements = modal.querySelectorAll(focusableElementsString);
 <p>A screen reader is a software used by blind or visually impaired people to read the content of the computer screen.</p>
 <p>You should expect a well-designed reader to tell you all, or at least most, of the following information about the elements it encounters.</p>
 <ul>
-<li>The element&#39;s <strong>role</strong> or type, if it is specified (it should be).</li>
-<li>The element&#39;s <strong>name</strong>, if it has one (it should).</li>
-<li>The element&#39;s <strong>value</strong>, if it has one (it may or may not).</li>
-<li>The element&#39;s <strong>state</strong>, e.g., whether it is enabled or disabled (if applicable).</li>
+<li>The element&apos;s <strong>role</strong> or type, if it is specified (it should be).</li>
+<li>The element&apos;s <strong>name</strong>, if it has one (it should).</li>
+<li>The element&apos;s <strong>value</strong>, if it has one (it may or may not).</li>
+<li>The element&apos;s <strong>state</strong>, e.g., whether it is enabled or disabled (if applicable).</li>
 </ul>
 <h3 id="the-accessibility-tree">The accessibility tree</h3>
-<p>The accessibility tree is a modified DOM tree that the browser presents to assistive technologies. It only contains the necessary information about each element&#39;s affordances for the user to know how to interact with that element.</p>
+<p>The accessibility tree is a modified DOM tree that the browser presents to assistive technologies. It only contains the necessary information about each element&apos;s affordances for the user to know how to interact with that element.</p>
 <h3 id="semantics-in-native-html">Semantics in native HTML</h3>
 <blockquote>
 <p>A browser can transform the DOM tree into an accessibility tree because much of the DOM has <em>implicit</em> semantic meaning.</p>
@@ -249,7 +256,7 @@ const focusableElements = modal.querySelectorAll(focusableElementsString);
 <blockquote>
 <p>Images are an important component of most web pages, and are of course a particular sticking point for low-vision users. We must consider the role an image plays in a page to work out what type of text alternative it should have.</p>
 </blockquote>
-<p>If an image doesn&#39;t have an <code>alt</code> attribute, a screen reader will announce this image using its literal name <code>/name-of-image-file.ext</code>.</p>
+<p>If an image doesn&apos;t have an <code>alt</code> attribute, a screen reader will announce this image using its literal name <code>/name-of-image-file.ext</code>.</p>
 <p>The <code>alt</code>attribute comes in action when the image:</p>
 <ul>
 <li>fails to load,</li>
@@ -266,7 +273,7 @@ const focusableElements = modal.querySelectorAll(focusableElementsString);
 </li>
 </ul>
 <h3 id="navigating-content">Navigating content</h3>
-<p>On content-heavy pages, such as wikipedia, it&#39;s not practical to read through everything from the top down, that&#39;s why screen reader users often rely on a list of headings to locate information.</p>
+<p>On content-heavy pages, such as wikipedia, it&apos;s not practical to read through everything from the top down, that&apos;s why screen reader users often rely on a list of headings to locate information.</p>
 <h4 id="using-headings-effectively">Using Headings effectively</h4>
 <ul>
 <li><strong>Every page should have an h1 heading</strong>.</li>
@@ -275,33 +282,33 @@ const focusableElements = modal.querySelectorAll(focusableElementsString);
 <li><strong>Nest headings by their rank (or level)</strong>. Headings with an equal or higher rank start a new section, headings with a lower rank start new subsections that are part of the higher ranked section.</li>
 <li><strong>Not all headings should be visible</strong>. Sometimes the role/title of a section is perfectly clear to people who can see the page, but not for the visually impaired, in that case it is good to move the said header off-screen.</li>
 </ul>
-<p><strong>Note</strong>: When hiding content that you want only screen reader users to see, don&#39;t use <code>display: none</code> or <code>visibility: hidden</code>. There are other ways to create <a href="https://webaim.org/techniques/css/invisiblecontent/">invisible Content Just for Screen Reader Users</a>.</p>
+<p><strong>Note</strong>: When hiding content that you want only screen reader users to see, don&apos;t use <code>display: none</code> or <code>visibility: hidden</code>. There are other ways to create <a href="https://webaim.org/techniques/css/invisiblecontent/">invisible Content Just for Screen Reader Users</a>.</p>
 <h4 id="other-navigation-options">Other navigation options</h4>
 <p>Screen reader users may use other elements to navigate around the page, including links, form controls, and landmarks.</p>
-<p>That&#39;s why, when making your links make sure to:</p>
+<p>That&apos;s why, when making your links make sure to:</p>
 <ul>
 <li>use descriptive text, such as instead of &quot;Read more&quot; you can use &quot;Read more about XXXXX&quot;,</li>
 <li>avoid using Javascript to open link, this will not give screen readers enough information.</li>
-<li>avoid using anchor tags as buttons, use <code>button</code> element and then style it with CSS if that&#39;s what you are going for.</li>
+<li>avoid using anchor tags as buttons, use <code>button</code> element and then style it with CSS if that&apos;s what you are going for.</li>
 <li>provide an alt text when using image links.</li>
 </ul>
 <p>Also, HTML5 introduced some new elements that help define the semantic structure of the page, including <code>header</code>, <code>footer</code>, <code>nav</code>, <code>article</code>, <code>section</code>, <code>main</code>, and <code>aside</code>. The use of these elements support keyboard navigation to the structure of a web page for screen reader users. <a href="https://www.w3.org/TR/2017/NOTE-wai-aria-practices-1.1-20171214/examples/landmarks/index.html">Read more about page landmarks</a>.</p>
 <h2 id="aria">ARIA</h2>
 <h3 id="what-is-aria">What is ARIA</h3>
-<p>The <a href="https://www.w3.org/TR/wai-aria/"><strong>Web Accessibility Initiative&#39;s Accessible Rich Internet Applications</strong></a> lebelled <strong>WAI-ARIA</strong> or just <strong>ARIA</strong>, is a specification written by the W3C, defining a set of additional HTML attributes that can be applied to elements to provide additional semantics and improve accessibility wherever it is lacking.</p>
+<p>The <a href="https://www.w3.org/TR/wai-aria/"><strong>Web Accessibility Initiative&apos;s Accessible Rich Internet Applications</strong></a> lebelled <strong>WAI-ARIA</strong> or just <strong>ARIA</strong>, is a specification written by the W3C, defining a set of additional HTML attributes that can be applied to elements to provide additional semantics and improve accessibility wherever it is lacking.</p>
 <h3 id="how-aria-works">How ARIA works</h3>
 <ul>
 <li>ARIA works by changing and augmenting the standard DOM accessibility tree.</li>
 <li>ARIA can modify existing element semantics or add semantics to elements where no native semantics exist.</li>
-<li><strong>ARIA doesn&#39;t augment any of the element&#39;s inherent behavior</strong>; it won&#39;t make the element focusable or give it keyboard event listeners. That is still part of our development task.</li>
+<li><strong>ARIA doesn&apos;t augment any of the element&apos;s inherent behavior</strong>; it won&apos;t make the element focusable or give it keyboard event listeners. That is still part of our development task.</li>
 </ul>
-<h3 id="what-can-aria-do-">What can ARIA do?</h3>
+<h3 id="what-can-aria-do">What can ARIA do?</h3>
 <p>There are three main features ARIA spec defines, <strong>role</strong>, <strong>properties</strong> and <strong>state</strong>. Using these attributes, we can give an element the missing information so that assistive technologies can properly interpret it.</p>
-<p>ARIA attributes don&#39;t affect anything about the web page, except for the information exposed by the browser&#39;s accessibility APIs (where screen readers get their information from).</p>
+<p>ARIA attributes don&apos;t affect anything about the web page, except for the information exposed by the browser&apos;s accessibility APIs (where screen readers get their information from).</p>
 <p><strong>Note</strong>: If you want to know the possible values for the role attribute and associated state and properties check the <a href="https://www.w3.org/TR/wai-aria/"><strong>ARIA spec</strong></a> or the more approachable <a href="https://www.w3.org/TR/wai-aria-practices-1.1"><strong>ARIA Authoring Practices</strong></a></p>
 <h4 id="work-flow">Work flow</h4>
-<p>Let&#39;s say we are creating a checkbox with a <code>li</code> element, the ARIA Authoring Practices states that we must give it the necessary information through the <strong>role</strong> and <strong>state</strong> attributes.</p>
-<pre><code class="lang-html">&lt;li <span class="hljs-variable">tabindex=</span><span class="hljs-string">"0"</span> <span class="hljs-variable">role=</span><span class="hljs-string">"checkbox"</span> <span class="hljs-variable">aria-checked=</span><span class="hljs-string">"false"</span>&gt;&lt;/li&gt;
+<p>Let&apos;s say we are creating a checkbox with a <code>li</code> element, the ARIA Authoring Practices states that we must give it the necessary information through the <strong>role</strong> and <strong>state</strong> attributes.</p>
+<pre><code class="lang-html">&lt;li <span class="hljs-variable">tabindex=</span><span class="hljs-string">&quot;0&quot;</span> <span class="hljs-variable">role=</span><span class="hljs-string">&quot;checkbox&quot;</span> <span class="hljs-variable">aria-checked=</span><span class="hljs-string">&quot;false&quot;</span>&gt;&lt;/li&gt;
 </code></pre>
 <ul>
 <li>We specify the role of the element: <code>role=&quot;checkbox&quot;</code>.</li>
@@ -316,22 +323,22 @@ const focusableElements = modal.querySelectorAll(focusableElementsString);
 <h3 id="labels">labels</h3>
 <h4 id="aria-label">aria-label</h4>
 <p><code>aria-label</code> allows us to specify a string to be used as the accessible label. This overrides any other native labeling mechanism, such as a <code>label</code> element.</p>
-<pre><code class="lang-html">&lt;<span class="hljs-tag">button</span> aria-label=<span class="hljs-string">"close"</span>&gt;
-  &lt;<span class="hljs-tag">img</span> alt=<span class="hljs-string">""</span> src=<span class="hljs-string">"close.png"</span>&gt;
+<pre><code class="lang-html">&lt;<span class="hljs-tag">button</span> aria-label=<span class="hljs-string">&quot;close&quot;</span>&gt;
+  &lt;<span class="hljs-tag">img</span> alt=<span class="hljs-string">&quot;&quot;</span> src=<span class="hljs-string">&quot;close.png&quot;</span>&gt;
 &lt;/button&gt;
 </code></pre>
 <h4 id="aria-lebelledby">aria-lebelledby</h4>
-<p><code>aria-labelledby</code> allows us to specify the ID of another element in the DOM as an element&#39;s label.</p>
+<p><code>aria-labelledby</code> allows us to specify the ID of another element in the DOM as an element&apos;s label.</p>
 <ul>
 <li>Unlike <code>label</code> element, <code>aria-labelledby</code>attribute maybe used on any element.</li>
 <li>the <code>label</code> element refers to the thing it labels, but <code>aria-labelledby</code> is set on the element that is labelled and refers to the element that labels it.</li>
-<li><code>aria-labelledby</code> doesn&#39;t give the same clicking behavior the HTML <code>label</code> element gives.</li>
+<li><code>aria-labelledby</code> doesn&apos;t give the same clicking behavior the HTML <code>label</code> element gives.</li>
 <li>Only one <code>label</code> element may be associated with a labelable element; <code>aria-labelledby</code> can take a list of IDREFs to compose a label of multiple elements. The label will be concatinated in order the IDREFs are given.</li>
 <li><code>aria-labelledby</code> takes precedence over <code>aria-label</code> and native HTML <code>label</code> element.</li>
 <li><code>aria-labelledby</code> may refer to elements which are hidden.</li>
 </ul>
-<pre><code class="lang-html">&lt;div id=<span class="hljs-string">"rg-label"</span>&gt;Some label&lt;/div&gt;
-&lt;span role=<span class="hljs-string">"radiogroup"</span> aria-labelledby=<span class="hljs-string">"rg-label"</span>&gt;
+<pre><code class="lang-html">&lt;div id=<span class="hljs-string">&quot;rg-label&quot;</span>&gt;Some label&lt;/div&gt;
+&lt;span role=<span class="hljs-string">&quot;radiogroup&quot;</span> aria-labelledby=<span class="hljs-string">&quot;rg-label&quot;</span>&gt;
   <span class="hljs-keyword">...</span>
 &lt;/span&gt;
 </code></pre>
@@ -349,7 +356,7 @@ const focusableElements = modal.querySelectorAll(focusableElementsString);
 <p>The <code>aria-posinset</code> (&quot;position in set&quot;) and <code>aria-setsize</code> (&quot;size of set&quot;) attributes work together.</p>
 <ul>
 <li><code>aria-setsize</code> defines the number of items in the current set of listitems or treeitems.</li>
-<li><code>aria-posinset</code> defines an element&#39;s number or position in the current set of listitems or treeitems.</li>
+<li><code>aria-posinset</code> defines an element&apos;s number or position in the current set of listitems or treeitems.</li>
 </ul>
 <p><strong>Notes</strong>:</p>
 <ul>
@@ -359,7 +366,7 @@ const focusableElements = modal.querySelectorAll(focusableElementsString);
 <h3 id="hiding-and-updating-content">Hiding and Updating Content</h3>
 <h4 id="aria-hidden">aria-hidden</h4>
 <p><code>aria-hidden</code> attribute allows us to exclude elements that are not visually hidden from the accessibility tree. Applying the <code>aria-hidden</code> attribute on an element will remove the element and all its descendants from the accessibility tree. The only exceptions are elements referred to by an <code>aria-labelledby</code> or <code>aria-describedby</code> attribute.</p>
-<p>The <code>aria-hidden</code> attribute takes three values true/false/undefined. <code>true</code> and <code>false</code> values are self-explanatory, but when the <code>aria-hidden</code> attribute is given no value or <code>undefined</code>, the element&#39;s hidden state is determined by the user agent based on whether it is rendered.</p>
+<p>The <code>aria-hidden</code> attribute takes three values true/false/undefined. <code>true</code> and <code>false</code> values are self-explanatory, but when the <code>aria-hidden</code> attribute is given no value or <code>undefined</code>, the element&apos;s hidden state is determined by the user agent based on whether it is rendered.</p>
 <h4 id="aria-live">aria-live</h4>
 <p>The <code>aria-live</code> attribute indicates that an element will be updated, and describes the types of updates the user agents, assistive technologies, and user can expect from the <a href="https://www.w3.org/TR/wai-aria-1.1/#dfn-live-region"><em>live region</em></a>. Marking a region &quot;live&quot; (the element <code>aria-live</code> is applied on and its descendants are all considered the <em>live region</em>) means that updates should be communicated to users immediately.</p>
 <p><code>aria-live</code> attribute takes three values:</p>
@@ -368,7 +375,7 @@ const focusableElements = modal.querySelectorAll(focusableElementsString);
 <li><code>aria-live=&quot;polite&quot;</code>: Indicates that updates to the region should be presented at the next graceful opportunity, such as at the end of speaking the current sentence or when the user pauses typing.</li>
 <li><code>aria-live=&quot;off&quot;</code>(default): Indicates that updates to the region should not be presented to the user unless the used is currently focused on that region.</li>
 </ul>
-<p><strong>Note</strong>: It&#39;s better to set your live region in the initial page load, not doing so might cause problems.</p>
+<p><strong>Note</strong>: It&apos;s better to set your live region in the initial page load, not doing so might cause problems.</p>
 <p>There are other attribute that work along side <code>aria-live</code>, you fine-tune what is communicated to the user when the live region changes, these attributes are <code>aria-atomic</code>, <code>aria-relevant</code> and <code>aria-busy</code>.</p>
 <h5 id="aria-atomic">aria-atomic</h5>
 <p><code>aria-atomic</code> indicates whether the entire region should be considered as a whole when communicating updates. The values for aria-atomic may be true or false, with false being the default.</p>
@@ -386,7 +393,7 @@ const focusableElements = modal.querySelectorAll(focusableElementsString);
 <li><strong>text</strong>: Text content or a text alternative is added to any descendant in the accessibility tree of the live region.</li>
 </ul>
 <h5 id="aria-busy">aria-busy</h5>
-<p><code>aria-busy</code> attribute lets you notify assistive technology that it should temporarily ignore changes to an element, such as when things are loading. Once everything is in place, <code>aria-busy</code> should be set to false to normalize the reader&#39;s operation.</p>
+<p><code>aria-busy</code> attribute lets you notify assistive technology that it should temporarily ignore changes to an element, such as when things are loading. Once everything is in place, <code>aria-busy</code> should be set to false to normalize the reader&apos;s operation.</p>
 <h2 id="accessible-styles">Accessible Styles</h2>
 <h3 id="styling-focus">Styling focus</h3>
 <p>Focus sometimes might not go with the overall page design (e.g. blue focus with on blue background) and somewhat irritating, that is why the <a href="https://webaim.org/standards/wcag/checklist#sc2.4.7">WebAIM checklist section <strong>2.4.7</strong></a> states that &quot;It is visually apparent which page element has the current keyboard focus (i.e., as you tab through the page, you can see where you are).&quot;. You can style focus by either altering the <code>outline</code> property of the target element or getting rid of it alltogether on the condition of providing an indicator of when the said element is focused. One ways of doing that:</p>
@@ -417,8 +424,8 @@ const focusableElements = modal.querySelectorAll(focusableElementsString);
 </ul>
 <h2 id="disclaimer">Disclaimer</h2>
 <p>These are intended only as course notes following the Mobile Web Specialist Nano-Degree. I hope these provide help to any or all people who want to learn about accessibility.</p>
-
-      </article>
-   </main>
+</body></html>
+		</article>
+	</main>
 </body>
 </html>

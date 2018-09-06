@@ -1,25 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-   <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-   <link rel="stylesheet" href="/build/assets/css/main.css">
-   <title><%=title%></title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link rel="stylesheet" href="/build/assets/css/main.css">
+	<title><%=title%> - <%=pageTitle%></title>
 </head>
-<body>
-   <header class="header">
-      <a href="">
-         <img class="gh_logo" src="/build/assets/images/GitHub-Mark-Light-120px-plus.png" alt="View in Github">
-      </a>
-   </header>
-   <main class="main">
-      <article>
-         <nav class="table-of-content">
-            <%=toc%>
-         </nav>
-         <%=content%>
-      </article>
-   </main>
+<body class="inside">
+	<header class="header">
+		<a href="<%=githubUrl%>">
+			<img class="gh_logo" src="/build/assets/images/GitHub-Mark-Light-120px-plus.png" alt="View in Github">
+		</a>
+	</header>
+	<main class="main">
+		<nav class="table-of-content">
+			<h2>Contents</h2>
+			<%=toc%>
+		</nav>
+		<article>
+			<nav aria-label="Breadcrumb" class="breadcrumb">
+				<ul>
+					<li class="breadcrumb-item"><a href="/">Home</a></li>
+					<li class="breadcrumb-item"><%=pageTitle%></li>
+				</ul>
+			</nav>
+			<%=content%>
+		</article>
+	</main>
 </body>
 </html>

@@ -2,21 +2,28 @@
 <html>
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<link rel="stylesheet" type="text/css" href="inline.css">
+		<link rel="stylesheet" type="text/css" href="./inline.css">
 		<title>Off Canvas</title>
 	</head>
 	<body>
 		<nav></nav>
 		<main>
-			<div class="ham">X</div>
+			<button class="hamburger hamburger--collapse" type="button"
+			aria-label="Menu" aria-controls="navigation" style="float: right">
+				<span class="hamburger-box">
+					<span class="hamburger-inner"></span>
+				</span>
+			</button>
 		</main>
 		<script type="text/javascript">
-			const ham = document.querySelector('.ham');
-			ham.addEventListener('click', function(e){
-				console.log('hah')
-				const nav = document.querySelector('nav');
-				nav.classList.toggle('open');
-				//e.stopPropagation();
+			window.addEventListener('load', function(){
+				const ham = document.querySelector('.hamburger');
+				ham.addEventListener('click', function(e){
+					this.classList.toggle('is-active');
+					const nav = document.querySelector('nav');
+					nav.classList.toggle('open');
+					e.stopPropagation();
+				});
 			});
 		</script>
 	</body>

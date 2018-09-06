@@ -1,37 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-   <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-   <link rel="stylesheet" href="/build/assets/css/main.css">
-   <title>Things I Have Learnt</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link rel="stylesheet" href="/build/assets/css/main.css">
+	<title>Things I Have Learnt - Flexbox</title>
 </head>
-<body>
-   <header class="header">
-      <a href="">
-         <img class="gh_logo" src="/build/assets/images/GitHub-Mark-Light-120px-plus.png" alt="View in Github">
-      </a>
-   </header>
-   <main class="main">
-      <article>
-         <nav class="table-of-content">
-            <ul>
+<body class="inside">
+	<header class="header">
+		<a href="https://github.com/SalahHamza/things-i-have-learnt#readme">
+			<img class="gh_logo" src="/build/assets/images/GitHub-Mark-Light-120px-plus.png" alt="View in Github">
+		</a>
+	</header>
+	<main class="main">
+		<nav class="table-of-content">
+			<h2>Contents</h2>
+			<ul>
 <li><a href="#flexbox">Flexbox</a><ul>
 <li><a href="#overview">Overview</a></li>
 <li><a href="#ordering--orientation">Ordering &amp; Orientation</a><ul>
 <li><a href="#flex-direction">Flex Direction</a></li>
-<li><a href="#flex-wrap">Flex Wrap:</a></li>
-<li><a href="#flex-flow">Flex flow:</a></li>
+<li><a href="#flex-wrap">Flex Wrap</a></li>
+<li><a href="#flex-flow">Flex flow</a></li>
 </ul>
 </li>
 <li><a href="#alignment">Alignment</a><ul>
-<li><a href="#justify-content">Justify Content:</a></li>
-<li><a href="#align-items">Align items:</a></li>
+<li><a href="#justify-content">Justify Content</a></li>
+<li><a href="#align-items">Align items</a></li>
 </ul>
 </li>
 <li><a href="#flexibility">Flexibility</a><ul>
-<li><a href="#flex-grow">Flex grow:</a></li>
+<li><a href="#flex-grow">Flex grow</a></li>
 </ul>
 </li>
 <li><a href="#useful-links">Useful links</a></li>
@@ -39,19 +39,26 @@
 </li>
 </ul>
 
-         </nav>
-         <h1 id="flexbox">Flexbox</h1>
+		</nav>
+		<article>
+			<nav aria-label="Breadcrumb" class="breadcrumb">
+				<ul>
+					<li class="breadcrumb-item"><a href="/">Home</a></li>
+					<li class="breadcrumb-item">Flexbox</li>
+				</ul>
+			</nav>
+			<html><head></head><body><h1 id="flexbox">Flexbox</h1>
 <h2 id="overview">Overview</h2>
-<p>Let&#39;s say we have a set of items with a container around them, like this:</p>
-<pre><code class="lang-html">&lt;<span class="hljs-keyword">div</span> <span class="hljs-type">class</span>=<span class="hljs-string">"container"</span>&gt;
-  &lt;<span class="hljs-keyword">div</span> <span class="hljs-type">class</span>=<span class="hljs-string">"item green"</span>&gt;&lt;/<span class="hljs-keyword">div</span>&gt;
-  &lt;<span class="hljs-keyword">div</span> <span class="hljs-type">class</span>=<span class="hljs-string">"item blue"</span>&gt;&lt;/<span class="hljs-keyword">div</span>&gt;
-  &lt;<span class="hljs-keyword">div</span> <span class="hljs-type">class</span>=<span class="hljs-string">"item red"</span>&gt;&lt;/<span class="hljs-keyword">div</span>&gt;
-  &lt;<span class="hljs-keyword">div</span> <span class="hljs-type">class</span>=<span class="hljs-string">"item yellow"</span>&gt;&lt;/<span class="hljs-keyword">div</span>&gt;
+<p>Let&apos;s say we have a set of items with a container around them, like this:</p>
+<pre><code class="lang-html">&lt;<span class="hljs-keyword">div</span> <span class="hljs-type">class</span>=<span class="hljs-string">&quot;container&quot;</span>&gt;
+  &lt;<span class="hljs-keyword">div</span> <span class="hljs-type">class</span>=<span class="hljs-string">&quot;item green&quot;</span>&gt;&lt;/<span class="hljs-keyword">div</span>&gt;
+  &lt;<span class="hljs-keyword">div</span> <span class="hljs-type">class</span>=<span class="hljs-string">&quot;item blue&quot;</span>&gt;&lt;/<span class="hljs-keyword">div</span>&gt;
+  &lt;<span class="hljs-keyword">div</span> <span class="hljs-type">class</span>=<span class="hljs-string">&quot;item red&quot;</span>&gt;&lt;/<span class="hljs-keyword">div</span>&gt;
+  &lt;<span class="hljs-keyword">div</span> <span class="hljs-type">class</span>=<span class="hljs-string">&quot;item yellow&quot;</span>&gt;&lt;/<span class="hljs-keyword">div</span>&gt;
 &lt;/<span class="hljs-keyword">div</span>&gt;
 </code></pre>
 <p>And we want to lay them out in a certain order, size and even space them out properly. Flexbox gives us the ability to that and more.
-To work with flexbox we should first set the flexbox container’s display property to <code>flex</code>.</p>
+To work with flexbox we should first set the flexbox container&#x2019;s display property to <code>flex</code>.</p>
 <pre><code class="lang-css"><span class="hljs-class">.container</span> <span class="hljs-rules">{
    <span class="hljs-rule"><span class="hljs-attribute">display</span>:<span class="hljs-value"> flex</span></span>;
 <span class="hljs-rule">}</span></span>
@@ -70,8 +77,8 @@ To work with flexbox we should first set the flexbox container’s display prope
   <span class="hljs-rule"><span class="hljs-attribute">flex-direction</span>:<span class="hljs-value"> column</span></span>;
 <span class="hljs-rule">}</span></span>
 </code></pre>
-<h3 id="flex-wrap-">Flex Wrap:</h3>
-<p>By default the flex container will try to contain the items within it even if their width exceeds its width, but if there are too many items, they will eventually overflow, and that’s because, by default the <strong>flex-wrap</strong> property is set to <code>nowrap</code>, which makes the flex items lay out in a single line. When that happen we can fix it by resetting the <strong>flex-wrap</strong> property to either <code>wrap</code> or <code>wrap-reverse</code>.</p>
+<h3 id="flex-wrap">Flex Wrap</h3>
+<p>By default the flex container will try to contain the items within it even if their width exceeds its width, but if there are too many items, they will eventually overflow, and that&#x2019;s because, by default the <strong>flex-wrap</strong> property is set to <code>nowrap</code>, which makes the flex items lay out in a single line. When that happen we can fix it by resetting the <strong>flex-wrap</strong> property to either <code>wrap</code> or <code>wrap-reverse</code>.</p>
 <ul>
 <li><strong>nowrap</strong> (default): The flex items are laid out in a single line which may cause the flex container to overflow. The cross-start is either equivalent to start or before depending flex-direction value. This is the default value.</li>
 <li><strong>wrap</strong>: The flex items break into multiple lines. The cross-start is either equivalent to start or before depending flex-direction value and the cross-end is the opposite of the specified cross-start.</li>
@@ -83,7 +90,7 @@ To work with flexbox we should first set the flexbox container’s display prope
   <span class="hljs-rule"><span class="hljs-attribute">flex-wrap</span>:<span class="hljs-value"> wrap</span></span>;
 <span class="hljs-rule">}</span></span>
 </code></pre>
-<h3 id="flex-flow-">Flex flow:</h3>
+<h3 id="flex-flow">Flex flow</h3>
 <p>The <strong>flex-flow</strong> property is a container property (i.e. applies on the flex container) and is a shorthand for <strong>flex-direction</strong> and <strong>flex-wrap</strong>, it also takes the same default values <code>row</code>&amp; <code>nowrap</code>.</p>
 <pre><code class="lang-css"><span class="hljs-class">.container</span> <span class="hljs-rules">{
   <span class="hljs-rule"><span class="hljs-attribute">display</span>:<span class="hljs-value"> flex</span></span>;
@@ -91,10 +98,10 @@ To work with flexbox we should first set the flexbox container’s display prope
 <span class="hljs-rule">}</span></span>
 </code></pre>
 <h2 id="alignment">Alignment</h2>
-<h3 id="justify-content-">Justify Content:</h3>
+<h3 id="justify-content">Justify Content</h3>
 <p>The property <strong>justify-content</strong> is a flex items property, it allows us to define how the flex items are aligned along the main-axis, and it does that by distributing extra free space left over when either all the flex items on a line are inflexible, or are flexible but have reached their maximum size. It also exerts some control over the alignment of items when they overflow the line.</p>
 <ul>
-<li><strong>flex-start</strong> (default): it doesn’t distribute any leftover space, instead it keeps it to the right of the flex items.</li>
+<li><strong>flex-start</strong> (default): it doesn&#x2019;t distribute any leftover space, instead it keeps it to the right of the flex items.</li>
 <li><strong>flex-end</strong>: same as  flex-start, except it puts the leftover space to the left of the flex items pushing the flex items to the right.</li>
 <li><strong>center</strong>: evenly divides the leftover space between the left and right side of all the flex items.</li>
 <li><strong>space-between</strong>: evenly divides the leftover space between flex items.</li>
@@ -106,14 +113,14 @@ To work with flexbox we should first set the flexbox container’s display prope
   <span class="hljs-rule"><span class="hljs-attribute">justify-content</span>:<span class="hljs-value"> center</span></span>;
 <span class="hljs-rule">}</span></span>
 </code></pre>
-<h3 id="align-items-">Align items:</h3>
+<h3 id="align-items">Align items</h3>
 <p>The property <strong>align-items</strong> is just like <strong>justify-content</strong> except it allows us to align <em>all</em> flex items along the cross-axis.</p>
 <ul>
 <li><strong>stretch</strong> (default): the items stretch to fill the container, and the height of the container is defined by the tallest item (so, basically the items take the height of the tallest one of them).</li>
 <li><strong>flex-start</strong>: aligns flex items to the start of the flex container (top if the main-axis is the horizontal, left if the main-axis is the vertical axis).</li>
 <li><strong>flex-end</strong>: aligns flex items to the end of the flex container (bottom if the main-axis is the horizontal, right if the main-axis is the vertical axis).</li>
 <li><strong>center</strong>: aligns the items in the center of the flex container.</li>
-<li><strong>baseline</strong>: If the items run along the block directio – i.e. container&#39;s <strong>flex-direction</strong> is <code>column</code> or <code>column-reverse</code> – the value acts exactly like <strong>flex-start</strong>, Otherwise teh items are aligned such as their <a href="https://www.w3.org/TR/css-align-3/#baseline-values">baselines align</a></li>
+<li><strong>baseline</strong>: If the items run along the block directio &#x2013; i.e. container&apos;s <strong>flex-direction</strong> is <code>column</code> or <code>column-reverse</code> &#x2013; the value acts exactly like <strong>flex-start</strong>, Otherwise teh items are aligned such as their <a href="https://www.w3.org/TR/css-align-3/#baseline-values">baselines align</a></li>
 </ul>
 <p><em>Concerned with the flex items and not the flex container, but it is applied on the flex container.</em></p>
 <pre><code class="lang-css"><span class="hljs-class">.container</span> <span class="hljs-rules">{
@@ -122,7 +129,7 @@ To work with flexbox we should first set the flexbox container’s display prope
 <span class="hljs-rule">}</span></span>
 </code></pre>
 <h2 id="flexibility">Flexibility</h2>
-<h3 id="flex-grow-">Flex grow:</h3>
+<h3 id="flex-grow">Flex grow</h3>
 <p>The <strong>flex-grow</strong> (longhand) property sets the flex factor which determines how much the flex item will grow relative to the rest of the flex items in the flex container when positive free space is distributed.
 Only accepts positive numbers.
 Default 0.</p>
@@ -134,8 +141,8 @@ Default 0.</p>
 <li><a href="https://yoksel.github.io/flex-cheatsheet"><strong>Flex Cheatsheet</strong></a> by <a href="https://github.com/yoksel">@yoskel</a></li>
 <li><a href="http://bennettfeely.com/flexplorer/"><strong>Flexbox generator</strong></a></li>
 </ul>
-
-      </article>
-   </main>
+</body></html>
+		</article>
+	</main>
 </body>
 </html>

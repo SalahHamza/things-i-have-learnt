@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link rel="stylesheet" href="/build/assets/css/main.css">
+	<title>Things I Have Learnt - Grunt</title>
+</head>
+<body class="inside">
+	<header class="header">
+		<a href="https://github.com/SalahHamza/things-i-have-learnt#readme">
+			<img class="gh_logo" src="/build/assets/images/GitHub-Mark-Light-120px-plus.png" alt="View in Github">
+		</a>
+	</header>
+	<main class="main">
+		<nav class="table-of-content">
+			<h2>Contents</h2>
+			<ul>
+<li><a href="#grunt">Grunt</a><ul>
+<li><a href="#installation">Installation</a></li>
+<li><a href="#project-and-task-configuration">Project and Task configuration</a></li>
+</ul>
+</li>
+</ul>
+
+		</nav>
+		<article>
+			<nav aria-label="Breadcrumb" class="breadcrumb">
+				<ul>
+					<li class="breadcrumb-item"><a href="/">Home</a></li>
+					<li class="breadcrumb-item">Grunt</li>
+				</ul>
+			</nav>
+			<html><head></head><body><h1 id="grunt">Grunt</h1>
+<p>Grunt is a JavaScript task runner, a tool used to automatically perform frequent tasks such as minification, compilation, unit testing, and linting. It uses a command-line interface to run custom tasks defined in a file.
+via: <a href="https://en.wikipedia.org/wiki/Grunt_(software">Wikipedia</a>)</p>
+<h2 id="installation">Installation</h2>
+<p>1- install <strong>grunt-cli</strong> globally:</p>
+<pre><code class="lang-shell">npm install -<span class="hljs-keyword">g</span> grunt-<span class="hljs-keyword">cli</span>
+</code></pre>
+<p>What does it do? <strong>grunt-cli</strong> runs the version of Grunt which has been installed next to a <code>Gruntfile</code>. This allows multiple versions of Grunt to be installed on the same machine simultaneously.</p>
+<p>2 - The root of your project must have both <code>package.json</code> and a <code>Grunfile</code>:</p>
+<ul>
+<li><code>package.json</code>can be created by initializing the project with <code>npm init</code> or <code>npm init -y</code> to skip the questionnaire altogether.</li>
+<li>the <code>Gruntfile</code> must be created manually.<ul>
+<li><code>Gruntfile.coffee</code> for Coffeescript.</li>
+<li><code>Gruntfile.js</code>for plain Javascript.
+<strong>Note</strong>: both <code>package.json</code> and <code>Grunfile</code> should be committed with your project source.</li>
+</ul>
+</li>
+</ul>
+<p>3 - install <code>grunt</code>locally as a <a href="https://docs.npmjs.com/files/package.json#devdependencies">DevDependency</a>:</p>
+<pre><code class="lang-shell">npm install grunt --<span class="hljs-built_in">save</span>-<span class="hljs-built_in">dev</span>
+</code></pre>
+<p>or in case you want to install a specific version:</p>
+<pre><code class="lang-shell">npm <span class="hljs-operator"><span class="hljs-keyword">install</span> grunt@<span class="hljs-keyword">VERSION</span> <span class="hljs-comment">--save-dev</span></span>
+</code></pre>
+<p><strong>Note</strong>: <code>VERSION</code> is the grunt version you want to install (e.g. <strong>0.4.5</strong>).</p>
+<p>4 - install needed <strong>gruntplugins</strong>, also as DevDependencies. Here are some recommended plugins:</p>
+<ul>
+<li><strong><a href="https://github.com/jshint/jshint">grunt-contrib-jshint</a></strong> which is a Javascript validation tool:<pre><code class="lang-shell">npm install grunt-contrib-jshint --<span class="hljs-built_in">save</span>-<span class="hljs-built_in">dev</span>
+</code></pre>
+</li>
+<li><strong><a href="https://github.com/gruntjs/grunt-contrib-clean#readme">grunt-contrib-clean</a></strong> which is a tool that cleans up your build to make sure that no artifacts from previous builds are hanging around, read more about it <a href="https://coderwall.com/p/fkdyag/ignoring-files-and-folders-with-grunt-contrib-clean">here</a>:<pre><code class="lang-shell">npm install grunt-contrib-jshint --<span class="hljs-built_in">save</span>-<span class="hljs-built_in">dev</span>
+</code></pre>
+</li>
+<li><strong><a href="https://github.com/gruntjs/grunt-contrib-nodeunit#readme">grunt-contrib-nodeunit</a></strong> provides server-side JavaScript unit testing:<pre><code class="lang-shell">npm install grunt-contrib-nodeunit --<span class="hljs-built_in">save</span>-<span class="hljs-built_in">dev</span>
+</code></pre>
+</li>
+<li><strong><a href="https://github.com/gruntjs/grunt-contrib-uglify#readme">grunt-contrib-uglify</a></strong> which parses, minifies and compresses (or basically uglifies) JS files:<pre><code class="lang-shell">npm install grunt-contrib-uglify --<span class="hljs-built_in">save</span>-<span class="hljs-built_in">dev</span>
+</code></pre>
+</li>
+<li><strong><a href="https://github.com/rubenv/grunt-mkdir">grunt-mkdir</a></strong> gives grunt the ability to create directories:<pre><code class="lang-shell">npm install grunt-mkdir --<span class="hljs-built_in">save</span>-<span class="hljs-built_in">dev</span>
+</code></pre>
+</li>
+<li><strong><a href="https://github.com/gruntjs/grunt-contrib-copy#readme">grunt-contrib-copy</a></strong> gives grunt the ability to copy files:<pre><code class="lang-shell">npm install grunt-contrib-<span class="hljs-keyword">copy</span> <span class="hljs-comment">--save-dev</span>
+</code></pre>
+</li>
+<li>the <strong><a href="https://github.com/andismith/grunt-responsive-images">grunt-responsive-images</a></strong> plugin produces images at different sizes for responsive websites:<pre><code class="lang-shell">npm install grunt-responsive-images --<span class="hljs-built_in">save</span>-<span class="hljs-built_in">dev</span>
+</code></pre>
+</li>
+</ul>
+<h2 id="project-and-task-configuration">Project and Task configuration</h2>
+<p>First you need to note that all of your Grunt code must be specified inside a <strong>wrapper</strong> function:</p>
+<pre><code class="lang-js"><span class="hljs-built_in">module</span>.exports = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(grunt)</span> </span>{
+  <span class="hljs-comment">// Do grunt-related things in here</span>
+};
+</code></pre>
+</body></html>
+		</article>
+	</main>
+</body>
+</html>

@@ -79,7 +79,7 @@ Putting it all together:
      src="myImage-800w.jpg" alt="My image description">
 ```
 
-### Art direction - The picture element
+### Art direction – The picture element
 
 > The HTML `picture` element serves as a container for zero or more `source` elements and one img element to provide versions of an image for different display device scenarios.
 

@@ -18,7 +18,12 @@
 			<h2>Contents</h2>
 			<ul>
 <li><a href="#ajax">AJAX</a><ul>
-<li><a href="#api">API</a></li>
+<li><a href="#things-to-know-before-diving-into-ajax">Things to know before diving into AJAX</a><ul>
+<li><a href="#web-apis">Web APIs</a></li>
+<li><a href="#same-origin-policy">Same Origin Policy</a></li>
+<li><a href="#cors">CORS</a></li>
+</ul>
+</li>
 <li><a href="#ajax-with-xhr">AJAX with XHR</a><ul>
 <li><a href="#the-open-method">The &#39;open()&#39; method</a></li>
 <li><a href="#the-send-method">The &#39;send()&#39; method</a></li>
@@ -48,6 +53,7 @@
 <li><a href="#handling-json-responses">Handling JSON Responses</a></li>
 <li><a href="#handling-texthtml-responses">Handling Text/HTML Responses</a></li>
 <li><a href="#handling-blob-responses">Handling Blob Responses</a></li>
+<li><a href="#validating-the-response">validating the response</a></li>
 </ul>
 </li>
 <li><a href="#handling-errors">Handling Errors</a></li>
@@ -67,10 +73,39 @@
 					<li class="breadcrumb-item">AJAX</li>
 				</ul>
 			</nav>
-			<html><head></head><body><h1 id="ajax">AJAX</h1>
+			<div class="main-content">
+				<html><head></head><body><h1 id="ajax">AJAX</h1>
 <p><strong>AJAX</strong> or <strong>Asynchronous Javascript and XML</strong> allows for content retrieval and display without reloading the web page. The concept is to send that the client sends the request and while waiting it can do other tasks but once the response returns we can do whatever we want with the it, well, according to the pre-set instructions that we set before dubbed <strong>callbacks</strong>.</p>
-<h2 id="api">API</h2>
-<p><strong>API</strong> is an acronym for <strong>Application Programming Interface</strong>. We&apos;ll be using an API to interact with various data sources. <a href="https://medium.freecodecamp.org/what-is-an-api-in-english-please-b880a3214a82">Read more about APIs here</a>.</p>
+<h2 id="things-to-know-before-diving-into-ajax">Things to know before diving into AJAX</h2>
+<h3 id="web-apis">Web APIs</h3>
+<p><strong>API</strong> is an acronym for <strong>Application Programming Interface</strong>. We&apos;ll be using APIs to interact with various data sources.</p>
+<p>Read more about <strong>web APIs</strong>:</p>
+<ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Client-side_web_APIs/Introduction">Introduction to web APIs</a>.</li>
+<li><a href="https://medium.freecodecamp.org/what-is-an-api-in-english-please-b880a3214a82">What is an API? In English, please.</a></li>
+</ul>
+<h3 id="same-origin-policy">Same Origin Policy</h3>
+<blockquote>
+<p>The <strong>same-origin policy</strong> is a critical security mechanism that restricts how a document or script loaded from one origin can interact with a resource from another origin.</p>
+</blockquote>
+<p><strong>Note</strong>: Two pages have the same origin if the protocol, port (if one is specified), and host are the same for both pages.</p>
+<p>Read more about <strong>same-origin policy</strong>:</p>
+<ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/Security/Same-origin_policy">MDN - Same-origin policy</a></li>
+<li><a href="https://searchsecurity.techtarget.com/definition/Same-Origin-Policy-SOP">TechTarget - Same Origin Policy (SOP)</a></li>
+</ul>
+<h3 id="cors">CORS</h3>
+<blockquote>
+<p>Cross-Origin Resource Sharing (CORS) is a mechanism that uses additional HTTP headers to tell a browser to let a web application running at one origin (domain) have permission to access selected resources from a server at a different origin. A web application makes a cross-origin HTTP request when it requests a resource that has a different origin (domain, protocol, or port) than its own origin.</p>
+</blockquote>
+<blockquote>
+<p>The Cross-Origin Resource Sharing standard works by adding new <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers">HTTP headers</a> that allow servers to describe the set of origins that are permitted to read that information using a web browser.</p>
+</blockquote>
+<p>Read more about <strong>CORS</strong>:</p>
+<ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS">MDN - Cross-Origin Resource Sharing (CORS)</a></li>
+<li><a href="https://www.codecademy.com/articles/what-is-cors">Code Academy - What is CORS?</a></li>
+</ul>
 <h2 id="ajax-with-xhr">AJAX with XHR</h2>
 <p>An <code>XMLHttpRequest</code> object (commonly abbreviated as XHR or xhr) is provided by the javascript environment and is used to make AJAX requests. The &quot;issue&quot; with XHR is that you have to manually do a lot of the steps to get the request set up and finally sent off, so when the response comes back there are already instructions to handle the data.</p>
 <p><strong>Note</strong>: The name XMLHttpRequest is historical and has no bearing on its functionality.</p>
@@ -226,7 +261,7 @@ xhr.onload = handleSuccess;
 <p>A simple &apos;GET&apos; request using the Fetch API is as simple as so</p>
 <pre><code class="lang-javascript"><span class="hljs-function"><span class="hljs-title">fetch</span><span class="hljs-params">(<span class="hljs-string">&apos;https://swapi.co/api/people/1/&apos;</span>)</span></span>
 </code></pre>
-<p>To specify HTTP method, headers, mode (<code>cors</code>, <code>no-cors</code>, or <code>same-origin</code>) and other settings we do that through the configuration object that is passed to the <code>fetch()</code> method as second argument.</p>
+<p>Specifying HTTP method (<code>append</code>, <code>has</code>, <code>get</code>, <code>set</code>, or <code>delete</code>), headers, mode (<code>cors</code>, <code>no-cors</code>, or <code>same-origin</code>) and other settings is done through the configuration object that is passed to the <code>fetch()</code> method as second argument.</p>
 <p>So, sending a request with the HTTP <code>POST</code> method and <code>Authorization</code> headers using the Fetch API would look like this:</p>
 <pre><code class="lang-javascript">fetch(<span class="hljs-string">&apos;&lt;request_url&gt;&apos;</span>, {
   method: <span class="hljs-string">&apos;POST&apos;</span>,
@@ -283,6 +318,24 @@ fetch(<span class="hljs-string">&apos;&lt;request_url&gt;&apos;</span>, {
   <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">&apos;img&apos;</span>).src = URL.createObjectURL(imageBlob);
 });
 </code></pre>
+<h4 id="validating-the-response">validating the response</h4>
+<p>Make sure to validate the response, as in check if the response is valid (i.e. 2xx). You can do that by checking if the <code>response.ok</code> property is <code>true</code>.</p>
+<pre><code class="lang-javascript"><span class="hljs-reserved">const</span> validateResponse = <span class="hljs-function"><span class="hljs-params">(response)</span> =&gt;</span> {
+  <span class="hljs-keyword">if</span> (!response.ok) {
+    <span class="hljs-keyword">throw</span> Error(response.statusText);
+  }
+  <span class="hljs-keyword">return</span> response;
+}
+
+fetch(`<span class="javascript">&lt;request_url&gt;</span>`, {
+  <span class="hljs-regexp">//</span> ...
+})
+.<span class="hljs-keyword">then</span>(validateResponse)
+.<span class="hljs-keyword">then</span>(<span class="hljs-function"><span class="hljs-params">(response)</span> =&gt;</span> response.json())
+.<span class="hljs-keyword">then</span>(<span class="hljs-function"><span class="hljs-params">(data)</span> =&gt;</span> {
+  <span class="hljs-keyword">debugger</span>; <span class="hljs-regexp">//</span> work <span class="hljs-reserved">with</span> the returned JSON data
+});
+</code></pre>
 <h3 id="handling-errors">Handling Errors</h3>
 <p>Since the <code>fetch()</code> returns a <code>Promise</code>, we can handle errors by chaining a <code>.catch()</code> method on the tail of the fetch chain.</p>
 <pre><code class="lang-javascript">fetch(`<span class="javascript">&lt;request_url&gt;</span>`, {
@@ -300,11 +353,13 @@ fetch(<span class="hljs-string">&apos;&lt;request_url&gt;&apos;</span>, {
 </code></pre>
 <h2 id="resources-and-usefull-links">Resources and Usefull links</h2>
 <ul>
-<li><a href="https://medium.freecodecamp.org/what-is-an-api-in-english-please-b880a3214a82">What is an API? In English, please.</a></li>
 <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/Using_XMLHttpRequest">MDN - Using XMLHttpRequest</a></li>
 <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest">XMLHttpRequest MDN documentation</a></li>
 <li><a href="http://api.jquery.com/category/ajax/">jQuery AJAX documentation</a></li>
 <li><a href="https://fetch.spec.whatwg.org">Fetch Spec</a></li>
+<li><a href="https://davidwalsh.name/fetch">Fetch API by David Walsh</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch">MDN - Using Fetch</a></li>
+<li><a href="https://developers.google.com/web/ilt/pwa/working-with-the-fetch-api">Google - PWA - Working with the fetch API</a></li>
 </ul>
 <h2 id="related">Related</h2>
 <ul>
@@ -316,6 +371,7 @@ fetch(<span class="hljs-string">&apos;&lt;request_url&gt;&apos;</span>, {
 <li><a href="https://medium.com/javascript-scene/master-the-javascript-interview-what-is-a-promise-27fc71e77261">Master the JavaScript Interview: What is a Promise?</a></li>
 </ul>
 </body></html>
+			</div>
 		</article>
 	</main>
 </body>

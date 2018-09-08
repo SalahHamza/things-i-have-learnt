@@ -216,6 +216,14 @@ article {
 	}
 }
 
+@media screen and (min-width: 1000px){
+	.main-content {
+		width: 650px;
+		max-width: calc(100% - 32px);
+		margin-left: 32px;
+	}
+}
+
 
 /**************************
 		  Highlighting

@@ -28,7 +28,7 @@ module.exports = function(grunt) {
 							- compiling table of content to html using marked
 							- adding table of content to template as a templateContext variable
 						*/
-						this.templateContext.toc = marked(toc(src).content);
+						this.templateContext.toc = marked(toc(src).content).replace('---', '-');
 						return src;
 					},
 					postCompile(src, context){

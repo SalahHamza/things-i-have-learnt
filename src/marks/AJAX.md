@@ -2,9 +2,35 @@
 
 **AJAX** or **Asynchronous Javascript and XML** allows for content retrieval and display without reloading the web page. The concept is to send that the client sends the request and while waiting it can do other tasks but once the response returns we can do whatever we want with the it, well, according to the pre-set instructions that we set before dubbed **callbacks**.
 
-## API
+## Things to know before diving into AJAX
 
-**API** is an acronym for **Application Programming Interface**. We'll be using an API to interact with various data sources. [Read more about APIs here](https://medium.freecodecamp.org/what-is-an-api-in-english-please-b880a3214a82).
+### Web APIs
+
+**API** is an acronym for **Application Programming Interface**. We'll be using APIs to interact with various data sources.
+
+Read more about **web APIs**:
+* [Introduction to web APIs](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Client-side_web_APIs/Introduction).
+* [What is an API? In English, please.](https://medium.freecodecamp.org/what-is-an-api-in-english-please-b880a3214a82)
+
+### Same Origin Policy
+
+> The **same-origin policy** is a critical security mechanism that restricts how a document or script loaded from one origin can interact with a resource from another origin.
+
+**Note**: Two pages have the same origin if the protocol, port (if one is specified), and host are the same for both pages.
+
+Read more about **same-origin policy**:
+* [MDN - Same-origin policy](https://developer.mozilla.org/en-US/docs/Web/Security/Same-origin_policy)
+* [TechTarget - Same Origin Policy (SOP)](https://searchsecurity.techtarget.com/definition/Same-Origin-Policy-SOP)
+
+### CORS
+
+> Cross-Origin Resource Sharing (CORS) is a mechanism that uses additional HTTP headers to tell a browser to let a web application running at one origin (domain) have permission to access selected resources from a server at a different origin. A web application makes a cross-origin HTTP request when it requests a resource that has a different origin (domain, protocol, or port) than its own origin.
+
+> The Cross-Origin Resource Sharing standard works by adding new [HTTP headers](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers) that allow servers to describe the set of origins that are permitted to read that information using a web browser.
+
+Read more about **CORS**:
+* [MDN - Cross-Origin Resource Sharing (CORS)](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS)
+* [Code Academy - What is CORS?](https://www.codecademy.com/articles/what-is-cors)
 
 ## AJAX with XHR
 
@@ -226,11 +252,12 @@ In case it's not supported in your targeted browsers make sure to use this [fetc
 ### Making a fetch request
 
 A simple 'GET' request using the Fetch API is as simple as so
+
 ```javascript
 fetch('https://swapi.co/api/people/1/')
 ```
 
-To specify HTTP method, headers, mode (`cors`, `no-cors`, or `same-origin`) and other settings we do that through the configuration object that is passed to the `fetch()` method as second argument.
+Specifying HTTP method (`append`, `has`, `get`, `set`, or `delete`), headers, mode (`cors`, `no-cors`, or `same-origin`) and other settings is done through the configuration object that is passed to the `fetch()` method as second argument.
 
 So, sending a request with the HTTP `POST` method and `Authorization` headers using the Fetch API would look like this:
 
@@ -312,6 +339,28 @@ fetch('<path_or_url_to_img>/cute_cat.jpg')
 });
 ```
 
+#### validating the response
+
+Make sure to validate the response, as in check if the response is valid (i.e. 2xx). You can do that by checking if the `response.ok` property is `true`.
+
+```javascript
+const validateResponse = (response) => {
+  if (!response.ok) {
+    throw Error(response.statusText);
+  }
+  return response;
+}
+
+fetch(`<request_url>`, {
+  // ...
+})
+.then(validateResponse)
+.then((response) => response.json())
+.then((data) => {
+  debugger; // work with the returned JSON data
+});
+```
+
 ### Handling Errors
 
 Since the `fetch()` returns a `Promise`, we can handle errors by chaining a `.catch()` method on the tail of the fetch chain.
@@ -333,11 +382,13 @@ fetch(`<request_url>`, {
 
 ## Resources and Usefull links
 
-* [What is an API? In English, please.](https://medium.freecodecamp.org/what-is-an-api-in-english-please-b880a3214a82)
 * [MDN - Using XMLHttpRequest](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/Using_XMLHttpRequest)
 * [XMLHttpRequest MDN documentation](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest)
 * [jQuery AJAX documentation](http://api.jquery.com/category/ajax/)
 * [Fetch Spec](https://fetch.spec.whatwg.org)
+* [Fetch API by David Walsh](https://davidwalsh.name/fetch)
+* [MDN - Using Fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch)
+* [Google - PWA - Working with the fetch API](https://developers.google.com/web/ilt/pwa/working-with-the-fetch-api)
 
 ## Related
 

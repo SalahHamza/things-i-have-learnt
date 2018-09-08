@@ -26,6 +26,7 @@ Read more about **same-origin policy**:
 
 > Cross-Origin Resource Sharing (CORS) is a mechanism that uses additional HTTP headers to tell a browser to let a web application running at one origin (domain) have permission to access selected resources from a server at a different origin. A web application makes a cross-origin HTTP request when it requests a resource that has a different origin (domain, protocol, or port) than its own origin.
 
+
 > The Cross-Origin Resource Sharing standard works by adding new [HTTP headers](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers) that allow servers to describe the set of origins that are permitted to read that information using a web browser.
 
 Read more about **CORS**:

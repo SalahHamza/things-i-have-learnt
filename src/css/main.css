@@ -218,9 +218,9 @@ article {
 
 @media screen and (min-width: 1000px){
 	.main-content {
-		width: 650px;
-		max-width: calc(100% - 32px);
-		margin-left: 32px;
+    width: 700px;
+    max-width: 100%;
+    padding: 0 0 0 32px;
 	}
 }
 

@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link rel="stylesheet" href="/build/assets/css/main.css">
+	<title>Things I Have Learnt - ES2015+ syntax</title>
+</head>
+<body class="inside">
+	<header class="header">
+		<a href="https://github.com/SalahHamza/things-i-have-learnt#readme">
+			<img class="gh_logo" src="/build/assets/images/GitHub-Mark-Light-120px-plus.png" alt="View in Github">
+		</a>
+	</header>
+	<main class="main">
+		<nav class="table-of-content">
+			<h2>Contents</h2>
+			<ul>
+<li><a href="#es2015-syntax">ES2015+ syntax</a><ul>
+<li><a href="#let-and-const">Let and Const</a><ul>
+<li><a href="#overview">Overview</a></li>
+<li><a href="#rules-for-using">Rules for using</a></li>
+<li><a href="#use-cases">Use cases</a></li>
+</ul>
+</li>
+<li><a href="#template-literals">Template Literals</a></li>
+<li><a href="#destructuring">Destructuring</a><ul>
+<li><a href="#for-arrays">For arrays</a></li>
+<li><a href="#for-objects">For Objects</a></li>
+</ul>
+</li>
+<li><a href="#arrow-functions">Arrow Functions</a><ul>
+<li><a href="#concise-body-syntax">Concise body syntax</a></li>
+<li><a href="#block-syntax">Block syntax</a></li>
+<li><a href="#regular-functions-and-this-keyword">Regular functions and this keyword</a></li>
+<li><a href="#arrow-functions-and-this-keyword">Arrow functions and this keyword</a></li>
+</ul>
+</li>
+<li><a href="#default-values">Default values</a></li>
+<li><a href="#classes-and-objects">Classes and Objects</a><ul>
+<li><a href="#overview">overview</a></li>
+<li><a href="#subclasses">Subclasses</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+		</nav>
+		<article>
+			<nav aria-label="Breadcrumb" class="breadcrumb">
+				<ul>
+					<li class="breadcrumb-item"><a href="/">Home</a></li>
+					<li class="breadcrumb-item">ES2015+ syntax</li>
+				</ul>
+			</nav>
+			<div class="main-content">
+				<html><head></head><body><h1 id="es2015-syntax">ES2015+ syntax</h1>
+<h2 id="let-and-const">Let and Const</h2>
+<h3 id="overview">Overview</h3>
+<p> When declaring a variable with the keyword <code>var</code>, the variable&#x2019;s declaration gets hoisted. What does that mean?</p>
+<p>Let&#x2019;s say we declared a function like this:</p>
+<pre><code class="lang-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getClothing</span><span class="hljs-params">(isCold)</span> </span>{
+  <span class="hljs-keyword">if</span> (isCold) {
+    <span class="hljs-keyword">var</span> freezing = <span class="hljs-string">&apos;Grab a jacket!&apos;</span>;
+  } <span class="hljs-keyword">else</span> {
+    <span class="hljs-keyword">var</span> hot = <span class="hljs-string">&apos;It&#x2019;s a shorts kind of day.&apos;</span>;
+    <span class="hljs-built_in">console</span>.log(freezing);
+  }
+}
+</code></pre>
+<p>Before this code gets executed all variables are &#x2018;hoisted&#x2019; which means their declarations gets raised to the top of the function scope. So at run-time the code above will look like this:</p>
+<pre><code class="lang-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getClothing</span><span class="hljs-params">(isCold)</span> </span>{
+  <span class="hljs-keyword">var</span> freezing, hot;
+  <span class="hljs-keyword">if</span> (isCold) {
+    freezing = <span class="hljs-string">&apos;Grab a jacket!&apos;</span>;
+  } <span class="hljs-keyword">else</span> {
+    hot = <span class="hljs-string">&apos;It&#x2019;s a shorts kind of day.&apos;</span>;
+    <span class="hljs-built_in">console</span>.log(freezing);
+  }
+}
+</code></pre>
+<p>So when the code gets executed it&#x2019;s not going throw <code>ReferenceError: freezing is not defined</code>, instead it&#x2019;s going to throw <code>undefined</code>.</p>
+<p>Variables declared with <code>let</code> and <code>const</code> eliminate this specific issue of hoisting because they&#x2019;re scoped to the block, not to the function. Previously, when we used <code>var</code>, variables were either scoped globally or locally to an entire function scope.</p>
+<h3 id="rules-for-using">Rules for using</h3>
+<ul>
+<li>Variables declared with <code>let</code> can be reassigned, but can&#x2019;t be redeclared in the same scope</li>
+<li>Variables declared with <code>const</code> must be assigned an initial value, but can&#x2019;t be redeclared in the same scope, and can&#x2019;t be reassigned</li>
+</ul>
+<h3 id="use-cases">Use cases</h3>
+<ul>
+<li>Use <code>let</code> when you plan to reassign new values to a variable</li>
+<li>use <code>const</code> when you don&#x2019;t plan on reassigning new values to a variable</li>
+</ul>
+<h2 id="template-literals">Template Literals</h2>
+<p>Template literals are essentially string literals that include embedded expressions. English please!?</p>
+<p>Let&#x2019;s say we have this code, in ES5 syntax:</p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> me = {
+  firstName: <span class="hljs-string">&apos;John&apos;</span>,
+  lastName: <span class="hljs-string">&apos;Doe&apos;</span>,
+  age: <span class="hljs-number">69</span> <span class="hljs-comment">/* :) */</span>,
+  <span class="hljs-function"><span class="hljs-keyword">get</span> <span class="hljs-title">fullName</span><span class="hljs-params">()</span></span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.firstName.concat(<span class="hljs-string">&apos; &apos;</span>).concat(<span class="hljs-keyword">this</span>.lastName);
+  },
+  <span class="hljs-function"><span class="hljs-keyword">get</span> <span class="hljs-title">bio</span><span class="hljs-params">()</span></span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-string">&apos;my name is &apos;</span> + <span class="hljs-keyword">this</span>.fullName() + <span class="hljs-string">&apos; , I am &apos;</span> + <span class="hljs-keyword">this</span>.age + <span class="hljs-string">&apos; years old.&apos;</span>;
+  }
+}
+</code></pre>
+<p>It could get way more complicated if we wanted to include newlines <code>\n</code>.</p>
+<p>ES2015 introduced <strong>Template Literals</strong> (previously referred to as <strong>template strings</strong>.) that solve this problem. So the above code in ES2015 syntax would look like this:</p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> me = {
+  firstName: <span class="hljs-string">&apos;John&apos;</span>,
+  lastName: <span class="hljs-string">&apos;Doe&apos;</span>,
+  age: <span class="hljs-number">69</span>,
+  <span class="hljs-function"><span class="hljs-keyword">get</span> <span class="hljs-title">fullName</span><span class="hljs-params">()</span></span>{
+    <span class="hljs-keyword">return</span> `${<span class="hljs-keyword">this</span>.firstName} ${<span class="hljs-keyword">this</span>.lastName}`;
+  },
+  <span class="hljs-function"><span class="hljs-keyword">get</span> <span class="hljs-title">bio</span><span class="hljs-params">()</span></span>{
+    <span class="hljs-keyword">return</span> `my name <span class="hljs-keyword">is</span> ${<span class="hljs-keyword">this</span>.fullName}, I am ${<span class="hljs-keyword">this</span>.age} years old.`
+  }
+}
+</code></pre>
+<p>Besides making the code easier to read and overall beautiful, Template literals preserve newlines. The <code>${...}</code> are called Delimiters and they play the role of placeholders to include any <strong>expression</strong>.</p>
+<h2 id="destructuring">Destructuring</h2>
+<p>The <strong>Destructuring assignment</strong> syntax is a JavaScript expression that makes it possible to unpack values from arrays, or properties from objects, into distinct variables.</p>
+<h3 id="for-arrays">For arrays</h3>
+<pre><code class="lang-javascript"><span class="hljs-keyword">let</span> [a, b] = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>];
+<span class="hljs-comment">// =&gt; a = 1 and b = 2</span>
+
+<span class="hljs-keyword">const</span> pets = [<span class="hljs-string">&apos;Dog&apos;</span>, <span class="hljs-string">&apos;Cat&apos;</span>, <span class="hljs-string">&apos;Gold fish&apos;</span>, <span class="hljs-string">&apos;Bird&apos;</span>];
+<span class="hljs-keyword">const</span> [pet0, pet1, <span class="hljs-comment">/* this one is empty */</span>, pet3] = pets;
+<span class="hljs-comment">// =&gt; pet0 = &apos;Dog&apos;, pet1 = &apos;Cat&apos;, pet3 = &apos;Bird&apos;</span>
+</code></pre>
+<p><strong>Note</strong>: the order is important!</p>
+<h3 id="for-objects">For Objects</h3>
+<pre><code class="lang-javascript">const me = {
+  name: <span class="hljs-string">&apos;John Doe&apos;</span>,
+  age: <span class="hljs-number">69</span>,
+  hobbies: [<span class="hljs-string">&apos;Something&apos;</span>, <span class="hljs-string">&apos;Another thing&apos;</span>, <span class="hljs-string">&apos;Something else&apos;</span>]
+}
+
+const {hobbies, name} = me;
+// =&gt; hobbies = [<span class="hljs-string">&apos;Something&apos;</span>, <span class="hljs-keyword">...</span>], name = <span class="hljs-string">&apos;John Doe&apos;</span>
+</code></pre>
+<p><strong>Note</strong>: order is not important, but variables need to have the same names as their counterpart properties.</p>
+<h2 id="arrow-functions">Arrow Functions</h2>
+<p>An <strong>arrow function expression</strong> behave the same way as &quot;regular&quot; (function expression and function declaration statement) but it has a shorter syntax and also doesn&apos;t have its own <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this"><code>this</code></a>, <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/arguments"><code>arguments</code></a>, <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/super"><code>super</code></a>, or <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/new.target"><code>new.target</code></a>. These function expressions are best suited for non-method functions, and they cannot be used as constructors.</p>
+<h3 id="concise-body-syntax">Concise body syntax</h3>
+<ul>
+<li>has no curly braces surrounding the function body</li>
+<li>and automatically returns the expression.</li>
+</ul>
+<pre><code class="lang-javascript">const myFunc = (param1, <span class="hljs-keyword">...</span>, paramN) =&gt; /* an expression to <span class="hljs-keyword">return</span> */;
+const myFunc = param =&gt; /* an expression to <span class="hljs-keyword">return</span> */;
+const myFunc = () =&gt; /* an expression to <span class="hljs-keyword">return</span> */;
+</code></pre>
+<h3 id="block-syntax">Block syntax</h3>
+<ul>
+<li>it uses curly braces to wrap the function body</li>
+<li>and a return statement needs to be used to actually return something from the function.</li>
+</ul>
+<pre><code class="lang-javascript">const myFunc = (param1, <span class="hljs-keyword">...</span>, paramN) =&gt; {
+   /* <span class="hljs-keyword">...</span> */
+   /* an expression to <span class="hljs-keyword">return</span> or not */
+};
+
+const myFunc = param =&gt; {
+   /* <span class="hljs-keyword">...</span> */
+   /* an expression to <span class="hljs-keyword">return</span> or not */
+};
+
+const myFunc = () =&gt; {
+   /* <span class="hljs-keyword">...</span> */
+   /* an expression to <span class="hljs-keyword">return</span> or not */
+};
+</code></pre>
+<p><strong>Note</strong>: when passing only one parameter, it is not required to wrap it in parentheses, but when we have multiple or no parameters it is required to include the parentheses.</p>
+<h3 id="regular-functions-and-this-keyword">Regular functions and this keyword</h3>
+<ul>
+<li>If the function is called with the <code>new</code> keyword (i.e. as a constructor), then the <code>this</code> keyword inside that function is a new object.</li>
+<li>If the function is called as a method of an object (e.g. <code>obj.someMethod();</code>), then the <code>this</code> keyword inside that function/method refers to that object (in this case <code>obj</code>).</li>
+<li>If the function is called with no context, then <code>this</code> keyword is either <code>global</code> object or <code>undefined</code> in <strong>strict mode</strong>.</li>
+</ul>
+<p>In a nutshell. With regular functions, the value of <code>this</code> is set based on how the function is called.</p>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this">More details about <code>this</code> keyword here</a>.</p>
+<h3 id="arrow-functions-and-this-keyword">Arrow functions and this keyword</h3>
+<p>With arrow functions, the value of <code>this</code> is based on the function&apos;s surrounding context. In other words, the value of <code>this</code> inside an arrow function is the same as the value of <code>this</code> outside the function.</p>
+<pre><code class="lang-javascript"><span class="hljs-reserved">const</span> obj = {
+   whatIsThis1(){
+      <span class="hljs-built_in">console</span>.log(<span class="hljs-keyword">this</span>);
+   },
+   <span class="hljs-attribute">whatIsThis2</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+      <span class="hljs-built_in">console</span>.log(<span class="hljs-keyword">this</span>);
+   }
+}
+
+obj.whatIsThis1(); <span class="hljs-regexp">//</span> logs the obj object
+obj.whatIsThis2(); <span class="hljs-regexp">//</span> logs the <span class="hljs-built_in">global</span> object
+</code></pre>
+<h2 id="default-values">Default values</h2>
+<p>Default values can be used for function parameters to allow formal parameters to be initialized with default values if no value or <code>undefined</code> is passed.</p>
+<pre><code class="lang-javascript">const myFunc = (param1=defVal1, <span class="hljs-keyword">...</span>, paramN=defValN) =&gt; {
+   /* <span class="hljs-keyword">...</span> */
+}
+</code></pre>
+<p>It can also be used with <a href="#destructuring"><strong>Destructuring assignments</strong></a> in case one of the object properties is not there.</p>
+<pre><code class="lang-javascript"><span class="hljs-reserved">const</span> me = {
+  <span class="hljs-attribute">name</span>: <span class="hljs-string">&apos;John Doe&apos;</span>,
+  <span class="hljs-attribute">age</span>: <span class="hljs-number">69</span>,
+  <span class="hljs-attribute">hobbies</span>: [<span class="hljs-string">&apos;Something&apos;</span>, <span class="hljs-string">&apos;Another thing&apos;</span>, <span class="hljs-string">&apos;Something else&apos;</span>]
+}
+
+<span class="hljs-reserved">const</span> {name, age, favoriteColor} = me;
+<span class="hljs-regexp">//</span> name=<span class="hljs-string">&apos;John Doe&apos;</span>, age=<span class="hljs-number">69</span>, favoriteColor=<span class="hljs-literal">undefined</span>
+</code></pre>
+<p>This can be avoided by setting default values</p>
+<pre><code class="lang-javascript">const me = {
+  name: <span class="hljs-string">&apos;John Doe&apos;</span>,
+  age: <span class="hljs-number">69</span>,
+  hobbies: [<span class="hljs-string">&apos;Something&apos;</span>, <span class="hljs-string">&apos;Another thing&apos;</span>, <span class="hljs-string">&apos;Something else&apos;</span>]
+}
+
+const {name=<span class="hljs-string">&apos;XY XX&apos;</span>, age=<span class="hljs-number">0</span>, favoriteColor=<span class="hljs-string">&apos;Black&apos;</span>, hobbies=[]} = me;
+// name=<span class="hljs-string">&apos;John Doe&apos;</span>, age=<span class="hljs-number">69</span>, favoriteColor=<span class="hljs-string">&apos;Black&apos;</span>, hobbies=[<span class="hljs-string">&apos;Something&apos;</span>, <span class="hljs-keyword">...</span>]
+</code></pre>
+<p><strong>Note</strong>: default values only take place if the property is not there or if its value is <code>undefined</code>.</p>
+<p>We can also set default values and rename variables at the same time</p>
+<pre><code class="lang-javascript"><span class="hljs-comment">// location is a reserved word in the browser :(</span>
+const locaxion = {
+<span class="hljs-label">  lat:</span> <span class="hljs-number">40.7290776</span>,
+<span class="hljs-label">  lng:</span> -<span class="hljs-number">74.0006519</span>,
+<span class="hljs-label">  alt:</span> <span class="hljs-number">50</span>
+}
+
+const {<span class="hljs-string">lat:</span> latitude = <span class="hljs-number">1</span>, <span class="hljs-string">lng:</span> longitude = <span class="hljs-number">1</span>, <span class="hljs-string">alt:</span> altitude = <span class="hljs-number">1</span>} = locaxion
+<span class="hljs-comment">// variables identify with latitude, longitude and altitude</span>
+</code></pre>
+<p>Default parameters can be used with Destructuring to create some powerful functions!</p>
+<h2 id="classes-and-objects">Classes and Objects</h2>
+<h3 id="overview">overview</h3>
+<p>JavaScript is not a class based language (e.g. Java), instead it uses functions to create objects and links objects together by <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Inheritance_and_the_prototype_chain">prototypal inheritance</a>. ES2015&#x2019;s <code>class</code> keyword, class methods and whatnot are just syntactical sugar.</p>
+<p>To create a class with ES2015 syntax, all we need to do is invoke the <code>class</code> keyword,</p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">class</span> Vehicle {
+  <span class="hljs-constructor"><span class="hljs-keyword">constructor</span>(type, year)</span>{
+    <span class="hljs-keyword">this</span>.type = type;
+    <span class="hljs-keyword">this</span>.year = year;
+    <span class="hljs-keyword">this</span>.engineSound = <span class="hljs-string">&apos;Vroom! Vroom!&apos;</span>;
+    <span class="hljs-keyword">this</span>.engineStart = <span class="hljs-literal">false</span>;
+  }
+  start(){
+    <span class="hljs-built_in">console</span>.log(`Starting engine: ${<span class="hljs-keyword">this</span>.engineSound}`);
+    <span class="hljs-keyword">this</span>.engineStart = <span class="hljs-literal">true</span>;
+  }
+  static whatAmI(){
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;I am a vehicle!&apos;</span>);
+  }
+}
+</code></pre>
+<p>The <code>constructor</code> method is a special method for creating and initializing an object created within a class.</p>
+<p>The <code>static</code> keyword defines a static method for a class. Static method calls are made directly on the class and are not callable on instances of the class. Static methods are often used to create utility functions.</p>
+<p><strong>Note</strong>: <code>this</code> keyword inside static methods is always <code>undefined</code>.</p>
+<h3 id="subclasses">Subclasses</h3>
+<p>Subclasses in ES2015 are very simple, all we need to do is call the <code>extends</code> keyword. Let&#x2019;s say we have another class <code>Car</code> that inherits from the <code>Vehicle</code> class above</p>
+<pre><code class="lang-javascript"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Car</span> <span class="hljs-keyword"><span class="hljs-keyword">extends</span></span> <span class="hljs-title">Vehicle</span> {</span>
+  constructor(<span class="hljs-class"><span class="hljs-keyword">type</span> =</span> <span class="hljs-symbol">&apos;Mercedic</span>e&apos;, year = <span class="hljs-symbol">&apos;201</span>8&apos;){
+    <span class="hljs-keyword">super</span>(<span class="hljs-class"><span class="hljs-keyword">type</span>, <span class="hljs-title">year</span>);</span>
+    <span class="hljs-keyword">this</span>.wheels = <span class="hljs-number">4</span>;
+  }
+}
+</code></pre>
+<p>Here the constructor uses the <code>super</code> keyword to call the constructor of a parent class, in this case <code>Vehicle</code>.</p>
+<p><strong>Note</strong>: <code>super</code> must be called before <code>this</code>.</p>
+<p>We don&#x2019;t need to reset the child class&#x2019;s constructor when creating the said class with the class keyword like in <strong>ES5</strong>, e.g.</p>
+<pre><code class="lang-javascript">Car.prototype = <span class="hljs-keyword">Object</span>.create(Vehicle.prototype);
+<span class="hljs-comment">// resetting Car constructor</span>
+Car.prototype.<span class="hljs-keyword">constructor</span> = Car;
+</code></pre>
+<p><strong>Note</strong>: difference between function declarations and class declarations is that function declarations are hoisted and class declarations are not.</p>
+<p>Just like constructor functions to create an instance of a class we need to invoke it using the <code>new</code> keyword.</p>
+<pre><code class="lang-javascript"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Car</span> <span class="hljs-keyword"><span class="hljs-keyword">extends</span></span> <span class="hljs-title">Vehicle</span> {</span>
+  ...
+}
+const myCar = <span class="hljs-keyword">new</span> <span class="hljs-type">Car</span>(<span class="hljs-symbol">&apos;mercedic</span>e&apos;, <span class="hljs-symbol">&apos;201</span>7&apos;);
+</code></pre>
+</body></html>
+			</div>
+		</article>
+	</main>
+</body>
+</html>

@@ -16,5 +16,5 @@ These are notes of everything I've learnt (the ones I've made notes for) in the 
 And projects I've made (So far)
 
 * [Currency Converter PWA](https://github.com/SalahHamza/currency-converter-pwa)
-* [Restaurant project - Stage 1](https://github.com/SalahHamza/things-i-have-learnt)
+* [Restaurant project - Stage 1](https://github.com/SalahHamza/mws-restaurant-stage-1)
 * [Snackbars](https://github.com/SalahHamza/snackbar)

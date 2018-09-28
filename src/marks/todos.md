@@ -14,7 +14,6 @@
 | Todo | Status |
 |:------|:--------|
 | Stage 1 | Done ✔ |
-| Service Worker Update message | Not Done |
 | Stage 2  | Not Done |
 | Stage 3 | Not Done |
 
@@ -24,18 +23,18 @@
 |:------|:--------|
 | Responsive Images | Almost Done |
 | Grunt | In progress |
-| Service Workers | Almost Done |
-| IndexedDB | Not Done |
+| Service Workers | Done ✔ |
+| IndexedDB | In progress |
 | ES2015+ | In progress |
-| AJAX (only needs CORS) | Almost Done |
+| AJAX | Done ✔ |
 
 ## Learning
 
 | Todo | Status |
 |:------|:--------|
 | React/Redux | In Progress |
-| Service Workers | Almost Done |
-| IndexedDB | In progress |
-| Automation tools | Not Done |
-| ES2015+ | In progress |
+| Service Workers | Done ✔ |
+| IndexedDB | Done ✔ |
+| Automation tools | Done ✔ |
+| ES2015+ | In progress (never ending) |
 | AJAX | Done ✔|

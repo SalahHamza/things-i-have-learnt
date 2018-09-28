@@ -10,4 +10,11 @@ These are notes of everything I've learnt (the ones I've made notes for) in the 
 * [AJAX](/build/html/AJAX.html)
 * [ES2015+](/build/html/es2015.html)
 * [Todos](/build/html/todos.html)
+* [Web Tooling and Automation](/build/html/tools-and-automation.html)
 
+
+And projects I've made (So far)
+
+* [Currency Converter PWA](https://github.com/SalahHamza/currency-converter-pwa)
+* [Restaurant project - Stage 1](https://github.com/SalahHamza/things-i-have-learnt)
+* [Snackbars](https://github.com/SalahHamza/snackbar)

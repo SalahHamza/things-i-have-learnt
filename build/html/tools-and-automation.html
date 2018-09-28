@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link rel="stylesheet" href="/build/assets/css/main.css">
+	<title>Things I Have Learnt - Web Tooling and Automation</title>
+</head>
+<body class="inside">
+	<header class="header">
+		<a href="https://github.com/SalahHamza/things-i-have-learnt#readme">
+			<img class="gh_logo" src="/build/assets/images/GitHub-Mark-Light-120px-plus.png" alt="View in Github">
+		</a>
+	</header>
+	<main class="main">
+		<nav class="table-of-content">
+			<h2>Contents</h2>
+			<ul>
+<li><a href="#web-tooling-and-automation">Web Tooling and Automation</a><ul>
+<li><a href="#common-sense">Common sense</a></li>
+<li><a href="#productive-editing">Productive editing</a><ul>
+<li><a href="#shortcuts">Shortcuts</a></li>
+</ul>
+</li>
+<li><a href="#powerful-builds">Powerful builds</a><ul>
+<li><a href="#overview">Overview</a></li>
+<li><a href="#gulp">Gulp</a></li>
+</ul>
+</li>
+<li><a href="#expressive-live-editing">Expressive Live Editing</a></li>
+<li><a href="#preventing-disasters">Preventing Disasters</a><ul>
+<li><a href="#linting">Linting</a><ul>
+<li><a href="#setup-eslint-in-vs-code">Setup ESlint in VS Code</a></li>
+<li><a href="#setup-eslint-locally">Setup ESlint locally</a></li>
+<li><a href="#setup-eslint-in-gulp">Setup ESlint in Gulp</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#unit-test">Unit Test</a><ul>
+<li><a href="#testing-front-end-apps">Testing front-end apps</a></li>
+<li><a href="#watching-our-tests">Watching our tests</a></li>
+</ul>
+</li>
+<li><a href="#awesome-optimization">Awesome Optimization</a><ul>
+<li><a href="#overview-1">Overview</a></li>
+<li><a href="#css-concatenation-and-minification">CSS Concatenation and minification</a></li>
+<li><a href="#js-concatenation-and-minification">JS Concatenation and minification</a></li>
+<li><a href="#setting-up-a-production-task">Setting up a production task</a></li>
+<li><a href="#transpiling">Transpiling</a></li>
+<li><a href="#source-maps">Source Maps</a><ul>
+<li><a href="#generate-source-maps-with-gulp">Generate source maps with gulp</a></li>
+</ul>
+</li>
+<li><a href="#optimizing-images">Optimizing Images</a><ul>
+<li><a href="#image-compression">Image Compression</a><ul>
+<li><a href="#lossless-compression">Lossless Compression</a></li>
+<li><a href="#lossy-compression">Lossy Compression</a></li>
+</ul>
+</li>
+<li><a href="#imagemin">Imagemin</a></li>
+<li><a href="#png-quantization">PNG Quantization</a><ul>
+<li><a href="#even-better-compression-options">Even better compression options</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+		</nav>
+		<article>
+			<nav aria-label="Breadcrumb" class="breadcrumb">
+				<ul>
+					<li class="breadcrumb-item"><a href="/">Home</a></li>
+					<li class="breadcrumb-item">Web Tooling and Automation</li>
+				</ul>
+			</nav>
+			<div class="main-content">
+				<html><head></head><body><h1 id="web-tooling-and-automation">Web Tooling and Automation</h1>
+<h2 id="common-sense">Common sense</h2>
+<p>When it comes to web tools, there are some scenarios that set you up for failure that should be avoided</p>
+<ul>
+<li>Avoid the idea that you can build a better tool from scratch, chances are you can&apos;t but even if you could it won&apos;t be worth it.</li>
+<li>Avoid diving into a new built tool because it&apos;s (let&apos;s say) X% faster. That X% is good and all, but a tool that is well supported by the community is pragmatic.</li>
+<li>Avoid self contained tools that don&apos;t offer connection points.</li>
+<li>Avoid, optimization that are not worth it, for example an opitimizaion that takes 4hours and it only cuts 1 second from a task you perform once in a day, you need to do it for 40 years to justify the investment.</li>
+</ul>
+<h2 id="productive-editing">Productive editing</h2>
+<h3 id="shortcuts">Shortcuts</h3>
+<p>It&apos;s always a good idea to know your editor&apos;s shortcuts. Mine is <strong>Visual Studio Code</strong>. To access shortcuts on <strong>VS Code</strong> press <code>Ctrl+K</code> then <code>Ctrl+S</code> or check out the printable referense for these shortcuts:</p>
+<ul>
+<li><a href="https://code.visualstudio.com/shortcuts/keyboard-shortcuts-windows.pdf"><strong>VS Code</strong> shortcuts - windows</a></li>
+<li><a href="https://code.visualstudio.com/shortcuts/keyboard-shortcuts-macos.pdf"><strong>VS Code</strong> shortcuts - Mac</a></li>
+<li><a href="https://code.visualstudio.com/shortcuts/keyboard-shortcuts-linux.pdf"><strong>VS Code</strong> shortcuts - Linux</a></li>
+</ul>
+<h2 id="powerful-builds">Powerful builds</h2>
+<h3 id="overview">Overview</h3>
+<p>When chosing a build tool you should look for these</p>
+<p>There are lots of build tools, but two of them shine brightly <a href="https://github.com/gulpjs/gulp/tree/master"><strong>Gulp</strong></a> and <a href=""><strong>Grunt</strong></a>. <strong>Gulp</strong> is faster since it can excute tasks in parallel. Plus <strong>Gulp</strong>&apos;s tasks use code over configuration (unlike <strong>Grunt</strong>), which means you can just use Javascript.</p>
+<h3 id="gulp">Gulp</h3>
+<p>Setting up <strong>Gulp</strong> is easy (this is for <strong>Gulp</strong> 4.0.0):</p>
+<ol>
+<li>make sure you have both <strong>node</strong> and <strong>npm</strong> istalled</li>
+<li>install gulp globally<pre><code class="lang-bash"><span class="hljs-built_in">npm</span> install --<span class="hljs-built_in">global</span> gulp-cli
+</code></pre>
+</li>
+<li>install gulp locally (in you project directory) as <code>devDependency</code><pre><code class="lang-bash">npm install --<span class="hljs-built_in">save</span>-<span class="hljs-built_in">dev</span> gulp@<span class="hljs-built_in">next</span>
+</code></pre>
+</li>
+<li>create a <strong>gulpfile</strong> using your editor or through the terminal<pre><code class="lang-bash"><span class="hljs-title">touch</span> gulpfile.js
+</code></pre>
+</li>
+<li>write these lines of codes
+<code>`</code>js
+function defaultTask(cb) {
+// place code for your default task here
+cb();
+}</li>
+</ol>
+<p>exports.default = defaultTask</p>
+<pre><code><span class="hljs-bullet">6. </span>check out the links bellow to know how to write tasks and whatnot.
+
+Check out:
+<span class="hljs-bullet">* </span>[<span class="hljs-link_label">**Getting started with Gulp (4.0.0)**</span>](<span class="hljs-link_url">https://github.com/gulpjs/gulp/tree/master/docs/getting-started</span>)
+<span class="hljs-bullet">* </span>[<span class="hljs-link_label">**Gulp 4.0.0** API docs</span>](<span class="hljs-link_url">https://github.com/gulpjs/gulp/blob/master/docs/API.md</span>)
+or the default <span class="hljs-strong">**Gulp 3.9.1**</span>:
+<span class="hljs-bullet">* </span>[<span class="hljs-link_label">**Getting started with Gulp (3.9.1)**</span>](<span class="hljs-link_url">https://github.com/gulpjs/gulp/blob/v3.9.1/docs/getting-started.md</span>)
+<span class="hljs-bullet">* </span>[<span class="hljs-link_label">**Gulp 3.9.1** API docs</span>](<span class="hljs-link_url">https://github.com/gulpjs/gulp/blob/v3.9.1/docs/API.md</span>)
+
+In <span class="hljs-strong">**Gulp**</span>, you can:
+<span class="hljs-bullet">* </span>[<span class="hljs-link_label">create your own **Gulp** tasks</span>](<span class="hljs-link_url">https://github.com/gulpjs/gulp/blob/master/docs/getting-started/3-creating-tasks.md</span>).
+<span class="hljs-bullet">* </span>[<span class="hljs-link_label">watch Files in **Gulp**</span>](<span class="hljs-link_url">https://github.com/gulpjs/gulp/blob/master/docs/getting-started/8-watching-files.md</span>) for changes to files that match the [<span class="hljs-link_label">globs</span>](<span class="hljs-link_url">https://github.com/gulpjs/gulp/blob/master/docs/getting-started/6-explaining-globs.md</span>) (paths) and executes the task when a change occurs. This can be done through the <span class="hljs-code">`watch()`</span> API.
+<span class="hljs-bullet">* </span>[<span class="hljs-link_label">use **Gulp** plugins</span>](<span class="hljs-link_url">https://github.com/gulpjs/gulp/blob/master/docs/getting-started/7-using-plugins.md</span>), which can be done through the <span class="hljs-code">`pipe()`</span> method
+
+And many more.
+
+<span class="hljs-header">## Expressive Live Editing</span>
+
+Live editing solves the tedious process of having to save, re-build (if you need to) and reload the browser.
+
+There are different appraoches to live editing:
+<span class="hljs-bullet">* </span>[<span class="hljs-link_label">Chrome Dev Workspaces</span>](<span class="hljs-link_url">https://developers.google.com/web/tools/setup/setup-workflow?utm_source=dcc&amp;utm_medium=redirect&amp;utm_campaign=2016q3</span>)
+<span class="hljs-bullet">* </span>[<span class="hljs-link_label">Browser Sync</span>](<span class="hljs-link_url">http://www.browsersync.io/</span>)
+
+A good example of using browserSync is to detect changes in your js,css and html files.
+
+Let&apos;s we are doing a sass to css convert using <span class="hljs-strong">**gulp**</span> and <span class="hljs-strong">**gulp-sass**</span> and we want to show the changes immediately in the browser using browserSync
+<span class="hljs-code">```</span>js
+function stylesTask() {
+  // specifuing source files
+  return gulp.src(paths.styles.src)
+<span class="hljs-code">    // sass to css</span>
+<span class="hljs-code">    .pipe(sass().on(&apos;error&apos;, sass.logError))</span>
+<span class="hljs-code">    // specifuing destination files</span>
+<span class="hljs-code">    .pipe(gulp.dest(paths.styles.dest));</span>
+<span class="hljs-code">    // since browserSync here only cares about css</span>
+<span class="hljs-code">    // &apos;.stream()&apos; is used to inject changes without</span>
+<span class="hljs-code">    // refreshing the page</span>
+<span class="hljs-code">    .pipe(browserSync.stream());</span>
+}
+</code></pre><p>If we want to do the same thing with html or js files, we need to use <code>browserSync.reload</code></p>
+<pre><code class="lang-js"><span class="hljs-keyword">...</span>
+// we are watching the destination files
+// instead of the <span class="hljs-keyword">source</span> files
+// once these files change, we reload the page
+watch(paths.html.dest).on(<span class="hljs-string">&apos;change&apos;</span>, browserSync.reload);
+</code></pre>
+<h2 id="preventing-disasters">Preventing Disasters</h2>
+<h3 id="linting">Linting</h3>
+<p>Linting is way to automatically check your javascript code for errors, it can be done</p>
+<ul>
+<li>via code editor (live linting)</li>
+<li>via your build process</li>
+<li>via pre-commit hook in version control</li>
+</ul>
+<p>check out</p>
+<ul>
+<li><a href="https://www.sitepoint.com/comparison-javascript-linting-tools/">A Comparison of JavaScript Linting Tools</a></li>
+<li><a href="https://eslint.org/docs/user-guide/getting-started">ESlint Documentaion</a></li>
+</ul>
+<h4 id="setup-eslint-in-vs-code">Setup ESlint in VS Code</h4>
+<ol>
+<li>Get the <strong>ESLint</strong> Extension through the Extentions icon sidebar that can be opened with this shortcut <code>Ctrl</code>+<code>Shift</code>+<code>X</code> in windows.</li>
+<li>Install ESlint globally<pre><code class="lang-bash">npm <span class="hljs-keyword">install</span> -g eslint
+</code></pre>
+</li>
+<li>Configure ESlint<pre><code class="lang-bash">eslint <span class="hljs-comment">--init</span>
+</code></pre>
+You&apos;ll be asked a series of questions as to how you&apos;d like to configure ESLint.</li>
+</ol>
+<p>Now whenever there is a piece of code that doesn&apos;t comply with ESlint configuration <strong>VS Code</strong> will prompt the errors down in the Problems bar.</p>
+<h4 id="setup-eslint-locally">Setup ESlint locally</h4>
+<ol>
+<li>Install ESlint locally in your porject directory<pre><code class="lang-bash">npm install eslint --<span class="hljs-built_in">save</span>-<span class="hljs-built_in">dev</span>
+</code></pre>
+</li>
+<li>Configure ESlint<pre><code class="lang-bash">./node_modules/.bin/eslint <span class="hljs-comment">--init</span>
+</code></pre>
+</li>
+<li>Run ESlint in your project directory<pre><code class="lang-bash">.<span class="hljs-regexp">/node_modules/</span>.bin/eslint yourfile.js
+</code></pre>
+</li>
+</ol>
+<h4 id="setup-eslint-in-gulp">Setup ESlint in Gulp</h4>
+<ol>
+<li>Install <strong>gulp-eslint</strong> as <code>devDependency</code> in your project directory<pre><code class="lang-bash">npm install gulp-eslint --<span class="hljs-built_in">save</span>-<span class="hljs-built_in">dev</span>
+</code></pre>
+</li>
+<li>we import the <strong>gulp-eslint</strong> adn create a lint task
+<code>`</code>js
+const eslint = require(&apos;gulp-eslint&apos;);</li>
+</ol>
+<p>function lintTask() {
+  return gulp.src(&lt;paths_to_files_to_lint&gt;)
+  // eslint() attaches the lint output to the &quot;eslint&quot; property
+  // of the file object so it can be used by other modules.
+  .pipe(eslint())
+  // eslint.format() outputs the lint results to the console.
+  // Alternatively use eslint.formatEach() (see Docs).
+  .pipe(eslint.format())
+  // To have the process exit with an error code (1) on
+  // lint error, return the stream and pipe to failAfterError last.
+  .pipe(eslint.failAfterError());
+}</p>
+<pre><code><span class="hljs-number">3</span>. <span class="hljs-type">All</span> you need to <span class="hljs-keyword">do</span> <span class="hljs-keyword">is</span> make sure to <span class="hljs-keyword">export</span> this task, <span class="hljs-keyword">and</span> a also <span class="hljs-string">&quot;watch&quot;</span> it <span class="hljs-keyword">with</span> the watch <span class="hljs-keyword">method</span>
+```js
+function defaultTask(cb) {
+  gulp.watch(&lt;paths_to_files_to_watch&gt;, lintTask);
+  cb();
+}
+
+exports.default = defaultTask;
+</code></pre><p><strong>Note</strong>: The <a href="https://github.com/adametry/gulp-eslint#api"><strong>gulp-eslint</strong> plugin API</a> exposes other methods that do various things.</p>
+<h2 id="unit-test">Unit Test</h2>
+<p>Unit test are essentially javascript functions that programmatically tests an API or aspect of your project. <strong>Unit tests</strong> like <strong>linting</strong> are here to prevent mistakes.</p>
+<p>Check out <a href="https://www.udacity.com/course/javascript-testing--ud549">Udacity&apos;s Javascript Testing course</a></p>
+<h3 id="testing-front-end-apps">Testing front-end apps</h3>
+<p>Testing front-end applications can be a bit tricky since it should be running in the browser in order to see what&apos;s going on. Luckily <a href="https://github.com/dhamaniasad/HeadlessBrowsers"><strong>Headless Browsers</strong></a> exist, which are basically browsers without a graphical user interface.</p>
+<p>We&apos;ll be using:</p>
+<ul>
+<li><a href="https://jasmine.github.io/"><strong>Jasmine</strong></a> as the unit test tool</li>
+<li><a href="https://github.com/GoogleChrome/puppeteer"><strong>Puppeteer</strong></a> which is a headless <strong>Chrome</strong> Node API, and</li>
+<li><a href="https://github.com/jasmine/gulp-jasmine-browser#gulp-jasmine-browser"><strong>gulp-jasmine-browser</strong></a> which will help us run jasmine tests in a browser or headless browser (in this case puppeteer) using gulp.</li>
+</ul>
+<p><strong>Note</strong>: If you are looking for a sandbox to try Puppeteer check out <a href="https://try-puppeteer.appspot.com/"><strong>tryPuppeteer</strong></a>.</p>
+<ol>
+<li>install <a href="https://www.npmjs.com/package/jasmine-core">Jasmine&apos;s official core files</a><pre><code class="lang-bash">npm install --<span class="hljs-built_in">save</span>-<span class="hljs-built_in">dev</span> jasmine-core
+</code></pre>
+</li>
+<li>install puppeteer<pre><code class="lang-bash">npm install puppeteer --<span class="hljs-built_in">save</span>-<span class="hljs-built_in">dev</span>
+</code></pre>
+</li>
+<li>install gulp-jasmine-browser<pre><code>npm install gulp-jasmine-browser --<span class="hljs-built_in">save</span>-<span class="hljs-built_in">dev</span>
+</code></pre></li>
+<li>write a a task to run jasmine tests headlessly
+<code>`</code>js
+const gulp = require(&apos;gulp&apos;);
+const jasmineBrowser = require(&apos;gulp-jasmine-browser&apos;);</li>
+</ol>
+<p>// run jasmine tests headlessly
+function testTask() {
+  return gulp
+    .src(paths.tests.src)
+    .pipe(jasmineBrowser.specRunner({ console: true }))
+    .pipe(jasmineBrowser.headless({ driver: &apos;chrome&apos; }));
+}
+// exposing the test task
+exports.tests = testTask;</p>
+<pre><code>alternatively, <span class="hljs-keyword">if</span> you want to run test <span class="hljs-keyword">in</span> browser, write test task <span class="hljs-keyword">this</span> way
+```js
+<span class="hljs-comment">// Create a Jasmine server to run specs in a browser</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">testTask</span><span class="hljs-params">()</span> </span>{
+  <span class="hljs-keyword">return</span> gulp.src(&lt;spec_files_paths&gt;)
+    .pipe(jasmineBrowser.specRunner())
+    <span class="hljs-comment">// Server port, defaults to 8888</span>
+    .pipe(jasmineBrowser.server({port: &lt;port&gt;}));
+}
+</code></pre><ol start="5">
+<li>run gulp tests task<pre><code class="lang-bash"><span class="hljs-title">gulp</span> tests
+</code></pre>
+</li>
+</ol>
+<p><strong>Note</strong>: you&apos;ll need to visit <code>localhost:&lt;port&gt;</code> if your run jasmine tests in your browser.</p>
+<h3 id="watching-our-tests">Watching our tests</h3>
+<p>Watching our tests gulp task via the <code>watch()</code> method and adding it to the <strong>default</strong> is the logical thing to do, but it&apos;s not recommended. It turns out running complex unit tests, especially in a headless browser can get a <em>really</em> slow, so adding it to our watch process could kill our live editing workflow. That&apos;s where <strong>continuous integration</strong> comes.</p>
+<p>learn more about <strong>Continuous Integration (CI)</strong>:</p>
+<ul>
+<li><a href="https://www.thoughtworks.com/continuous-integration">ToughtWorks - Continuous Integration</a></li>
+<li><a href="https://classroom.udacity.com/courses/ud611/lessons/4225318865/concepts/44585989490923">Udacity&apos;s Intro to DevOps</a></li>
+</ul>
+<h2 id="awesome-optimization">Awesome Optimization</h2>
+<h3 id="overview">Overview</h3>
+<p>Your app or website might be used by countless different devices, and optimizing it for each one by hand is a tedious, if not impossible work. That&apos;s where the build process comes in, where you can optimize things you can&apos;t fix by hand or simply takes too long (eg. minifying, concatenation, css prefixing, images optimization, ...).</p>
+<p>Remember that these optimizations are only meant for production and doing them everytime will slow up your iterative build time, and thus make your live editing less powerful. That&apos;s why you need to split your tasks into <strong>development</strong> and <strong>production</strong> tasks.</p>
+<p>Some performence issues and bugs might only manifest with specific optimization techniques. That&apos;s why, make sure to test your production version from time to time.</p>
+<p>also make sure to have a good file structure that separates your source files from build files. e.g:</p>
+<pre><code>-<span class="ruby"> dist/
+</span>  -<span class="ruby"> css/
+</span>  -<span class="ruby"> js/
+</span>  -<span class="ruby"> imgs/
+</span>  ...
+  -<span class="ruby"> index.html
+</span>-<span class="ruby"> src/
+</span>  -<span class="ruby"> sass/
+</span>  -<span class="ruby"> js/
+</span>  -<span class="ruby"> imgs/
+</span>-<span class="ruby"> index.html
+</span>...
+</code></pre><h3 id="css-concatenation-and-minification">CSS Concatenation and minification</h3>
+<p>Concatenating CSS is easy when using <strong>sass</strong>. Just by importing a file using <code>@import</code> while the sass compiler processes the sass into css it will automatically inline those imports and generate one big css file.</p>
+<p>Minification using <strong>gulp-sass</strong> is easy, all you need to do is add <code>outputStyle: &apos;compressed&apos;</code> to the sass pipe, like so</p>
+<pre><code>// <span class="hljs-keyword">...</span>
+.pipe(sass({outputStyle: <span class="hljs-string">&apos;compressed&apos;</span>})
+// <span class="hljs-keyword">...</span>
+</code></pre><h3 id="js-concatenation-and-minification">JS Concatenation and minification</h3>
+<p>JS concatenation is great opimization, it reduces the HTTP requests needed to load your page in production, which is a big deal if you are on a mobile connection with up to 300ms latency per request (Hello! HTTP/2, I heard the latter is not necessary), and also having to inject script tags in the html file while maintaining the dependency order is a bit tough.</p>
+<p>When making a task to concatenate and minify javascript, make sure to write 2 separate tasks that exactly the same for the exception of having one uglify the js code for production use.</p>
+<p>we&apos;ll be using <strong>uglifyJS</strong> through <strong>gulp-uglify</strong> to uglify and <strong>gulp-concat</strong> to concatenate javascript using gulp.</p>
+<pre><code class="lang-js"><span class="hljs-comment">// scripts task for development</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">scriptsTask</span><span class="hljs-params">()</span> </span>{
+  <span class="hljs-keyword">return</span> gulp.src(paths.scripts.src)
+    .pipe(concat(<span class="hljs-string">&apos;bundle.js&apos;</span>))
+    .pipe(gulp.dest(paths.scripts.dest));
+}
+
+exports.scripts = scriptsTask;
+
+<span class="hljs-comment">// scripts task for production</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">scriptsProdTask</span><span class="hljs-params">()</span> </span>{
+  <span class="hljs-keyword">return</span> gulp.src(paths.scripts.src)
+    .pipe(concat(<span class="hljs-string">&apos;bundle.js&apos;</span>))
+    .pipe(uglify())
+    .pipe(gulp.dest(paths.scripts.dest));
+}
+
+exports.scriptsProd = scriptsProdTask;
+</code></pre>
+<p><strong>Note</strong>: Uglify-js doesn&apos;t work with <strong>ES6</strong>, if you are writing in ES6 you can either use <strong>babel</strong> to transform to ES5 or use <strong>uglify-es</strong> through <a href="https://www.npmjs.com/package/gulp-uglify-es"><strong>gulp-uglify-es</strong> plugin</a></p>
+<p>Minification is good on its own but GZIP is even more effective, read more about it in <a href="https://css-tricks.com/the-difference-between-minification-and-gzipping/">The Difference Between Minification and GZipping</a></p>
+<h3 id="setting-up-a-production-task">Setting up a production task</h3>
+<p>When making a production task make sure to exclude things you only need for development like watching and live editing.</p>
+<h3 id="transpiling">Transpiling</h3>
+<p>When you hear transpiler the first thing that comes to mind is <strong>babel</strong>, which is the one we&apos;ll be using through <a href="https://www.npmjs.com/package/gulp-babel"><strong>gulp-babel</strong></a></p>
+<p>To use <strong>gulp-babel</strong> you need to first install it, along with <strong>@babel/core</strong> and <strong>@babel/preset-env</strong></p>
+<pre><code class="lang-bash"><span class="hljs-built_in">npm</span> install --save-dev gulp-babel <span class="hljs-property">@babel</span>/core <span class="hljs-property">@babel</span>/preset-env
+</code></pre>
+<p>All you need to do is pipe babel in your scripts task, make sure to do it before concatenation and minification</p>
+<pre><code class="lang-js">// <span class="hljs-keyword">...</span>
+  .pipe(babel({
+    presets: [<span class="hljs-string">&apos;@babel/preset-env&apos;</span>]
+  }))
+// <span class="hljs-keyword">...</span>
+</code></pre>
+<p>Let&apos;s pipe it in the example from <a href="#js-concatenation-and-minification">Js Concatenation and Minification</a></p>
+<pre><code class="lang-js">// <span class="hljs-keyword">...</span>
+const babel = <span class="hljs-keyword">require</span>(<span class="hljs-string">&apos;gulp-babel&apos;</span>);
+// <span class="hljs-keyword">...</span>
+
+// scripts task <span class="hljs-keyword">for</span> development
+<span class="hljs-keyword">function</span> scriptsTask() {
+  <span class="hljs-keyword">return</span> gulp.src(paths.scripts.src)
+    .pipe(babel({
+      presets: [<span class="hljs-string">&apos;@babel/preset-env&apos;</span>]
+    }))
+    .pipe(concat(<span class="hljs-string">&apos;all.js&apos;</span>))
+    .pipe(gulp.dest(paths.scripts.dest));
+}
+
+exports.scripts = scriptsTask;
+
+// scripts task <span class="hljs-keyword">for</span> production
+<span class="hljs-keyword">function</span> scriptsProdTask() {
+  <span class="hljs-keyword">return</span> gulp.src(paths.scripts.src)
+    .pipe(babel({
+      presets: [<span class="hljs-string">&apos;@babel/preset-env&apos;</span>]
+    }))
+    .pipe(concat(<span class="hljs-string">&apos;all.js&apos;</span>))
+    .pipe(uglify())
+    .pipe(gulp.dest(paths.scripts.dest));
+}
+
+exports.scriptsProd = scriptsProdTask;
+</code></pre>
+<h3 id="source-maps">Source Maps</h3>
+<blockquote>
+<p>Source maps are files that associate line numbers from the processed file to the original. This way the browser can lookup the current line number in the sourcemap and open the right source file at the correct line when debugging. In Chrome for instance, the DevTools support source maps both for CSS and JavaScript.</p>
+</blockquote>
+<p><a href="https://docs.google.com/document/d/1U1RGAehQwRypUTovF1KRlpiOFze0b-_2gc6fAH0KY0k/edit">Read more about Source Maps</a></p>
+<blockquote>
+<p>In addition to things like concatenation and minification, source maps also support some languages/extensions that transpile to JavaScript like Typescript, CoffeeScript and ES6 / JSX.</p>
+</blockquote>
+<p>You can read more about some of <a href="https://www.html5rocks.com/en/tutorials/developertools/sourcemaps/">the technical aspects of Source Maps on HTML5Rocks</a>.</p>
+<h4 id="generate-source-maps-with-gulp">Generate source maps with gulp</h4>
+<p>All you need to do is install <strong>gulp-sourcemaps</strong> plugin</p>
+<pre><code class="lang-bash">npm install --<span class="hljs-built_in">save</span>-<span class="hljs-built_in">dev</span> gulp-sourcemaps
+</code></pre>
+<p>require and use the plugin</p>
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> gulp = <span class="hljs-keyword">require</span>(<span class="hljs-string">&apos;gulp&apos;</span>);
+<span class="hljs-keyword">const</span> sourceMaps = <span class="hljs-keyword">require</span>(<span class="hljs-string">&apos;gulp-sourcemaps&apos;</span>);
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">taskThatInvolvesGeneratingSourceMaps</span><span class="hljs-params">()</span> </span>{
+  <span class="hljs-keyword">return</span> gulp.src(&lt;paths_to_files&gt;)
+    .pipe(sourceMaps.init())
+    <span class="hljs-comment">// other plugins that we want to use on</span>
+    <span class="hljs-comment">// specified files with &lt;path_to_files&gt;</span>
+    .pipe(sourceMaps.write(&lt;optional_location&gt;))
+    .pipe(gulp.dest(&lt;dest_path&gt;));
+}
+</code></pre>
+<p><strong>Notes</strong>:</p>
+<ul>
+<li>Make sure that all plugins between <code>sourcemaps.init()</code> and <code>sourcemaps.write()</code> need to have support for <strong>gulp-sourcemaps</strong>.</li>
+<li>if <code>&lt;optional_location&gt;</code> is not specified the source map will be inlined. If the <code>&lt;optional_location&gt;</code> is <code>.</code> then the source map will be in the same location as its file.</li>
+</ul>
+<p>There are thing you can configure, check out the <a href="https://www.npmjs.com/package/gulp-sourcemaps"><strong>gulp-sourcemaps</strong> plugin documentation</a>.</p>
+<h3 id="optimizing-images">Optimizing Images</h3>
+<p>Images are great but they also make the website huge. Images nowadays <em>may</em> account to more than 60% of a website&apos;s size, that&apos;s why optimizing them is a must.</p>
+<h4 id="image-compression">Image Compression</h4>
+<h5 id="lossless-compression">Lossless Compression</h5>
+<p>Lossless compression reduces a file in such a way that the original can be recreated from the compressed version. You can think of it as reducing the file size but not throwing away any information.</p>
+<h5 id="lossy-compression">Lossy Compression</h5>
+<p>Lossy compression, on the other hand, can only recreate an approximation of the original. Lossy compression can give you really small file sizes at the expense of image quality. But there are a few lossy optimizations that are truly smart, and PNG quantization is one of them. PNG quantization takes images with or without alpha transparency and converts them to 256 or less colored 8-bit pngs. Now if you do this manually and just convert a 16-bit image to a 8-bit image, you won&#x2019;t like the results. It&#x2019;ll end up...well..like a crappy gif, with unnatural, limited colors.</p>
+<h4 id="imagemin">Imagemin</h4>
+<p><a href="">gulp-imagemin</a> can losslessly compress JPEGs, GIFS, PNGs and SVGs out of the box. Lossless means that even though the file size will end up being smaller, special care is taken to not cause any visual changes whatsoever, meaning that original visual information stays exactly the same.</p>
+<p>After you&#x2019;ve grabbed the plugin you can simply add a pipe between the new crunch-images task and call imagemin() in there. There are a few extra options such as generating progressive images, but even without any configuration this will take all of your images and do any safe optimizations.</p>
+<h4 id="png-quantization">PNG Quantization</h4>
+<p>PNG quantization benefits from the fact that there are colors that our vision and brain perceives as very similar, even though they&#x2019;re technically completely different. The quantization algorithm aims to understand which colors actually matter and remaps them to new, optimized colors.</p>
+<p>A cool thing about <strong>pngquant</strong>, the plugin we&#x2019;re going to use, is that it automatically exits and will not save if a certain quality threshold isn&#x2019;t passed.</p>
+<p>Let&apos;s Try It</p>
+<p>Download and require the <a href="https://www.npmjs.com/package/imagemin-pngquant">imagemin-pngquant</a> plugin</p>
+<pre><code class="lang-bash">npm install imagemin-pngquant --<span class="hljs-built_in">save</span>-<span class="hljs-built_in">dev</span>
+</code></pre>
+<p>in addition to gulp-imagemin.</p>
+<pre><code class="lang-bash">npm install --<span class="hljs-built_in">save</span>-<span class="hljs-built_in">dev</span> gulp-imagemin
+</code></pre>
+<p>Create a config object for imagemin. These are the directives that imagemin will use when you pipe images to it. The following snippet instructs imagemin to use progressive rendering for JPEG images and PNG quant for well, PNGs.</p>
+<pre><code class="lang-js">const gulp = <span class="hljs-keyword">require</span>(<span class="hljs-string">&apos;gulp&apos;</span>);
+const imagemin = <span class="hljs-keyword">require</span>(<span class="hljs-string">&apos;gulp-imagemin&apos;</span>);
+const pngquant = <span class="hljs-keyword">require</span>(<span class="hljs-string">&apos;imagemin-pngquant&apos;</span>);
+
+// <span class="hljs-keyword">...</span>
+
+<span class="hljs-keyword">function</span> crunchImgsTask() {
+  <span class="hljs-keyword">return</span> gulp.src(paths.imgs.src)
+    .pipe(imagemin({
+      progressive: true,
+      use: [pngquant()]
+    }))
+    .pipe(gulp.dest(paths.imgs.dest));
+}
+
+exports.crunchImgs = crunchImgsTask;
+</code></pre>
+<p>Progressive rendering loads an image in layers where each layer makes the image more detailed. It can make a page feel faster than typical rendering line by line. If you like, you can now configure pngquant as well by adding quality or speed options. Read more about these on the <a href="https://www.npmjs.com/package/gulp-imagemin">gulp-imagemin plugin homepage</a>.</p>
+<p>Now you&#x2019;ve got automatic image crunching in place and working for you but pro-tip, for anything important, take the time to see what will work, even if that means putting in a bit of elbow grease and checking things manually.</p>
+<h5 id="even-better-compression-options">Even better compression options</h5>
+<p>Smaller images can tolerate more aggressive lossy compression. You might want to try other things like converting images to SVG where applicable. SVG stands for Scalable Vector Graphics and uses a XML-based format to describe an image and can in most cases be scaled infinitely without any increase in file size or loss of image quality. If you&#x2019;d like to further explore techniques to work with your images, head to the notes for a few advanced topics. This includes stuff such as automatically resizing your images to become responsive and fit retina and non-retina screens, or inlining your images into your CSS or into a sprite to save a couple more HTTP requests.</p>
+</body></html>
+			</div>
+		</article>
+	</main>
+</body>
+</html>
